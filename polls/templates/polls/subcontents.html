@@ -1,0 +1,36 @@
+{% load filters %}
+{% load static %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/contents.css' %}">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{strand}} Contents</title>
+  </head>
+  <body>
+    <table width="100%">
+      <tr>
+      <th> Year 7 </th>
+        <th> Year 8 </th>
+        <th> Year 9 </th>
+        <th> Year 10 </th>
+        <th> Year 11 </th>
+      </tr>
+      {% for i in count %}
+        {% if year|lookup:i == 7 %}
+          <tr>
+        {% endif %}
+
+        <td><a class="btn-link" href="/polls/index/?year={{year|lookup:i}}&task={{task_code|lookup:i}}">{{topics|lookup:i}}</a></td>
+
+        {% if year|lookup:i == 11 %}
+          </tr>
+        {% endif %}
+
+      {% endfor %}
+
+    </table>
+
+  </body>
+</html>

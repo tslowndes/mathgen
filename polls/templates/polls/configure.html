@@ -1,0 +1,16 @@
+<h1>Configure Task</h1>
+<body>
+<form action="{% url 'polls:vote' %}" method="post">
+    <datalist id="Tasks">
+    <option value="Solving Equations">
+    <option value="Collecting Like Terms">
+    <option value="Expanding Brackets">
+    <option value="Multiplying Terms">
+    <option value="Forming expressions">
+  </datalist>
+
+    <input type="number">
+
+<input type="submit" value="Vote">
+</form>
+</body>
