@@ -64,7 +64,7 @@ def subcontents(request):
     fin_task_codes = []
     fin_index = []
     j = 0
-    print(task_code_list)
+
     for task_code in task_code_list:
         years = df[df.Task_Code == task_code]['Yr'].to_list()
         topics = df[df.Task_Code == task_code]['Task_Title'].to_list()
