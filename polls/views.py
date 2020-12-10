@@ -324,13 +324,14 @@ def tidy_algebra(q):
     while i < len(q):
         if q[i].isalpha():
             if i > 1:
-                if q[i-1] == "1" and q[i-2] == " ":
+                if q[i-1] == "1" and q[i-2].isnumeric()==False:
                     q = q[:i-1] + q[i:]
                 elif q[i-1] == "1" and q[i-2] == "-":
                     q = q[:i-1] + q[i:]
             else:
                 if q[i-1] == "1":
-                    q = q[:i-1] + q[i:]
+                    #q = q[:i-1] + q[i:]
+                    q = q[i:]
 
         elif q[i] == "+":
             if q[i+2] == "-":
