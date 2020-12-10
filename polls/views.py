@@ -298,8 +298,8 @@ def gen_expanding_brackets(a1,a2,a3,a4,a5,a6):
     count = []
     for i in range(0,10):
         a = random.randint(1,10)
-        b = random.randint(1,10)
-        c = random.randint(1,10)
+        b = rand_no0(-10,10)
+        c = random.randint(2,10)
 
         expanded = str(c*a) + 'x' + ' + ' + str(c*b)
         factorised = str(c) + '(' + str(a) + 'x' + ' + ' + str(b) + ')'
