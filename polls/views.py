@@ -20,7 +20,7 @@ def index(request):
 
     #Getting method name
     method_name = df_year.Function_Name.to_list()[0]
-    print(method_name)
+
     if type(method_name) == str:
         #Getting arguments for method
         args = [df_year['arg1'].to_list()[0],df_year['arg2'].to_list()[0],df_year['arg3'].to_list()[0],df_year['arg4'].to_list()[0],df_year['arg5'].to_list()[0],df_year['arg6'].to_list()[0]]
