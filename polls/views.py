@@ -292,6 +292,33 @@ def gen_collecting_like_terms(powers, doubleletters, a3, a4, a5, a6):
         'answers': anss
     }
 
+def gen_expanding_brackets(a1,a2,a3,a4,a5,a6):
+    qs = []
+    ans = []
+    count = []
+    for i in range(0,10):
+        a = random.randint(1,10)
+        b = random.randint(1,10)
+        c = random.randint(1,10)
+
+        expanded = str(c*a) + 'x' + ' + ' + str(c*b)
+        factorised = str(c) + '(' + str(a) + 'x' + ' + ' + str(b) + ')'
+
+        qs.append(factorised)
+        ans.append(expanded)
+        count.append(count)
+
+    context = {
+        'count':count,
+        'questions':qs,
+        'answers':ans,
+    }
+
+    return context
+
+
+
+
 def tidy_algebra(q):
     i = 1
     while i < len(q):
