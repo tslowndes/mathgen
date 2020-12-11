@@ -337,21 +337,31 @@ def tidy_algebra(q):
                     q = q[:i-1] + q[i:]
                 elif q[i-1] == "1" and q[i-2] == "-":
                     q = q[:i-1] + q[i:]
+                else:
+                    i += 1
             else:
                 if q[i-1] == "1":
                     #q = q[:i-1] + q[i:]
                     q = q[i:]
+                i += 1
+        else:
+            i += 1
 
+    i = 1
 
-        elif q[i] == "+":
+    while i < len(q):
+        if q[i] == "+":
             if q[i+2] == "-":
                 q = q[:i] + " " + q[i+2] + " " + q[i+3:]
+        i += 1
 
+    i = 1
+    
+    while i < len(q):
         elif q[i] == '^':
             if q[i+1] == 1:
                 q = q[:i] + q[i+2:]
 
-        else:
-            i += 1
+        i += 1
     return q
 
