@@ -10,4 +10,5 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6
 8,A003,10,Factorising Quadratics,,0,0,0,0,0,0
 9,A004,11,Circle Theorems,,0,0,0,0,0,0
 10,A005,7,Expanding Brackets,gen_expanding_brackets,0,0,0,0,0,0
-11,A005,9,Expanding Brackets,gen_expanding_brackets,1,0,0,0,0,0
+11,A005,8,Expanding Brackets,gen_expanding_brackets,1,0,0,0,0,0
+12,A005,9,Expanding Brackets,gen_expanding_brackets,2,0,0,0,0,0

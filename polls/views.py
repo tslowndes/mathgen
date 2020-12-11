@@ -302,9 +302,13 @@ def gen_expanding_brackets(powers,a2,a3,a4,a5,a6):
         b = rand_no0(-10,10)
         c = random.randint(2,10)
 
-        if powers == 1:
-            a_ind = random.randint(1,3)
-            c_ind = random.randint(1,3)
+        if powers == 1 or powers == 2:
+            if powers == 1:
+                a_ind = 1
+                c_ind = 1
+            else:
+                a_ind = random.randint(1,3)
+                c_ind = random.randint(1,3)
 
             expanded = tidy_algebra(str(c*a) + 'x^' + str(a_ind+c_ind) + ' + ' + str(c*b)) + 'x^' + str(c_ind)
             factorised = tidy_algebra(str(c) + 'x^' + str(c_ind) +'(' + str(a) + 'x^' + str(a_ind) + ' + ' + str(b) + ')')
