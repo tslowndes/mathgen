@@ -352,7 +352,7 @@ def tidy_algebra(q):
     while i < len(q):
         if q[i] == "+":
             if q[i+2] == "-":
-                q = q[:i] + " " + q[i+2] + " " + q[i+3:]
+                q = q[:i] + q[i+2] + " " + q[i+3:]
         i += 1
 
     i = 1
@@ -361,7 +361,10 @@ def tidy_algebra(q):
         if q[i] == "^":
             if q[i+1] == '1':
                 q = q[:i] + q[i+2:]
+            else:
+                i += 1
+        else:
+            i += 1
 
-        i += 1
     return q
 
