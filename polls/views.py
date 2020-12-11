@@ -304,13 +304,13 @@ def gen_expanding_brackets(powers,a2,a3,a4,a5,a6):
 
         if powers == 1 or powers == 2:
             if powers == 1:
-                a_ind = 1
+                a_ind = random.randint(1,2)
                 c_ind = 1
             else:
                 a_ind = random.randint(1,3)
                 c_ind = random.randint(1,3)
 
-            expanded = tidy_algebra(str(c*a) + 'x^' + str(a_ind+c_ind) + ' + ' + str(c*b)) + 'x^' + str(c_ind)
+            expanded = tidy_algebra(str(c*a) + 'x^' + str(a_ind+c_ind) + ' + ' + str(c*b) + 'x^' + str(c_ind))
             factorised = tidy_algebra(str(c) + 'x^' + str(c_ind) +'(' + str(a) + 'x^' + str(a_ind) + ' + ' + str(b) + ')')
         else:
 
@@ -364,10 +364,7 @@ def tidy_algebra(q):
     while i < len(q):
         if q[i] == "^":
             if q[i+1] == '1':
-                if i == len(q) - 2:
-                    q = q[:i]
-                else:
-                    q = q[:i] + q[i+2:]
+                q = q[:i] + q[i+2:]
             else:
                 i += 1
         else:
