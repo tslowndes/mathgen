@@ -292,17 +292,26 @@ def gen_collecting_like_terms(powers, doubleletters, a3, a4, a5, a6):
         'answers': anss
     }
 
-def gen_expanding_brackets(a1,a2,a3,a4,a5,a6):
+def gen_expanding_brackets(powers,a2,a3,a4,a5,a6):
     qs = []
     ans = []
     count = []
+    ### Generates expanding brackets questions in the form c(ax + b)
     for i in range(0,10):
         a = random.randint(1,10)
         b = rand_no0(-10,10)
         c = random.randint(2,10)
 
-        expanded = tidy_algebra(str(c*a) + 'x' + ' + ' + str(c*b))
-        factorised = tidy_algebra(str(c) + '(' + str(a) + 'x' + ' + ' + str(b) + ')')
+        if powers == 1:
+            a_ind = random.randint(1,3)
+            c_ind = random.randint(1,3)
+
+            expanded = tidy_algebra(str(c*a) + 'x^' + str(a_ind+c_ind) + ' + ' + str(c*b)) + 'x^' + str(c_ind)
+            factorised = tidy_algebra(str(c) + 'x^' + str(c_ind) +'(' + str(a) + 'x^' + str(a_ind) + ' + ' + str(b) + ')')
+        else:
+
+            expanded = tidy_algebra(str(c*a) + 'x' + ' + ' + str(c*b))
+            factorised = tidy_algebra(str(c) + '(' + str(a) + 'x' + ' + ' + str(b) + ')')
 
         qs.append(factorised)
         ans.append(expanded)
@@ -333,9 +342,14 @@ def tidy_algebra(q):
                     #q = q[:i-1] + q[i:]
                     q = q[i:]
 
+
         elif q[i] == "+":
             if q[i+2] == "-":
                 q = q[:i] + " " + q[i+2] + " " + q[i+3:]
+
+        elif q[i] == '^':
+            if q[i+1] == 1:
+                q = q[:i] + q[i+2:]
 
         i += 1
     return q
