@@ -351,6 +351,7 @@ def tidy_algebra(q):
             if q[i+1] == 1:
                 q = q[:i] + q[i+2:]
 
-        i += 1
+        else:
+            i += 1
     return q
 
