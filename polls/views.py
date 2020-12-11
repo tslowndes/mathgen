@@ -356,10 +356,10 @@ def tidy_algebra(q):
         i += 1
 
     i = 1
-    
+
     while i < len(q):
-        elif q[i] == '^':
-            if q[i+1] == 1:
+        if q[i] == "^":
+            if q[i+1] == '1':
                 q = q[:i] + q[i+2:]
 
         i += 1
