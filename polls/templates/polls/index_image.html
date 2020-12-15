@@ -1,0 +1,59 @@
+{% load filters %}
+{% load static %}
+
+{% load mathjax %}
+{% mathjax_scripts%}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/questions.css' %}">
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+
+  </head>
+  <body>
+  <div>
+    <table width="100%">
+      {% for row in rows %}
+        <tr>
+          {% if forloop.counter|divisibleby:2 %}
+              <td width = 10%>
+                {{row.0}}
+              </td>
+              <td onclick="this.style.color='black';" style="color:rgba(0,0,0,0); width:40%;">
+                $${{row.1}}$$
+              </td>
+              <td width = 10%>
+                {{row.2}}
+              </td>
+              <td onclick="this.style.color='black';" style="color:rgba(0,0,0,0); width:40%;">
+                $${{row.3}}$$
+              </td>
+          {% else %}
+              <td width = 10%>
+                {{row.0}}
+              </td>
+              <td>
+                <img src="/media/{{row.1}}">
+              </td>
+          <td width = 10%>
+                {{row.2}}
+              </td>
+          <td>
+                <img src="/media/{{row.3}}">
+              </td>
+          {% endif %}
+        </tr>
+
+
+      {% endfor %}
+
+    </table>
+
+    </div>
+  <h3 style="text-align:center;">
+    <a href="/">Home</a>
+  </h3>
+
+  </body>
+</html>

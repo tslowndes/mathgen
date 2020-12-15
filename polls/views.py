@@ -3,12 +3,20 @@ from django.template import loader
 import random
 import string
 import pandas as pd
+from polls.shapes import *
+from math import sqrt
+from os import listdir
+from os.path import isfile, join
+import os
 import math
+from time import sleep
+
 
 def index(request):
     #Importing Dataframe
     df = pd.read_csv('polls/dir.csv')
     template = loader.get_template('polls/index.html')
+    template_image = loader.get_template('polls/index_image.html')
     err_template = loader.get_template('polls/plain.html')
     #Getting Arguments from URL
     year = int(request.GET.get('year'))
@@ -20,10 +28,11 @@ def index(request):
 
     #Getting method name
     method_name = df_year.Function_Name.to_list()[0]
-
+    print(method_name)
     if type(method_name) == str:
         #Getting arguments for method
         args = [df_year['arg1'].to_list()[0],df_year['arg2'].to_list()[0],df_year['arg3'].to_list()[0],df_year['arg4'].to_list()[0],df_year['arg5'].to_list()[0],df_year['arg6'].to_list()[0]]
+        img = df_year['images'].to_list()[0]
         #Setting up method
         possibles = globals().copy()
         possibles.update(locals())
@@ -33,6 +42,7 @@ def index(request):
         rows = []
         count = []
         i = 0
+        print(context['questions'])
         while i < len(context['count']):
             if i == len(context['count']) - 1:
                 rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], "", ""])
@@ -44,7 +54,11 @@ def index(request):
             i += 2
 
         context = {'rows':rows, 'count':count}
-        return HttpResponse(template.render(context, request))
+        if img == 0:
+            return HttpResponse(template.render(context, request))
+        else:
+
+            return HttpResponse(template_image.render(context, request))
 
     else:
         return HttpResponse(err_template.render({'content':'Task Not Found.'}, request))
@@ -109,6 +123,40 @@ def rand_no0(min, max):
     while result == 0:
         result = random.randint(min, max)
     return result
+
+def gen_pythagoras(small_or_hyp,a1,a2,a3,a4,a5):
+    clear_temp_img()
+    fns = []
+    ans = []
+    for i in range(0,4):
+        tri = gen_ratriangle()
+        lens = []
+        for i in range(len(tri)-1):
+            lens.append(round(sqrt(((tri[i][0] - tri[i+1][0])**2)+((tri[i][1] - tri[i+1][1])**2)), 2))
+
+
+        if i > 1:
+            tri = rotate(tri, random.randint(30, 360))
+
+        lbl_points = labels_for_shape(tri)
+
+        fig = plot_shape(tri, lbl_points, [lens[0], lens[1], 'x'])
+        r = random.randint(0,999999999999999)
+        fn = 'temp_img/temp'+ str(r) + '.png'
+
+        fig.savefig('media/' + fn, bbox_inches='tight', pad_inches = 0, transparent=True)
+
+        fns.append(fn)
+        ans.append(lens[-1])
+    count = [i for i in range(0,4)]
+
+    return {'count':count, 'questions':fns, 'answers':ans}
+
+
+def clear_temp_img():
+    mypath = 'media/temp_img/'
+    for f in listdir(mypath):
+        os.remove(mypath + f)
 
 
 def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):

@@ -122,6 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MATHJAX_ENABLED=True
 MATHJAX_CONFIG_FILE = "TeX-AMS-MML_HTMLorMML"
 MATHJAX_CONFIG_DATA = {
@@ -133,3 +135,4 @@ MATHJAX_CONFIG_DATA = {
       ]
   }
 }
+
