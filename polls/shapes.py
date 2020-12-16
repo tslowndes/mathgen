@@ -88,7 +88,7 @@ def gen_ratriangle():
     return points
 
 def rotate(pts, ang):
-    cnt = (sum(pts[:,0])/len(pts[:,1]), sum(pts[:,1])/len(pts[:,1]))
+    cnt = (sum(pts[:,0])/len(pts[:,0]), sum(pts[:,1])/len(pts[:,1]))
     return rotate_shape(pts,cnt,ang*pi/180)
 
 def rotate_shape(pts,cnt,ang=pi/4):
@@ -99,7 +99,8 @@ def labels_for_shape(points):
 
     lbls = []
 
-    delta = (max(points[:,0]) - min(points[:,0]))/8
+    #delta = (max(points[:,0]) - min(points[:,0]))/5
+    delta = 2
 
     for i in range(len(points)-1):
 
@@ -136,18 +137,18 @@ def is_in_shape(points, polygon):
     return inside2
 
 def plot_shape(shape, lbl_points, lbls):
-    fig = plt.figure()
+    fig = plt.figure(figsize = (4,4))
     ax = fig.add_subplot(111)
-    plt.plot(shape[:, 0], shape[:, 1])
+    plt.plot(shape[:, 0], shape[:, 1], color = '#1f77b4', linewidth = 4)
     for i in range(len(lbls)):
-        plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', verticalalignment='center')
+        plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', verticalalignment='center', fontsize = 'xx-large')
 
     delta = (max(shape[:, 0]) - min(shape[:, 0])) / 100
 
-    x_min = min(shape[:,0])
-    x_max = max(shape[:,0])
-    y_min = min(shape[:,1])
-    y_max = max(shape[:,1])
+    x_min = min(shape[:,0])-2
+    x_max = max(shape[:,0])+2
+    y_min = min(shape[:,1])-2
+    y_max = max(shape[:,1])+2
 
     plt.xlim(x_min, x_max)
     plt.ylim(y_min, y_max)
