@@ -124,6 +124,53 @@ def rand_no0(min, max):
         result = random.randint(min, max)
     return result
 
+def gen_linear_sequences(add_or_subtract, neg_first_term, a3, a4, a5, a6):
+    if neg_first_term == 1:
+        first_term = random.randint(-1,-20)
+    else:
+        first_term = random.randint(0, 20)
+
+    common_difference = random.randint(1, 15)
+    if add_or_subtract == 1:
+        common_difference = common_difference * -1
+    terms = ''
+    for i in range(0,4):
+        terms = terms + ', ' + str(first_term + i * common_difference)
+    answer = first_term + 4 * common_difference
+
+    return terms, answer
+
+
+def gen_adding_algebra_terms(a1, a2, a3, a4, a5, a6):
+    a = random.randint(1, 10)
+    b = rand_no0(-10,10)
+    alpha = get_alpha()
+
+    c = a + b
+    question = tidy_algebra(str(a) + alpha + ' + ' + str(b) + alpha)
+    answer = tidy_algebra(str(c) + alpha)
+
+    return question, answer
+
+def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5, a6):
+    count = [i for i in range(8)]
+    questions = [0 for i in range(8)]
+    answers = [0 for i in range(8)]
+    questions[0], answers[0] = gen_linear_sequences(0, 0, 0, 0, 0, 0)
+    questions[1], answers[1] = gen_linear_sequences(1, 0, 0, 0, 0, 0)
+    questions[2], answers[2] = gen_adding_algebra_terms(0,0,0,0,0,0)
+    out = gen_solving_equations(1, 0, 0, 1, 0, 0)
+    questions[3] = out['questions'][0]
+    answers[3] = out['answers'][0]
+
+    return {'count': count,
+            'questions':questions,
+            'answers': answers}
+
+
+
+
+
 def gen_pythagoras(small_or_hyp,a1,a2,a3,a4,a5):
     clear_temp_img()
     fns = []
@@ -178,6 +225,8 @@ def clear_temp_img():
     for f in listdir(mypath):
         os.remove(mypath + f)
 
+def get_alpha():
+    return random.choice('abcdefghjklmnpqrstuvwxyz')
 
 def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
     count = []
@@ -440,3 +489,36 @@ def tidy_algebra(q):
 
     return q
 
+def frac_to_percentage(a1=0, a2=0, a3=0, a4=0, a5=0,a6=0):
+    denominator = random.choice([2,4,5,10])
+    numerator = random.randint(1,denominator-1)
+
+    percentage = numerator / denominator * 100
+
+    percentage = str(percentage) + '%'
+
+    fraction = r'\frac{' + str(numerator) + '}{' + str(denominator) + '}'
+
+    return fraction, percentage
+
+
+
+
+def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
+    count = [i for i in range(8)]
+    questions = [0 for i in range(8)]
+    answers = [0 for i in range(8)]
+    questions[0], answers[0] = gen_linear_sequences(0, 0, 0, 0, 0, 0)
+    questions [0] = 'Find the next term: ' + questions[0]
+    questions[1], answers[1] = gen_linear_sequences(1, 0, 0, 0, 0, 0)
+    questions [1] = 'Find the next term: ' + questions[1]
+    questions[2], answers[2] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
+    questions [2] = 'Simplify:  ' + questions[2]
+    out = gen_solving_equations(1, 0, 0, 1, 0, 0)
+    questions[3] = 'Solve the equation: ' + out['questions'][0]
+    answers[3] = out['answers'][0]
+    questions[4], answers[4] = frac_to_percentage()
+
+    return {'count': count,
+            'questions': questions,
+            'answers': answers}
