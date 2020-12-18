@@ -4,7 +4,7 @@ import random
 import string
 import pandas as pd
 from polls.shapes import *
-from math import sqrt
+from math import sqrt, gcd
 from os import listdir
 from os.path import isfile, join
 import os
@@ -28,7 +28,7 @@ def index(request):
 
     #Getting method name
     method_name = df_year.Function_Name.to_list()[0]
-    print(method_name)
+
     if type(method_name) == str:
         #Getting arguments for method
         args = [df_year['arg1'].to_list()[0],df_year['arg2'].to_list()[0],df_year['arg3'].to_list()[0],df_year['arg4'].to_list()[0],df_year['arg5'].to_list()[0],df_year['arg6'].to_list()[0]]
@@ -42,7 +42,7 @@ def index(request):
         rows = []
         count = []
         i = 0
-        print(context['questions'])
+
         while i < len(context['count']):
             if i == len(context['count']) - 1:
                 rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], "", ""])
@@ -130,13 +130,16 @@ def gen_linear_sequences(add_or_subtract, neg_first_term, a3, a4, a5, a6):
     else:
         first_term = random.randint(0, 20)
 
-    common_difference = random.randint(1, 15)
+    common_difference = random.randint(2, 15)
     if add_or_subtract == 1:
         common_difference = common_difference * -1
     terms = ''
-    for i in range(0,4):
-        terms = terms + ', ' + str(first_term + i * common_difference)
-    answer = first_term + 4 * common_difference
+    for i in range(0,5):
+        if i != 0:
+            terms = terms + ', ' + str(first_term + i * common_difference)
+        else:
+            terms = terms + str(first_term + i * common_difference)
+    answer = first_term + 5 * common_difference
 
     return terms, answer
 
@@ -151,25 +154,6 @@ def gen_adding_algebra_terms(a1, a2, a3, a4, a5, a6):
     answer = tidy_algebra(str(c) + alpha)
 
     return question, answer
-
-def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5, a6):
-    count = [i for i in range(8)]
-    questions = [0 for i in range(8)]
-    answers = [0 for i in range(8)]
-    questions[0], answers[0] = gen_linear_sequences(0, 0, 0, 0, 0, 0)
-    questions[1], answers[1] = gen_linear_sequences(1, 0, 0, 0, 0, 0)
-    questions[2], answers[2] = gen_adding_algebra_terms(0,0,0,0,0,0)
-    out = gen_solving_equations(1, 0, 0, 1, 0, 0)
-    questions[3] = out['questions'][0]
-    answers[3] = out['answers'][0]
-
-    return {'count': count,
-            'questions':questions,
-            'answers': answers}
-
-
-
-
 
 def gen_pythagoras(small_or_hyp,a1,a2,a3,a4,a5):
     clear_temp_img()
@@ -253,7 +237,7 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         x=0
 
         if steps == 1:
-            if (i % 2) == 0:
+            if random.randint(0,1) == 0:
                 a = 1
                 b = rand_no0_no1(min, 9)
             else:
@@ -330,9 +314,9 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         else:
             q = ans_side + " = " + x_side
 
-        qs.append(q)
+        qs.append('$$' + q + '$$')
 
-        ans.append(alpha + " = " + str(x))
+        ans.append('$$' + alpha + " = " + str(x) + '$$')
 
     return {
         'count': count,
@@ -490,18 +474,59 @@ def tidy_algebra(q):
     return q
 
 def frac_to_percentage(a1=0, a2=0, a3=0, a4=0, a5=0,a6=0):
-    denominator = random.choice([2,4,5,10])
+    denominator = random.choice([2,4,5,10, 20, 25, 50])
     numerator = random.randint(1,denominator-1)
 
     percentage = numerator / denominator * 100
-
+    percentage = str(percentage)
+    if percentage[-2:] == '.0':
+        percentage = percentage[:-2]
     percentage = str(percentage) + '%'
 
     fraction = r'\frac{' + str(numerator) + '}{' + str(denominator) + '}'
 
     return fraction, percentage
 
+def simplify_frac(num, den):
+    simp = gcd(num, den)
+    return num/simp, den/simp
 
+
+def frac_to_decimal(a1=0, a2=0, a3=0, a4=0, a5=0,a6=0):
+    a = round(random.random(), 2)
+
+    a = str(a)
+    if a[-1] == 0:
+        a = a[:-1]
+
+    numerator = a[a.find('.')+1:]
+
+    if len(numerator) == 1:
+        denominator = 10
+    else:
+        denominator = 100
+
+    numerator = int(numerator)
+
+    numerator1, denominator1 = simplify_frac(numerator, denominator)
+
+    numerator1 = str(numerator1).strip('0')
+    denominator1 = str(denominator1).strip('0')
+
+    if numerator1[-1] == '.':
+        numerator1 = numerator1[:-1]
+
+    if denominator1[-1] == '.':
+        denominator1 = denominator1[:-1]
+
+    if str(numerator) == numerator1:
+        fraction = r'$$\frac{' + str(numerator) + '}{' + str(denominator) + '}$$'
+    else:
+        fraction = r'$$\frac{' + str(numerator) + '}{' + str(denominator) + r'} = \frac{' + numerator1 + '}{' + denominator1 + '}$$'
+
+    decimal = a
+
+    return decimal, fraction
 
 
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
@@ -513,12 +538,14 @@ def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     questions[1], answers[1] = gen_linear_sequences(1, 0, 0, 0, 0, 0)
     questions [1] = 'Find the next term: ' + questions[1]
     questions[2], answers[2] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
-    questions [2] = 'Simplify:  ' + questions[2]
+    questions [2] = 'Simplify:  $$' + questions[2] + '$$'
     out = gen_solving_equations(1, 0, 0, 1, 0, 0)
     questions[3] = 'Solve the equation: ' + out['questions'][0]
     answers[3] = out['answers'][0]
     questions[4], answers[4] = frac_to_percentage()
-
+    questions[4] = r'Convert the fraction to a percentage: $$' + questions[4] + r'$$ '
+    questions[5], answers[5] = frac_to_decimal()
+    questions[5] = r'Convert the decimal to a fraction: $$' + str(questions[5]) + r'$$ '
     return {'count': count,
             'questions': questions,
             'answers': answers}
