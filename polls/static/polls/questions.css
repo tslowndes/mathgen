@@ -1,5 +1,4 @@
 div {
- height = 100vh
 }
 .MathJax_Display {
     margin: 1vh 0 3vh 0 !important;
@@ -20,7 +19,7 @@ td{
   padding: 5px;
   line-height: 5vh;
   text-align: center;
-  vertical-align: top;
+  vertical-align: middle !important;
   font-weight: 100;
   font-size: 28px;
   color: #fff;
