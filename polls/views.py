@@ -15,7 +15,7 @@ from time import sleep
 def index(request):
     #Importing Dataframe
     df = pd.read_csv('polls/dir.csv')
-    template = loader.get_template('polls/index.html')
+    template = loader.get_template('polls/index2.html')
     template_image = loader.get_template('polls/index_image.html')
     err_template = loader.get_template('polls/plain.html')
     #Getting Arguments from URL
