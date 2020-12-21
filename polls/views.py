@@ -39,21 +39,26 @@ def index(request):
         method = possibles.get(method_name)
         #Call method and get questions
         context = method(args[0], args[1], args[2], args[3], args[4], args[5])
-        rows = []
-        count = []
-        i = 0
+        #      rows = []
+        #      count = []
+        #     i = 0
 
-        while i < len(context['count']):
-            if i == len(context['count']) - 1:
-                rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], "", ""])
-                rows.append(["", context['answers'][i], "", ""])
+        #        while i < len(context['count']):
+        #            if i == len(context['count']) - 1:
+        #               rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], "", ""])
+                #               rows.append(["", context['answers'][i], "", ""])
 
-            else:
-                rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], string.ascii_lowercase[i+1] + ")",  context['questions'][i+1]])
-                rows.append(["", context['answers'][i], "", context['answers'][i+1]])
-            i += 2
+            #else:
+                #rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], string.ascii_lowercase[i+1] + ")",  context['questions'][i+1]])
+                #   rows.append(["", context['answers'][i], "", context['answers'][i+1]])
+            #            i += 2
+#
+        #context = {'rows':rows, 'count':count}
+        alphas = []
+        for i in range(len(context['questions'])):
+            alphas.append(string.ascii_lowercase[i])
+        context['alphas'] = alphas
 
-        context = {'rows':rows, 'count':count}
         if img == 0:
             return HttpResponse(template.render(context, request))
         else:
@@ -314,9 +319,9 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         else:
             q = ans_side + " = " + x_side
 
-        qs.append('$$' + q + '$$')
+        qs.append('$' + q + '$')
 
-        ans.append('$$' + alpha + " = " + str(x) + '$$')
+        ans.append('$' + alpha + " = " + str(x) + '$')
 
     return {
         'count': count,
@@ -520,9 +525,9 @@ def frac_to_decimal(a1=0, a2=0, a3=0, a4=0, a5=0,a6=0):
         denominator1 = denominator1[:-1]
 
     if str(numerator) == numerator1:
-        fraction = r'$$\frac{' + str(numerator) + '}{' + str(denominator) + '}$$'
+        fraction = r'\frac{' + str(numerator) + '}{' + str(denominator) + '}'
     else:
-        fraction = r'$$\frac{' + str(numerator) + '}{' + str(denominator) + r'} = \frac{' + numerator1 + '}{' + denominator1 + '}$$'
+        fraction = r'\frac{' + str(numerator) + '}{' + str(denominator) + r'} = \frac{' + numerator1 + '}{' + denominator1 + '}'
 
     decimal = a
 
@@ -538,14 +543,15 @@ def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     questions[1], answers[1] = gen_linear_sequences(1, 0, 0, 0, 0, 0)
     questions [1] = 'Find the next term: ' + questions[1]
     questions[2], answers[2] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
-    questions [2] = 'Simplify:  $$' + questions[2] + '$$'
+    questions [2] = 'Simplify:  $' + questions[2] + '$'
     out = gen_solving_equations(1, 0, 0, 1, 0, 0)
     questions[3] = 'Solve the equation: ' + out['questions'][0]
     answers[3] = out['answers'][0]
     questions[4], answers[4] = frac_to_percentage()
-    questions[4] = r'Convert the fraction to a percentage: $$' + questions[4] + r'$$ '
+    questions[4] = r'Convert the fraction to a percentage: $' + questions[4] + r'$ '
     questions[5], answers[5] = frac_to_decimal()
-    questions[5] = r'Convert the decimal to a fraction: $$' + str(questions[5]) + r'$$ '
+    questions[5] = r'Convert the decimal to a fraction: $' + str(questions[5]) + r'$'
+    answers[5] = '$' + answers[5] + '$'
     return {'count': count,
             'questions': questions,
             'answers': answers}

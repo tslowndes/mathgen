@@ -1,42 +1,124 @@
 {% load filters %}
 {% load static %}
-{% load mathjax %}
-{% mathjax_scripts%}
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
 <link rel="stylesheet" type="text/css" href="{% static 'polls/questions.css' %}">
 
 <html>
 
   <head>
+      <style>
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 1);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+</style>
     <meta charset="utf-8">
 
   </head>
   <body>
-
   <style>
 #grid {
     display: grid;
     grid-template-columns: 10% 40% 10% 40%;
+    width: 100vw;
+    height: 90vh;
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    vertical-align: top;
+    align-items: top;
+    grid-template-rows: {% for row in rows %} 50vh {% endfor %}
 }
 </style>
-  <div id="grid">
-    {% for row in rows %}
-        {% if forloop.counter|divisibleby:2 %}
-
-            <div>{{row.0}}</div>
-            <div>{{row.1}}</div>
-            <div>{{row.2}}</div>
-            <div>{{row.3}}</div>
-         {% else %}
-            <div>{{row.0}}</div>
-            <div>{{row.1}}</div>
-            <div>{{row.2}}</div>
-            <div>{{row.3}}</div>
-        {% endif %}
+  <div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <p class="overlay-content">
+        <div id="grid">
+    {% for i in count %}
+       <div>({{alphas|lookup:i}})</div><div>{{answers|lookup:i}}</div>
       {% endfor %}
-</div>
-  <h3 style="text-align:center;">
-    <a href="/">Home</a>
-  </h3>
 
+
+  </div>
+  </div>
+
+  <div id="grid">
+    {% for i in count %}
+       <div>({{alphas|lookup:i}})</div><div>{{questions|lookup:i}}</div>
+      {% endfor %}
+  </div>
+  <div id="grid" style="grid-template-columns: 50% 50%; height=10vh;">
+        <div><a href=# onclick="openNav()" class="button1">Answers</a></div>
+      <div><a href="/"  class="button1">Home</a></div>
+    </div>
+
+<script>
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+</script>
   </body>
 </html>
