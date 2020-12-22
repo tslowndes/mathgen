@@ -1,0 +1,38 @@
+{% load filters %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/questions.css' %}">
+
+<html>
+
+  <head>
+      <style>
+        #grid {
+                display: grid;
+                grid-template-columns: 5% 45%  5% 45%;
+                width: 96%;
+                height: 78vh;
+                color: white;
+                font-size: 28px;
+                text-align: center;
+                vertical-align: top;
+                align-items: top;
+                grid-template-rows: {% for row in rows %} 50vh {% endfor %};
+                margin: 2%;
+
+            }
+        </style>
+  </head>
+  <body>
+
+    <div id=grid style="grid-template-columns: 100%;">
+        <div style="text-align:left;">
+              <img src="/media/mathgen.png" style="height:10vh;">
+        </div>
+        <div> <a href='sub/?task=N' onclick="openNav()" class="button1" style="font-size:36px;">Number</a> </div>
+        <div> <a href='sub/?task=A' onclick="openNav()" class="button1" style="font-size:36px;">Algebra</a> </div>
+        <div> <a href='sub/?task=S' onclick="openNav()" class="button1" style="font-size:36px;">Shape</a> </div>
+        <div> <a href='sub/?task=D' onclick="openNav()" class="button1" style="font-size:36px;">Data</a> </div>
+        <div> <a href='sub/?task=G' onclick="openNav()" class="button1" style="font-size:36px;">Starters</a> </div>
+    </div>
+  </body>
+</html>

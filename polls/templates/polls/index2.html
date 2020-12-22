@@ -70,64 +70,22 @@ MathJax = {
           right: 35px;
           }
         }
-      </style>
-    <meta charset="utf-8">
-  </head>
-
-  <body>
-      <div style="height:8vh; line-height: 8vh; background-color:rgba(255,255,255,0.2); color:rgba(255,255,255,1); text-align:left; font-size:36; font-weight:800; margin: 20px;">
-          <div style="padding:0 0 0 2vw;">Title of Task</div>
-      </div>
-
-      <style>
-            #grid {
+        #grid {
                 display: grid;
-                grid-template-columns: 10% 40% 10% 40%;
-                width: 100vw;
-                height: 80vh;
+                grid-template-columns: 5% 45%  5% 45%;
+                width: 96%;
+                height: 78vh;
                 color: white;
                 font-size: 28px;
                 text-align: center;
                 vertical-align: top;
                 align-items: top;
-                grid-template-rows: {% for row in rows %} 50vh {% endfor %}
+                grid-template-rows: {% for row in rows %} 50vh {% endfor %};
+                margin: 2%;
+
             }
       </style>
-
-
-      <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-        <p class="overlay-content">
-
-        <div id="grid">
-
-            {% for i in count %}
-                <div>({{alphas|lookup:i}})</div><div>{{answers|lookup:i}}</div>
-            {% endfor %}
-
-        </div>
-      </div>
-
-      <div id="grid">
-
-        {% for i in count %}
-
-           <div>({{alphas|lookup:i}})</div><div>{{questions|lookup:i}}</div>
-
-        {% endfor %}
-
-      </div>
-
-      <div style="width: 100%; text-align: center;">
-
-            <a href=# onclick="openNav()" class="button1">Answers</a>
-
-            <a href="/"  class="button1">Home</a>
-
-        </div>
-
-        <script>
+              <script>
             function openNav() {
               document.getElementById("myNav").style.width = "100%";
             }
@@ -136,6 +94,64 @@ MathJax = {
               document.getElementById("myNav").style.width = "0%";
             }
         </script>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+
+        <!-- Header Block -->
+      <div style="height:8vh; line-height: 8vh; background-color:rgba(255,255,255,0.2); color:rgba(255,255,255,1); text-align:left; font-size:36; font-weight:800;">
+          <div style="padding:0 0 0 2vw;">{{title}}</div>
+      </div>
+
+        <!-- Question grid -->
+
+      <div id="grid" style="padding:0; width: 96%;">
+
+        {% for i in count %}
+
+           <div style="text-align:left;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i}}</div>
+
+        {% endfor %}
+
+      </div>
+
+
+        <!-- Answers Overlay -->
+      <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <p class="overlay-content">
+
+        <div id="grid" style="width:100vw; margin: 13vh 0 0 0 ">
+
+            {% for i in count %}
+                <div>({{alphas|lookup:i}})</div><div>{{answers|lookup:i}}</div>
+            {% endfor %}
+
+        </div>
+      </div>
+
+        <!-- Footer Grid -->
+      <div id="grid" style = "grid-template-columns:33% 34% 33%; height:5vh; margin: 0 2% 0 2%">
+          <div style="text-align:left;">
+              <img src="/media/mathgen.png" style="height:5vh;">
+          </div>
+
+          <div style="text-align: center;">
+
+            <a href=# onclick="openNav()" class="button1" style="font-size:20px;">Answers</a>
+
+            <a href="/"  class="button1" style="font-size:20px;">Home</a>
+
+            <a href="/sub/?task={{task_code}}"  class="button1" style="font-size:20px;">{{strand}}</a>
+
+          </div>
+
+          <div></div>
+      </div>
+
+
 
   </body>
 </html>

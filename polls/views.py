@@ -11,6 +11,11 @@ import os
 import math
 from time import sleep
 
+def contents(request):
+    template = loader.get_template('polls/contents.html')
+    context = {}
+    return HttpResponse(template.render(context, request))
+
 
 def index(request):
     #Importing Dataframe
@@ -25,7 +30,7 @@ def index(request):
     #Isolating task from dataframe
     df_task = df[df['Task_Code']==task]
     df_year = df_task[df_task['Yr']==year]
-
+    task_code = df_year.Task_Code.to_list()[0]
     #Getting method name
     method_name = df_year.Function_Name.to_list()[0]
 
@@ -33,6 +38,7 @@ def index(request):
         #Getting arguments for method
         args = [df_year['arg1'].to_list()[0],df_year['arg2'].to_list()[0],df_year['arg3'].to_list()[0],df_year['arg4'].to_list()[0],df_year['arg5'].to_list()[0],df_year['arg6'].to_list()[0]]
         img = df_year['images'].to_list()[0]
+        title = df_year['Task_Title'].to_list()[0]
         #Setting up method
         possibles = globals().copy()
         possibles.update(locals())
@@ -57,7 +63,21 @@ def index(request):
         alphas = []
         for i in range(len(context['questions'])):
             alphas.append(string.ascii_lowercase[i])
+        task_code = task_code[0]
         context['alphas'] = alphas
+        context['title'] = title
+        context['task_code'] = task_code
+        if task_code == 'A':
+            strand = 'Algebra'
+        elif task_code == 'N':
+            strand = 'Number'
+        elif task_code == 'S':
+            strand = 'Shape'
+        elif task_code == 'D':
+            strand = 'Data'
+        else:
+            strand = 'Starters'
+        context['strand'] = strand
 
         if img == 0:
             return HttpResponse(template.render(context, request))
@@ -72,8 +92,10 @@ def index(request):
 
 
 def subcontents(request):
+    task = request.GET.get('task')
     template = loader.get_template('polls/subcontents.html')
     df = pd.read_csv('polls/dir.csv')
+    df = df.loc[df["Task_Code"].str.startswith(task)].copy()
 
     task_code_list = list(set(df['Task_Code'].to_list()))
     task_code_list.sort()
@@ -155,8 +177,8 @@ def gen_adding_algebra_terms(a1, a2, a3, a4, a5, a6):
     alpha = get_alpha()
 
     c = a + b
-    question = tidy_algebra(str(a) + alpha + ' + ' + str(b) + alpha)
-    answer = tidy_algebra(str(c) + alpha)
+    question = '$' + tidy_algebra(str(a) + alpha + ' + ' + str(b) + alpha) + '$'
+    answer = '$' + tidy_algebra(str(c) + alpha) + '$'
 
     return question, answer
 
@@ -389,8 +411,8 @@ def gen_collecting_like_terms(powers, doubleletters, a3, a4, a5, a6):
         terms = tidy_algebra(terms)
         ans1 = tidy_algebra(ans)
         count.append(i)
-        qs.append(terms)
-        anss.append(ans1)
+        qs.append('$' + terms + '$')
+        anss.append('$' + ans1 + '$')
 
     return {
         'count': count,
@@ -423,9 +445,9 @@ def gen_expanding_brackets(powers,a2,a3,a4,a5,a6):
             expanded = tidy_algebra(str(c*a) + 'x' + ' + ' + str(c*b))
             factorised = tidy_algebra(str(c) + '(' + str(a) + 'x' + ' + ' + str(b) + ')')
 
-        qs.append(factorised)
-        ans.append(expanded)
-        count.append(count)
+        qs.append('$' + factorised + '$')
+        ans.append('$' + expanded + '$')
+        count.append(i)
 
     context = {
         'count':count,
@@ -488,7 +510,7 @@ def frac_to_percentage(a1=0, a2=0, a3=0, a4=0, a5=0,a6=0):
         percentage = percentage[:-2]
     percentage = str(percentage) + '%'
 
-    fraction = r'\frac{' + str(numerator) + '}{' + str(denominator) + '}'
+    fraction = r'$\frac{' + str(numerator) + '}{' + str(denominator) + '}$'
 
     return fraction, percentage
 
@@ -525,9 +547,9 @@ def frac_to_decimal(a1=0, a2=0, a3=0, a4=0, a5=0,a6=0):
         denominator1 = denominator1[:-1]
 
     if str(numerator) == numerator1:
-        fraction = r'\frac{' + str(numerator) + '}{' + str(denominator) + '}'
+        fraction = r'$\frac{' + str(numerator) + '}{' + str(denominator) + '}$'
     else:
-        fraction = r'\frac{' + str(numerator) + '}{' + str(denominator) + r'} = \frac{' + numerator1 + '}{' + denominator1 + '}'
+        fraction = r'$\frac{' + str(numerator) + '}{' + str(denominator) + r'} = \frac{' + numerator1 + '}{' + denominator1 + '}$'
 
     decimal = a
 
@@ -543,15 +565,15 @@ def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     questions[1], answers[1] = gen_linear_sequences(1, 0, 0, 0, 0, 0)
     questions [1] = 'Find the next term: ' + questions[1]
     questions[2], answers[2] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
-    questions [2] = 'Simplify:  $' + questions[2] + '$'
+    questions [2] = 'Simplify: ' + questions[2]
     out = gen_solving_equations(1, 0, 0, 1, 0, 0)
     questions[3] = 'Solve the equation: ' + out['questions'][0]
     answers[3] = out['answers'][0]
     questions[4], answers[4] = frac_to_percentage()
-    questions[4] = r'Convert the fraction to a percentage: $' + questions[4] + r'$ '
+    questions[4] = r'Convert the fraction to a percentage: ' + questions[4]
     questions[5], answers[5] = frac_to_decimal()
-    questions[5] = r'Convert the decimal to a fraction: $' + str(questions[5]) + r'$'
-    answers[5] = '$' + answers[5] + '$'
+    questions[5] = r'Convert the decimal to a fraction: ' + str(questions[5])
+    answers[5] = answers[5]
     return {'count': count,
             'questions': questions,
             'answers': answers}

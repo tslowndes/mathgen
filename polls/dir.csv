@@ -7,10 +7,8 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 5,A002,8,Simplifying,gen_collecting_like_terms,1,0,0,0,0,0,0
 6,A002,9,Simplifying,gen_collecting_like_terms,0,1,0,0,0,0,0
 7,A002,10,Simplifying,gen_collecting_like_terms,1,1,0,0,0,0,0
-8,A003,10,Factorising Quadratics,,0,0,0,0,0,0,0
-9,A004,11,Circle Theorems,,0,0,0,0,0,0,0
-10,A005,7,Expanding Brackets,gen_expanding_brackets,0,0,0,0,0,0,0
-11,A005,8,Expanding Brackets,gen_expanding_brackets,1,0,0,0,0,0,0
-12,A005,9,Expanding Brackets,gen_expanding_brackets,2,0,0,0,0,0,0
-13,S001,9,Pythagoras,gen_pythagoras,0,0,0,0,0,0,1
-14,G001,7,Term 1.1,gen_white_rose_maths_starter,0,0,0,0,0,0,0
+8,A005,7,Expanding Brackets,gen_expanding_brackets,0,0,0,0,0,0,0
+9,A005,8,Expanding Brackets,gen_expanding_brackets,1,0,0,0,0,0,0
+10,A005,9,Expanding Brackets,gen_expanding_brackets,2,0,0,0,0,0,0
+11,S001,9,Pythagoras,gen_pythagoras,0,0,0,0,0,0,1
+12,G001,7,Term 1.1,gen_white_rose_maths_starter,0,0,0,0,0,0,0

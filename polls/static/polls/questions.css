@@ -1,6 +1,4 @@
-div {
- height = 100vh
-}
+
 .MathJax_Display {
     margin: 1vh 0 3vh 0 !important;
 }
@@ -11,21 +9,7 @@ span {
     vertical-align:middle;
 
 }
-table{
-  width:100%;
-}
 
-
-td{
-  padding: 5px;
-  line-height: 30px !important;
-  text-align: center;
-  vertical-align:middle;
-  font-weight: 100;
-  font-size: 28px;
-  color: #fff;
-  border-bottom: solid 3px rgba(255,255,255,0.1);
-}
 
 li *:empty{
   display: none;
@@ -70,8 +54,7 @@ a.button1:hover{
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body{
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background: linear-gradient(to right, #25c481, #25b7c4);
+  background: #25b7c4;
   font-family: 'Roboto', sans-serif;
 }
 section{
