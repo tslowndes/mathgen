@@ -202,7 +202,12 @@ def gen_pythagoras(small_or_hyp,a1,a2,a3,a4,a5):
 
         lens = []
         for i in range(len(tri)-1):
-            lens.append(round(sqrt(((tri[i][0] - tri[i+1][0])**2)+((tri[i][1] - tri[i+1][1])**2)), 2))
+            length = str(round(sqrt(((tri[i][0] - tri[i+1][0])**2)+((tri[i][1] - tri[i+1][1])**2)), 2))
+            length = length.strip('0')
+            if length[-1] == '.':
+                length = length[:-1]
+
+            lens.append(length)
 
 
         if i > 1:
