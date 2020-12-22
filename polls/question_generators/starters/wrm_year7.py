@@ -4,7 +4,7 @@ from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.algebra.linear_sequences import *
 from polls.question_generators.algebra.collecting_like_terms import *
 from polls.question_generators.algebra.solving_equations import *
-
+from polls.question_generators.number.place_value import *
 
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     count = [i for i in range(8)]
@@ -24,6 +24,9 @@ def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     questions[5], answers[5] = frac_to_decimal()
     questions[5] = r'Convert the decimal to a fraction: ' + str(questions[5])
     answers[5] = answers[5]
+    questions[6], answers[6] = name_the_value()
+    questions[6] = 'What is the value of the underlined digit? ' + questions[6]
+
     return {'count': count,
             'questions': questions,
             'answers': answers}

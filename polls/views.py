@@ -10,6 +10,7 @@ from polls.question_generators.algebra.linear_sequences import *
 from polls.question_generators.algebra.expanding_and_factorising import *
 ####### NUMBER #######
 from polls.question_generators.number.fdp_conversions import *
+from polls.question_generators.number.place_value import *
 ####### SHAPE #######
 from polls.question_generators.shape.pythagoras import *
 ####### STARTERS #######
