@@ -5,8 +5,18 @@ from polls.question_generators.algebra.linear_sequences import *
 from polls.question_generators.algebra.collecting_like_terms import *
 from polls.question_generators.algebra.solving_equations import *
 from polls.question_generators.number.place_value import *
-
+from polls.question_generators.data.averages import *
+from polls.question_generators.number.ratio import *
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
+    if year == 7:
+        context = wrm_7_starter(ht)
+    elif year == 8:
+        context = wrm_8_starter(ht)
+
+    return context
+
+
+def wrm_7_starter(ht):
     count = [i for i in range(8)]
     questions = [0 for i in range(8)]
     answers = [0 for i in range(8)]
@@ -26,6 +36,21 @@ def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     answers[5] = answers[5]
     questions[6], answers[6] = name_the_value()
     questions[6] = 'What is the value of the underlined digit? ' + questions[6]
+    questions[7], answers[7] = gen_range()
+    questions[7] = 'Find the range of:  ' + questions[7]
+
+
+    return {'count': count,
+            'questions': questions,
+            'answers': answers}
+
+
+def wrm_8_starter(ht):
+    count = [i for i in range(8)]
+    questions = [0 for i in range(8)]
+    answers = [0 for i in range(8)]
+
+    questions[0], answers[0] = sharing_into_ratio()
 
     return {'count': count,
             'questions': questions,

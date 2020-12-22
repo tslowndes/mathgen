@@ -150,7 +150,7 @@ def subcontents(request):
                 count += 1
             j += 1
 
-    context = {'strand':strand, 'count': fin_index, 'topics':fin_topics, 'year':fin_years, 'task_code':fin_task_codes}
+    context = {'strand': strand, 'count': fin_index, 'topics':fin_topics, 'year':fin_years, 'task_code':fin_task_codes}
 
     return HttpResponse(template.render(context, request))
 
