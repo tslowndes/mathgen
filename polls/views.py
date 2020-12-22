@@ -94,14 +94,25 @@ def index(request):
         return HttpResponse(err_template.render({'content':'Task Not Found.'}, request))
 
 
-
+def find_strand(task_code):
+    if task_code == 'A':
+        strand = 'Algebra'
+    elif task_code == 'N':
+        strand = 'Number'
+    elif task_code == 'S':
+        strand = 'Shape'
+    elif task_code == 'D':
+        strand = 'Data'
+    else:
+        strand = 'Starters'
+    return strand
 
 def subcontents(request):
     task = request.GET.get('task')
     template = loader.get_template('polls/subcontents.html')
     df = pd.read_csv('polls/dir.csv')
     df = df.loc[df["Task_Code"].str.startswith(task)].copy()
-
+    strand = find_strand(task)
     task_code_list = list(set(df['Task_Code'].to_list()))
     task_code_list.sort()
 
@@ -139,7 +150,7 @@ def subcontents(request):
                 count += 1
             j += 1
 
-    context = {'count': fin_index, 'topics':fin_topics, 'year':fin_years, 'task_code':fin_task_codes}
+    context = {'strand':strand, 'count': fin_index, 'topics':fin_topics, 'year':fin_years, 'task_code':fin_task_codes}
 
     return HttpResponse(template.render(context, request))
 
