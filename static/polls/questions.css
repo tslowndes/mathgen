@@ -1,41 +1,60 @@
-div {
- height = 100vh
+
+.MathJax_Display {
+    margin: 1vh 0 3vh 0 !important;
 }
 span {
     top: 0;
-    height: 4vh;
-    vertical-align:center;
+    height: 5vh;
+    bottom: 10vh;
+    vertical-align:middle;
 
 }
-table{
-  width:100%;
-}
 
-td{
-  padding: 0px;
-  line-height: 10px;
-  text-align: center;
-  vertical-align:middle;
-  font-weight: 100;
-  font-size: 22px;
-  color: #fff;
-  border-bottom: solid 0px rgba(255,255,255,0.1);
-}
 
 li *:empty{
   display: none;
 }
 
+mjx-container {
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    margin: 10px;
+}
 
 .mjx-chtml.MJXc-display{
   margin: 0;
 }
 /* demo styles */
 
+a.button1{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+}
+a.button1:hover{
+    color:#25c481;
+    background-color:#FFFFFF;
+}
+@media all and (max-width:30em){
+    a.button1{
+       display:block;
+       margin:0.4em auto;
+}
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body{
-  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-  background: linear-gradient(to right, #25c481, #25b7c4);
+  background: #25b7c4;
   font-family: 'Roboto', sans-serif;
 }
 section{
