@@ -58,7 +58,10 @@ def wrm_8_starter(ht):
     questions[1], answers[1] = simplify_ratio()
     questions[1] = 'Simplify the ratio ' + questions[1]
     questions[2], answers[2] = currency_conversion()
-    questions[3], answers[3] = multiplying_fractions()
+    if random.randint(0,1) == 1:
+        questions[3], answers[3] = multiplying_fractions()
+    else:
+        questions[3], answers[3] = multiplying_fraction_by_integer()
     questions[4], answers[4] = dividing_fractions()
     questions[5], answers[5] = point_on_the_line()
 
