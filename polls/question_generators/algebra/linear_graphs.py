@@ -26,12 +26,8 @@ def point_on_the_line():
 
 
 
-	question = 'The point (' + str(x1) + ' , ' + str(y1) + ') lie on which line? '
+	question = u'The point (' + str(x1) + ' , ' + str(y1) + ') lie on which line? \n'
 
-	for i in range(len(options)):
-		if i == 2:
-			question = question + ' or ' + options[i]
-		else:
-			question = question + options[i] + ' , '
+	question = question + options[0] + ', ' + options[1] + ' or ' + options[2]
 
 	return question, answer
