@@ -113,7 +113,7 @@ MathJax = {
 
         {% for i in count %}
 
-           <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i}}</div>
+           <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
 
         {% endfor %}
 
