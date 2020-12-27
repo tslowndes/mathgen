@@ -8,6 +8,8 @@ from polls.question_generators.number.place_value import *
 from polls.question_generators.data.averages import *
 from polls.question_generators.number.ratio import *
 from polls.question_generators.number.direct_proportion import *
+from polls.question_generators.number.fractions import *
+from polls.question_generators.algebra.linear_graphs import *
 
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     if year == 7:
@@ -56,6 +58,9 @@ def wrm_8_starter(ht):
     questions[1], answers[1] = simplify_ratio()
     questions[1] = 'Simplify the ratio ' + questions[1]
     questions[2], answers[2] = currency_conversion()
+    questions[3], answers[3] = multiplying_fractions()
+    questions[4], answers[4] = dividing_fractions()
+    questions[5], answers[5] = point_on_the_line()
 
     return {'count': count,
             'questions': questions,
