@@ -26,7 +26,7 @@ def point_on_the_line():
 
 
 
-	question = u'The point (' + str(x1) + ' , ' + str(y1) + ') lie on which line? \n'
+	question = 'The point (' + str(x1) + ' , ' + str(y1) + ') lie on which line? <br>'
 
 	question = question + options[0] + ', ' + options[1] + ' or ' + options[2]
 
