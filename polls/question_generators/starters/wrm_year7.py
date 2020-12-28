@@ -9,13 +9,17 @@ from polls.question_generators.data.averages import *
 from polls.question_generators.number.ratio import *
 from polls.question_generators.number.direct_proportion import *
 from polls.question_generators.number.fractions import *
-from polls.question_generators.algebra.linear_graphs import *
+from polls.question_generators.algebra import linear_graphs
+from polls.question_generators.data.types_of_data import *
+from polls.question_generators.data.probability import *
 
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     if year == 7:
         context = wrm_7_starter(ht)
     elif year == 8:
         context = wrm_8_starter(ht)
+    elif year == 9:
+        context = wrm_9_starter(ht)
 
     return context
 
@@ -30,9 +34,9 @@ def wrm_7_starter(ht):
     questions [1] = 'Find the next term: ' + questions[1]
     questions[2], answers[2] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
     questions [2] = 'Simplify: ' + questions[2]
-    out = gen_solving_equations(1, 0, 0, 1, 0, 0)
-    questions[3] = 'Solve the equation: ' + out['questions'][0]
-    answers[3] = out['answers'][0]
+    questions[3], answers[3] = gen_solving_equations(1, 0, 0, 1, 0, 0)
+    questions[3] = 'Solve the equation: ' + questions[3]
+
     questions[4], answers[4] = frac_to_percentage()
     questions[4] = r'Convert the fraction to a percentage: ' + questions[4]
     questions[5], answers[5] = frac_to_decimal()
@@ -48,7 +52,6 @@ def wrm_7_starter(ht):
             'questions': questions,
             'answers': answers}
 
-
 def wrm_8_starter(ht):
     count = [i for i in range(8)]
     questions = [0 for i in range(8)]
@@ -63,7 +66,27 @@ def wrm_8_starter(ht):
     else:
         questions[3], answers[3] = multiplying_fraction_by_integer()
     questions[4], answers[4] = dividing_fractions()
-    questions[5], answers[5] = point_on_the_line()
+    questions[5], answers[5] = linear_graphs.point_on_the_line()
+    if random.randint(0,1) == 1:
+        questions[6], answers[6] = discrete_or_continuous()
+    else:
+        questions[6], answers[6] = qual_or_quant()
+    if random.randint(0,1) == 1:
+        questions[7], answers[7] = fair_dice()
+    else:
+        questions[7], answers[7] = spinner()
+    
+    return {'count': count,
+            'questions': questions,
+            'answers': answers}
+
+def wrm_9_starter(ht):
+    count = [i for i in range(8)]
+    questions = [0 for i in range(8)]
+    answers = [0 for i in range(8)]
+
+    questions[0], answers[0] = random.choice([linear_graphs.form_equation(), linear_graphs.m_and_c_from_equation()])
+    questions[1],answers[1] = gen_solving_equations(1, 1, 0, 2, 1, 0)
 
     return {'count': count,
             'questions': questions,

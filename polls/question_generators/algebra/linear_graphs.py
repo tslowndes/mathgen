@@ -1,4 +1,29 @@
 import random
+from polls.question_generators.tools import *
+def form_equation():
+	c = rand_no0(-5,5)
+	m = rand_no0(-5,5)
+
+	equation = tidy_algebra('y = ' + str(m) + 'x + ' + str(c))
+
+	question = 'A line has a gradient of ' + str(m) + ' and a y-intercept of ' + str(c) + '.\n Write the equation of the line in the form y = mx + c.'
+	answer = equation
+
+	return question, answer
+
+def m_and_c_from_equation():
+	c = random.randint(-5,5)
+	m = random.randint(-5,5)
+
+	equation = tidy_algebra('y = ' + str(m) + 'x + ' + str(c))
+	if random.randint(0,1) == 0:
+		question = 'A line has the equation ' + equation + '.\n What is the gradient of the line?'
+		answer = str(m)
+	else:
+		question = 'A line has the equation ' + equation + '.\n What is the y-intercept of the line?'
+		answer = str(c)
+
+	return question, answer
 
 def point_on_the_line():
 	x1 = random.randint(-10,10)

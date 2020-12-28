@@ -107,9 +107,11 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         qs.append('$' + q + '$')
 
         ans.append('$' + alpha + " = " + str(x) + '$')
-
-    return {
-        'count': count,
-        'questions': qs,
-        'answers': ans
-    }
+    if n > 1:
+        return {
+            'count': count,
+            'questions': qs,
+            'answers': ans
+        }
+    else:
+        return qs[0], ans[0]
