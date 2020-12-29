@@ -12,6 +12,7 @@ from polls.question_generators.number.fractions import *
 from polls.question_generators.algebra import linear_graphs
 from polls.question_generators.data.types_of_data import *
 from polls.question_generators.data.probability import *
+from polls.question_generators.number import factors_multiples_primes
 
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     if year == 7:
@@ -87,6 +88,8 @@ def wrm_9_starter(ht):
 
     questions[0], answers[0] = random.choice([linear_graphs.form_equation(), linear_graphs.m_and_c_from_equation()])
     questions[1],answers[1] = gen_solving_equations(1, 1, 0, 2, 1, 0)
+    questions[2], answers[2] = random.choice([factors_multiples_primes.list_factors(), factors_multiples_primes.list_multiples(), factors_multiples_primes.product_of_primes()])
+
 
     return {'count': count,
             'questions': questions,
