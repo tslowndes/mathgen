@@ -13,7 +13,8 @@ from polls.question_generators.algebra import linear_graphs
 from polls.question_generators.data.types_of_data import *
 from polls.question_generators.data.probability import *
 from polls.question_generators.number import factors_multiples_primes
-
+from polls.question_generators.algebra import inequalities
+from polls.question_generators.algebra import expanding_and_factorising
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     if year == 7:
         context = wrm_7_starter(ht)
@@ -58,7 +59,7 @@ def wrm_8_starter(ht):
     questions = [0 for i in range(8)]
     answers = [0 for i in range(8)]
 
-    questions[0], answers[0] = sharing_into_ratio(5,6)
+    questions[0], answers[0] = sharing_into_ratio(5, 6)
     questions[1], answers[1] = simplify_ratio()
     questions[1] = 'Simplify the ratio ' + questions[1]
     questions[2], answers[2] = currency_conversion()
@@ -87,8 +88,12 @@ def wrm_9_starter(ht):
     answers = [0 for i in range(8)]
 
     questions[0], answers[0] = random.choice([linear_graphs.form_equation(), linear_graphs.m_and_c_from_equation()])
-    questions[1],answers[1] = gen_solving_equations(1, 1, 0, 2, 1, 0)
-    questions[2], answers[2] = random.choice([factors_multiples_primes.list_factors(), factors_multiples_primes.list_multiples(), factors_multiples_primes.product_of_primes()])
+    questions[1], answers[1] = linear_graphs.line_on_points()
+    questions[2],answers[2] = gen_solving_equations(1, 1, 0, 2, 1, 0)
+    questions[3], answers[3] = inequalities.solving_inequalities(1, 1, 0, 2, 0, 0)
+    questions[4], answers[4] = random.choice([factors_multiples_primes.list_factors(), factors_multiples_primes.list_multiples(), factors_multiples_primes.product_of_primes()])
+    questions[5], answers[5] = expanding_and_factorising.expanding_binomials(0)
+
 
 
     return {'count': count,

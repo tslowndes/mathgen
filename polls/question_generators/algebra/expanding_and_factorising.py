@@ -38,3 +38,20 @@ def gen_expanding_brackets(powers,a2,a3,a4,a5,a6):
     }
 
     return context
+
+def expanding_binomials(x_or_ax=0):
+    if x_or_ax == 0:
+        alpha = get_alpha()
+        bin_1_b = random.randint(-9,9)
+        bin_2_b = random.randint(-9,9)
+        exp_b = bin_1_b + bin_2_b
+        exp_c = bin_1_b * bin_2_b
+
+        bin_1 = tidy_algebra(alpha + ' + ' + str(bin_1_b))
+        bin_2 = tidy_algebra(alpha + ' + ' + str(bin_2_b))
+
+        question = 'Expand: $(' + bin_1 + ')(' + bin_2 + ')$'
+
+        answer = tidy_algebra('$' + alpha + '^2 + ' + str(exp_b) + alpha + ' + ' + str(exp_c) + '$')
+
+    return question, answer

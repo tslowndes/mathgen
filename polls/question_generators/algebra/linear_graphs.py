@@ -25,6 +25,21 @@ def m_and_c_from_equation():
 
 	return question, answer
 
+def line_on_points():
+	b = random.randint(-9, 9)
+	a = [random.randint(-9, 9), random.randint(-9, 9), random.randint(-9, 9)]
+	points = []
+	if random.randint(0,1) == 1:
+		points = [(b,a[0]), (b, a[1]), (b, a[2])]
+		answer = 'x = ' + str(b)
+	else:
+		points = [(a[0],b), (a[1], b), (a[2], b)]
+		answer = 'y = ' + str(b)
+
+	question = 'The points: ' + str(points[0]) + ', ' + str(points[1]) + ' and ' + str(points[2]) + ' all lie on which line?'
+
+	return question, answer
+
 def point_on_the_line():
 	x1 = random.randint(-10,10)
 	y1 = random.randint(-10,10)

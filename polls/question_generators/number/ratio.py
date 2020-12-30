@@ -4,7 +4,7 @@ from polls.question_generators.tools import *
 def sharing_into_ratio(max_part, max_number):
 	### b:c where a is 1 part
 
-	a = random.randint(5, max_part)
+	a = random.randint(2, max_part)
 	b = random.randint(2, max_number)
 	c = random.randint(2, max_number)
 	while b == c:
