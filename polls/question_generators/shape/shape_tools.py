@@ -99,8 +99,8 @@ def labels_for_shape(points):
 
     lbls = []
 
-    #delta = (max(points[:,0]) - min(points[:,0]))/5
-    delta = 2
+    delta = sqrt((max(points[:,0]) - min(points[:,0]))/5)
+    #delta = 2
 
     for i in range(len(points)-1):
 
@@ -135,6 +135,37 @@ def is_in_shape(points, polygon):
     path = mpltPath.Path(polygon)
     inside2 = path.contains_points(points)
     return inside2
+
+def plot_shape_byedge(shape, lbl_points, lbls):
+    fig = plt.figure(figsize = (4,4))
+    ax = fig.add_subplot(111)
+    for edge in shape:
+        plt.plot(edge[:, 0], edge[:, 1], color = '#1f77b4', linewidth = 4)
+
+    for i in range(len(lbls)):
+        plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', verticalalignment='center', fontsize = 'xx-large')
+
+    points = []
+    for sh in shape:
+        points.append(sh[0])
+        points.append(sh[1])
+    points = ar(points)
+
+    delta = (max(points[:, 0]) - min(points[:, 0])) / 100
+
+
+    x_min = min(points[:,0])-2
+    x_max = max(points[:,0])+2
+    y_min = min(points[:,1])-2
+    y_max = max(points[:,1])+2
+
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+    ax.set_aspect('equal', adjustable='box')
+    plt.axis('off')
+
+    return fig
+
 
 def plot_shape(shape, lbl_points, lbls):
     fig = plt.figure(figsize = (4,4))

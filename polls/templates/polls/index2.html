@@ -113,7 +113,13 @@ MathJax = {
 
         {% for i in count %}
 
-           <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
+            {% if imgs|lookup:i == 0 %}
+                <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
+
+            {% else %}
+                <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img src="/media/{{questions|lookup:i}}"></div>
+
+            {% endif %}
 
         {% endfor %}
 

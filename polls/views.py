@@ -50,26 +50,26 @@ def index(request):
         method = possibles.get(method_name)
         #Call method and get questions
         context = method(args[0], args[1], args[2], args[3], args[4], args[5])
-        #      rows = []
-        #      count = []
-        #     i = 0
-
-        #        while i < len(context['count']):
-        #            if i == len(context['count']) - 1:
-        #               rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], "", ""])
-                #               rows.append(["", context['answers'][i], "", ""])
-
-            #else:
-                #rows.append([string.ascii_lowercase[i] + ")", context['questions'][i], string.ascii_lowercase[i+1] + ")",  context['questions'][i+1]])
-                #   rows.append(["", context['answers'][i], "", context['answers'][i+1]])
-            #            i += 2
-#
-        #context = {'rows':rows, 'count':count}
         alphas = []
         for i in range(len(context['questions'])):
             alphas.append(string.ascii_lowercase[i])
+        imgs = []
+        for q in context['questions']:
+
+            if type(q) == str:
+                print(q)
+                if q[:8] == 'temp_img':
+                    imgs.append(1)
+                else:
+                    print('string but not img')
+                    imgs.append(0)
+            else:
+                imgs.append(0)
+        print(imgs)
+
         task_code = task_code[0]
         context['alphas'] = alphas
+        context['imgs'] = imgs
         context['title'] = title
         context['task_code'] = task_code
         if task_code == 'A':

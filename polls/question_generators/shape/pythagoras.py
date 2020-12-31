@@ -4,11 +4,11 @@ from polls.question_generators.tools import *
 from polls.question_generators.shape.shape_tools import *
 from scipy import array as ar
 
-def gen_pythagoras(small_or_hyp,a1,a2,a3,a4,a5):
+def gen_pythagoras(n, small_or_hyp,a2=0,a3=0,a4=0,a5=0):
     clear_temp_img()
     fns = []
     ans = []
-    for i in range(0,4):
+    for i in range(0,n):
         tri = gen_ratriangle()
         a = tri[1][0] - tri[0][0]
         b = tri[2][1] - tri[1][1]
@@ -54,5 +54,7 @@ def gen_pythagoras(small_or_hyp,a1,a2,a3,a4,a5):
         fns.append(fn)
         ans.append(lens[-1])
     count = [i for i in range(0,4)]
-
-    return {'count':count, 'questions':fns, 'answers':ans}
+    if n == 1:
+        return fns[0], ans[0]
+    else:
+        return {'count':count, 'questions':fns, 'answers':ans}

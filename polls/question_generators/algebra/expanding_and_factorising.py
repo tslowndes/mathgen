@@ -42,8 +42,8 @@ def gen_expanding_brackets(powers,a2,a3,a4,a5,a6):
 def expanding_binomials(x_or_ax=0):
     if x_or_ax == 0:
         alpha = get_alpha()
-        bin_1_b = random.randint(-9,9)
-        bin_2_b = random.randint(-9,9)
+        bin_1_b = rand_no0(-9,9)
+        bin_2_b = rand_no0(-9,9)
         exp_b = bin_1_b + bin_2_b
         exp_c = bin_1_b * bin_2_b
 

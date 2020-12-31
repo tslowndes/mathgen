@@ -15,6 +15,9 @@ from polls.question_generators.data.probability import *
 from polls.question_generators.number import factors_multiples_primes
 from polls.question_generators.algebra import inequalities
 from polls.question_generators.algebra import expanding_and_factorising
+from polls.question_generators.shape import pythagoras
+from polls.question_generators.shape import cuboid
+
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     if year == 7:
         context = wrm_7_starter(ht)
@@ -93,6 +96,9 @@ def wrm_9_starter(ht):
     questions[3], answers[3] = inequalities.solving_inequalities(1, 1, 0, 2, 0, 0)
     questions[4], answers[4] = random.choice([factors_multiples_primes.list_factors(), factors_multiples_primes.list_multiples(), factors_multiples_primes.product_of_primes()])
     questions[5], answers[5] = expanding_and_factorising.expanding_binomials(0)
+    questions[6], answers[6] = random.choice([cuboid.cuboid(), cuboid.triangular_prism()])
+
+
 
 
 
