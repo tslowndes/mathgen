@@ -70,11 +70,16 @@ def _to_vectors_coordinates(coordinates, min_coordinate, max_coordinate):
 def _to_random_boolean():
     return random.getrandbits(1)
 
-def gen_ratriangle():
+def gen_ratriangle(hyp_or_small=0):
     x = [0]
     y = [0]
-    a = random.randint(5,20)
-    b = random.randint(5,20)
+    if hyp_or_small == 0:
+        a = random.randint(3,20)
+        b = random.randint(a+1,a+5)
+    else:
+        a = random.randint(3, 10)
+        c = random.randint(a+1,a+5)
+        b = sqrt(c ** 2 - a ** 2)
 
     x.append(x[0]+a)
     y.append(0)
@@ -83,6 +88,7 @@ def gen_ratriangle():
     y.append(y[1] + b)
     x.append(x[0])
     y.append(y[0])
+
     points = [[x[i], y[i]] for i in range(len(x))]
     points = ar(points)
     return points
@@ -99,7 +105,7 @@ def labels_for_shape(points):
 
     lbls = []
 
-    delta = sqrt((max(points[:,0]) - min(points[:,0]))/5)
+    delta = sqrt((max(points[:,0]) - min(points[:,0]))/2)
     #delta = 2
 
     for i in range(len(points)-1):

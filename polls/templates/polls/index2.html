@@ -78,32 +78,40 @@ MathJax = {
                 grid-template-columns: 5% 45%  5% 45%;
                 width: 96%;
                 height: 78vh;
-                color: white;
-                font-size: 28px;
+                color: black;
+                font-size: 32px;
                 text-align: center;
                 vertical-align: top;
                 align-items: top;
-                grid-template-rows: {% for row in rows %} 50vh {% endfor %};
+                grid-template-rows: {% for row in rows %} {{row_height}}% {% endfor %};
                 margin: 2%;
 
             }
       </style>
               <script>
-            function openNav() {
-              document.getElementById("myNav").style.width = "100%";
+            function openAns() {
+              document.getElementById("answer_overlay").style.width = "100%";
             }
 
-            function closeNav() {
-              document.getElementById("myNav").style.width = "0%";
+            function closeAns() {
+              document.getElementById("answer_overlay").style.width = "0%";
+            }
+
+            function openExp() {
+              document.getElementById("example_overlay").style.width = "100%";
+            }
+
+            function closeExp() {
+              document.getElementById("example_overlay").style.width = "0%";
             }
         </script>
     <meta charset="utf-8">
   </head>
 
-  <body>
+  <body style="background-color:#bcdff5;">
 
         <!-- Header Block -->
-      <div style="height:8vh; line-height: 8vh; background-color:rgba(255,255,255,0.2); color:rgba(255,255,255,1); text-align:left; font-size:36; font-weight:800;">
+      <div style="height:8vh; line-height: 8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:36; font-weight:400;">
           <div style="padding:0 0 0 2vw;">{{title}}</div>
       </div>
 
@@ -127,8 +135,8 @@ MathJax = {
 
 
         <!-- Answers Overlay -->
-      <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div id="answer_overlay" class="overlay" style="background-color:#bcdff5;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeAns()">&times;</a>
 
         <p class="overlay-content">
 
@@ -140,20 +148,41 @@ MathJax = {
 
         </div>
       </div>
+        {% if strand == "Starters" %}
+            <div></div>
+        {% else %}
+        <!-- Example Overlay -->
+        <div id="example_overlay" class="overlay" style="color:rgba(0,0,0,1); background-color:white;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeExp()">&times;</a>
+
+        <p class="overlay-content">
+
+        <div id="grid" style="color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 20% 70%; height:80%; align-items: center ; width:100vw; margin: 5vh 0 0 0">
+
+            <div style="height:100%; text-align:center; border-bottom: 2px solid black;">My Go</div><div style="height:100%; text-align:center; border-bottom: 2px solid black; border-left: 2px solid black;">Your Go</div>
+            <div style="height:100%;">{{questions|lookup:0}}</div><div style="border-left: 2px solid black; height:100%;">{{questions|lookup:1}}</div>
+            <div style="height:100%;"></div><div style="height:100%; border-left: 2px solid black;"></div>
+        </div>
+      </div>
+        {% endif %}
 
         <!-- Footer Grid -->
-      <div id="grid" style = "grid-template-columns:33% 34% 33%; height:5vh; margin: 0 2% 0 2%">
+      <div id="grid" style = "grid-template-columns:20% 60% 20%; height:5vh; margin: 0 2% 0 2%">
           <div style="text-align:left;">
               <img src="/media/mathgen.png" style="height:5vh;">
           </div>
 
           <div style="text-align: center;">
 
-            <a href=# onclick="openNav()" class="button1" style="font-size:20px;">Answers</a>
+            <a href=# onclick="openAns()" class="button1" style="font-size:20px;">Answers</a>
+              {% if strand != "Starters" %}
+                <a href=# onclick="openExp()" class="button1" style="font-size:20px;">Example</a>
+              {% endif %}
 
             <a href="/"  class="button1" style="font-size:20px;">Home</a>
 
             <a href="/sub/?task={{task_code}}"  class="button1" style="font-size:20px;">{{strand}}</a>
+
 
           </div>
 

@@ -5,11 +5,33 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 
+def gen_cuboid_volume(a1,a2,a3,a4,a5,a6):
+    questions = []
+    answers = []
+    count = [i for i in range(6)]
+
+    for i in count:
+        q,a = cuboid()
+        questions.append(q)
+        answers.append(a)
+    return {'questions': questions, 'answers': answers, 'count': count}
+
+def gen_triprism_volume(a1,a2,a3,a4,a5,a6):
+    questions = []
+    answers = []
+    count = [i for i in range(4)]
+
+    for i in count:
+        q,a = triangular_prism()
+        questions.append(q)
+        answers.append(a)
+    return {'questions': questions, 'answers': answers, 'count': count}
+
 def cuboid():
     width = random.randint(4,12)
     height = random.randint(3,6)
     depth = random.randint(2,8)
-
+    units = random.choice(['mm','cm','m'])
     points = [((0,0),(width,0)),
               ((width,0),(width,height)),
               ((width,height),(0, height)),
@@ -22,7 +44,7 @@ def cuboid():
     points = ar(points)
     edges_for_labels = ar([points[3][0], points[0][0], points[4][0], points[4][1]])
     label_points = labels_for_shape(edges_for_labels)
-    labels = [str(height), str(width), str(depth)]
+    labels = [str(height)+units, str(width)+units, str(depth)+units]
     fig = plot_shape_byedge(points, label_points, labels)
     plt.text(width/2,height/2,'Volume = ?', horizontalalignment='center', verticalalignment='center', fontsize = 'large')
     r = random.randint(0, 999999999999999)
@@ -30,7 +52,7 @@ def cuboid():
 
     fig.savefig('media/' + fn, bbox_inches='tight', pad_inches=0, transparent=True)
     question = fn
-    answer = str(width * height* depth)
+    answer = '$' + str(width * height* depth) + units + '^3$'
 
     return question, answer
 

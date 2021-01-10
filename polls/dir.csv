@@ -10,7 +10,17 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 8,A005,7,Expanding Brackets,gen_expanding_brackets,0,0,0,0,0,0,0
 9,A005,8,Expanding Brackets,gen_expanding_brackets,1,0,0,0,0,0,0
 10,A005,9,Expanding Brackets,gen_expanding_brackets,2,0,0,0,0,0,0
-11,S001,9,Pythagoras,gen_pythagoras,4,0,0,0,0,0,1
+11,S001,9,Pythagoras Hypotenuse,gen_pythagoras,4,0,0,0,0,0,1
 17,G001,7,Term 2.1,gen_white_rose_maths_starter,7,0,0,0,0,0,0
 18,G001,8,Term 2.1,gen_white_rose_maths_starter,8,0,0,0,0,0,0
 19,G001,9,Term 2.1,gen_white_rose_maths_starter,9,0,0,0,0,0,0
+20,N001,8,Currency Conversion,gen_currency_conversion,0,0,0,0,0,0,0
+21,N002,7,Fraction Conversions,gen_fraction_conversions,0,0,0,0,0,0,0
+22,N002,8,Percentage Conversions,gen_percentage_conversions,0,0,0,0,0,0,0
+23,N002,9,Decimal Conversions,gen_decimal_conversions,0,0,0,0,0,0,0
+24,A005,10,Expanding Binomials,gen_expanding_binomials,0,0,0,0,0,0,0
+25,A006,7,Linear Sequences,gen_find_the_next_term,0,0,0,0,0,0,0
+26,S002,7,Area of Rectangle,gen_rectanlge_area,0,0,0,0,0,0,0
+27,S002,9,Volume of Cuboids,gen_cuboid_volume,0,0,0,0,0,0,0
+28,S002,10,Volume of Triangular Prism,gen_triprism_volume,0,0,0,0,0,0,0
+29,S001,10,Pythagors Shorter Side,gen_pythagoras,4,1,0,0,0,0,1

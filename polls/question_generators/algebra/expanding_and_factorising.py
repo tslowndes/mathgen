@@ -39,19 +39,40 @@ def gen_expanding_brackets(powers,a2,a3,a4,a5,a6):
 
     return context
 
+def gen_expanding_binomials(a1,a2,a3,a4,a5,a6):
+    questions = []
+    answers = []
+    count = [i for i in range(0, 10)]
+
+    for i in count:
+        if i < 6:
+            q,a = expanding_binomials(0)
+        else:
+            q,a = expanding_binomials(1)
+        questions.append(q)
+        answers.append(a)
+    return {'count':count, 'questions':questions, 'answers':answers}
+
 def expanding_binomials(x_or_ax=0):
     if x_or_ax == 0:
-        alpha = get_alpha()
-        bin_1_b = rand_no0(-9,9)
-        bin_2_b = rand_no0(-9,9)
-        exp_b = bin_1_b + bin_2_b
-        exp_c = bin_1_b * bin_2_b
+        bin_1_a = 1
+        bin_2_a = 1
+    else:
+        bin_1_a = random.randint(1,5)
+        bin_2_a = random.randint(1,5)
 
-        bin_1 = tidy_algebra(alpha + ' + ' + str(bin_1_b))
-        bin_2 = tidy_algebra(alpha + ' + ' + str(bin_2_b))
+    alpha = get_alpha()
+    bin_1_b = rand_no0(-9,9)
+    bin_2_b = rand_no0(-9,9)
+    exp_a = bin_1_a * bin_2_a
+    exp_b = (bin_2_a * bin_1_b) + (bin_1_a * bin_2_b)
+    exp_c = bin_1_b * bin_2_b
 
-        question = 'Expand: $(' + bin_1 + ')(' + bin_2 + ')$'
+    bin_1 = tidy_algebra(str(bin_1_a) + alpha + ' + ' + str(bin_1_b))
+    bin_2 = tidy_algebra(str(bin_2_a) + alpha + ' + ' + str(bin_2_b))
 
-        answer = tidy_algebra('$' + alpha + '^2 + ' + str(exp_b) + alpha + ' + ' + str(exp_c) + '$')
+    question = 'Expand: $(' + bin_1 + ')(' + bin_2 + ')$'
+
+    answer = tidy_algebra('$' + str(exp_a) + alpha + '^2 + ' + str(exp_b) + alpha + ' + ' + str(exp_c) + '$')
 
     return question, answer

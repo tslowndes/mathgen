@@ -4,12 +4,14 @@ from polls.question_generators.tools import *
 from polls.question_generators.shape.shape_tools import *
 from scipy import array as ar
 
-def gen_pythagoras(n, small_or_hyp,a2=0,a3=0,a4=0,a5=0):
+def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
     clear_temp_img()
     fns = []
     ans = []
+    units = random.choice(['mm','cm','m'])
     for i in range(0,n):
-        tri = gen_ratriangle()
+
+        tri = gen_ratriangle(hyp_or_small)
         a = tri[1][0] - tri[0][0]
         b = tri[2][1] - tri[1][1]
         r = min(a,b)/5
@@ -23,8 +25,8 @@ def gen_pythagoras(n, small_or_hyp,a2=0,a3=0,a4=0,a5=0):
                                  [v[0], v[1]]])
 
         lens = []
-        for i in range(len(tri)-1):
-            length = str(round(sqrt(((tri[i][0] - tri[i+1][0])**2)+((tri[i][1] - tri[i+1][1])**2)), 2))
+        for j in range(len(tri)-1):
+            length = str(round(sqrt(((tri[j][0] - tri[j+1][0])**2)+((tri[j][1] - tri[j+1][1])**2)), 2))
             length = length.strip('0')
             if length[-1] == '.':
                 length = length[:-1]
@@ -39,8 +41,11 @@ def gen_pythagoras(n, small_or_hyp,a2=0,a3=0,a4=0,a5=0):
             right_angle_marker = rotate_shape(right_angle_marker, c, ang*pi/180)
 
         lbl_points = labels_for_shape(tri)
+        if hyp_or_small == 0:
+            fig = plot_shape(tri, lbl_points, [str(lens[0]) + units, str(lens[1]) + units, 'x'])
+        else:
+            fig = plot_shape(tri, lbl_points, [str(lens[0]) + units, 'x', str(lens[2]) + units])
 
-        fig = plot_shape(tri, lbl_points, [lens[0], lens[1], 'x'])
         plt.plot(right_angle_marker[:,0], right_angle_marker[:,1], color = '#1f77b4', linewidth = 4)
 
 
@@ -52,7 +57,11 @@ def gen_pythagoras(n, small_or_hyp,a2=0,a3=0,a4=0,a5=0):
         fig.savefig('media/' + fn, bbox_inches='tight', pad_inches = 0, transparent=True)
 
         fns.append(fn)
-        ans.append(lens[-1])
+        if hyp_or_small == 0:
+            ans.append(str(lens[-1]) + units)
+        else:
+            ans.append(str(lens[1]) + units)
+
     count = [i for i in range(0,4)]
     if n == 1:
         return fns[0], ans[0]

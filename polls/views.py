@@ -8,11 +8,16 @@ from polls.question_generators.algebra.solving_equations import *
 from polls.question_generators.algebra.collecting_like_terms import *
 from polls.question_generators.algebra.linear_sequences import *
 from polls.question_generators.algebra.expanding_and_factorising import *
+
 ####### NUMBER #######
 from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.number.place_value import *
+from polls.question_generators.number.direct_proportion import *
+from polls.question_generators.number.fdp_conversions import *
 ####### SHAPE #######
 from polls.question_generators.shape.pythagoras import *
+from polls.question_generators.shape.cuboid import *
+from polls.question_generators.shape.rectangle import *
 ####### STARTERS #######
 from polls.question_generators.starters.wrm_year7 import *
 
@@ -84,11 +89,14 @@ def index(request):
             strand = 'Starters'
         context['strand'] = strand
 
-        if img == 0:
-            return HttpResponse(template.render(context, request))
-        else:
+        context['row_height'] = 100/max(context['count'])
 
-            return HttpResponse(template_image.render(context, request))
+        return HttpResponse(template.render(context, request))
+        #if img == 0:
+         #   return HttpResponse(template.render(context, request))
+        #else:
+
+         #   return HttpResponse(template_image.render(context, request))
 
     else:
         return HttpResponse(err_template.render({'content':'Task Not Found.'}, request))
