@@ -8,13 +8,25 @@ def gen_rectanlge_area(a1,a2,a3,a4,a5,a6):
     count = [i for i in range(6)]
 
     for i in count:
-        q,a = rectanlge_area_perimeter(0)
+        q,a = rectangle_area_perimeter(0)
         questions.append(q)
         answers.append(a)
 
     return {'questions': questions, 'answers': answers, 'count': count}
 
-def rectanlge_area_perimeter(area_or_perimeter):
+def gen_rectangle_perimeter(a1,a2,a3,a4,a5,a6):
+    questions = []
+    answers = []
+    count = [i for i in range(6)]
+
+    for i in count:
+        q,a = rectangle_area_perimeter(1)
+        questions.append(q)
+        answers.append(a)
+
+    return {'questions': questions, 'answers': answers, 'count': count}
+
+def rectangle_area_perimeter(area_or_perimeter):
     w = random.randint(3,10)
     l = random.randint(w,w+10)
     units = random.choice(['mm', 'cm', 'm'])

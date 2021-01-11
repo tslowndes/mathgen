@@ -173,10 +173,12 @@ def plot_shape_byedge(shape, lbl_points, lbls):
     return fig
 
 
-def plot_shape(shape, lbl_points, lbls):
+def plot_shape(shape, lbl_points, lbls, lw = 4, plt_points = 0):
     fig = plt.figure(figsize = (4,4))
     ax = fig.add_subplot(111)
-    plt.plot(shape[:, 0], shape[:, 1], color = '#1f77b4', linewidth = 4)
+    plt.plot(shape[:, 0], shape[:, 1], color = '#1f77b4', linewidth = lw)
+    if plt_points == 1:
+        plt.scatter(shape[:,0], shape[:,1],s=100, c = '#004575')
     for i in range(len(lbls)):
         plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', verticalalignment='center', fontsize = 'xx-large')
 

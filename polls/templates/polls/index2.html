@@ -83,7 +83,7 @@ MathJax = {
                 text-align: center;
                 vertical-align: top;
                 align-items: top;
-                grid-template-rows: {% for row in rows %} {{row_height}}% {% endfor %};
+                grid-template-rows: {% for row in rows %} {{row_height}}vh {% endfor %};
                 margin: 2%;
 
             }
@@ -125,7 +125,7 @@ MathJax = {
                 <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
 
             {% else %}
-                <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img src="/media/{{questions|lookup:i}}"></div>
+                <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img src="/media/{{questions|lookup:i}}" style="height:100%"></div>
 
             {% endif %}
 

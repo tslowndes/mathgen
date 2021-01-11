@@ -18,6 +18,7 @@ from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.shape.pythagoras import *
 from polls.question_generators.shape.cuboid import *
 from polls.question_generators.shape.rectangle import *
+from polls.question_generators.shape.interior_angles import *
 ####### STARTERS #######
 from polls.question_generators.starters.wrm_year7 import *
 

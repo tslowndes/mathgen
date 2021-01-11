@@ -8,12 +8,18 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
     clear_temp_img()
     fns = []
     ans = []
-    units = random.choice(['mm','cm','m'])
+    n = int(n)
     for i in range(0,n):
-
+        units = random.choice(['mm', 'cm', 'm'])
         tri = gen_ratriangle(hyp_or_small)
+        factor = tri.max()
+        tri = tri / tri.max() * 5
+
         a = tri[1][0] - tri[0][0]
         b = tri[2][1] - tri[1][1]
+
+
+
         r = min(a,b)/5
         v = tri[1]
         c = (sum(tri[:, 0]) / len(tri[:, 0]), sum(tri[:, 1]) / len(tri[:, 1]))
@@ -26,7 +32,7 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
 
         lens = []
         for j in range(len(tri)-1):
-            length = str(round(sqrt(((tri[j][0] - tri[j+1][0])**2)+((tri[j][1] - tri[j+1][1])**2)), 2))
+            length = str(round(sqrt(((tri[j][0] - tri[j+1][0])**2)+((tri[j][1] - tri[j+1][1])**2))*factor, 2))
             length = length.strip('0')
             if length[-1] == '.':
                 length = length[:-1]
