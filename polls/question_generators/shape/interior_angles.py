@@ -14,20 +14,10 @@ def gen_sum_of_interior_angles(a1,a2,a3,a4,a5,a6):
     return {'questions': questions, 'answers': answers, 'count': count}
 
 def sum_of_interior_angles():
-    n = random.randint(8,14)
-    shape = to_convex_contour(n)
+    shape = random_polygon()
     lens = []
-    shape = shape.tolist()
-    for i in range(int(len(shape))-3):
-        m1 = (shape[i+1][1] - shape[i][1])/(shape[i+1][0] - shape[i][0])
-        m2 = (shape[i+2][1] - shape[i+1][1])/(shape[i+2][0] - shape[i+1][0])
-        if m2 > 0.9*m1 and m2<1.1*m1:
-            shape = shape[:i + 1] + shape[i + 2:]
 
-    shape = shape + [shape[0]]
-    shape = np.array(shape)
-
-    sides = shape.size/2-1
+    sides = len(shape.tolist())
 
     lbl_points = labels_for_shape(shape)
     lbls = ['' for i in lbl_points]
@@ -35,7 +25,12 @@ def sum_of_interior_angles():
 
     r = random.randint(0, 999999999999999)
     fn = 'temp_img/temp' + str(r) + '.png'
-
+    x_min = shape[:,0].min()
+    x_max = shape[:,0].max()
+    y_min = shape[:,1].min()
+    y_max = shape[:,1].max()
+    plt.xlim([x_min-0.2, x_max+0.2])
+    plt.ylim([y_min-0.2, y_max+0.2])
     fig.savefig('media/' + fn, bbox_inches='tight', pad_inches=0, transparent=True)
     question = fn
     answer = '$' + str((sides - 2)*180) + '^o$'

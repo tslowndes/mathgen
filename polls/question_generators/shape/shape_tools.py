@@ -1,12 +1,60 @@
 import random
-from math import atan2, pi, sqrt
+from math import atan2, pi, sqrt, acos
 from scipy import dot, sin, cos
 from scipy import array as ar
 import matplotlib.path as mpltPath
-
+from scipy.spatial import ConvexHull, convex_hull_plot_2d
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
+
+def random_polygon():
+    points = (np.random.rand(50, 2) - .5)   # 30 random points in 2-D
+    hull = ConvexHull(points)
+    #plt.plot(points[:, 0], points[:, 1], 'o')
+    x = points[hull.vertices,0].tolist()
+    x = x + [x[0]]
+    y = points[hull.vertices, 1].tolist()
+    y = y + [y[0]]
+
+    i = 1
+    while i < len(x) - 1 and len(x) > 3:
+        a = sqrt((x[i]-x[i+1])**2 + (y[i]-y[i+1])**2)
+        b = sqrt((x[i]-x[i-1])**2 + (y[i]-y[i-1])**2)
+        c = sqrt((x[i-1]-x[i+1])**2 + (y[i-1]-y[i+1])**2)
+
+        angle = acos((a**2 + b**2 - c**2)/(2*a*b)) * 180/pi
+
+        if angle > 175:
+            x = x[:i] + x[i+1:]
+            y = y[:i] + y[i+1:]
+        else:
+            i = i + 1
+
+    if x[-1] != x[0]:
+        x = x + [x[0]]
+        y = y + [y[0]]
+
+
+    beam = max(x) - min(x)
+    i = 0
+    while i < len(x)-1 and len(x) > 3:
+        dist = sqrt((x[i]-x[i+1])**2 + (y[i]-y[i+1])**2)
+        if dist > beam/5:
+            i = i + 1
+        else:
+            x = x[:i+1] + x[i+2:]
+            y = y[:i+1] + y[i+2:]
+
+    if x[-1] != x[0]:
+        x = x + [x[0]]
+        y = y + [y[0]]
+
+    points = np.array([[x[i], y[i]] for i in range(len(x))])
+
+    return points
+
 
 
 def to_convex_contour(vertices_count,
@@ -81,13 +129,8 @@ def gen_ratriangle(hyp_or_small=0):
         c = random.randint(a+1,a+5)
         b = sqrt(c ** 2 - a ** 2)
 
-    x.append(x[0]+a)
-    y.append(0)
-
-    x.append(x[1])
-    y.append(y[1] + b)
-    x.append(x[0])
-    y.append(y[0])
+    x = x + [x[0]+a, x[0]+a, x[0]]
+    y = y + [y[0], y[0]+b, y[0]]
 
     points = [[x[i], y[i]] for i in range(len(x))]
     points = ar(points)
@@ -104,9 +147,15 @@ def rotate_shape(pts,cnt,ang=pi/4):
 def labels_for_shape(points):
 
     lbls = []
+    x_len = max(points[:,0]) - min(points[:,0])
+    y_len = max(points[:,1]) - min(points[:,1])
 
-    delta = sqrt((max(points[:,0]) - min(points[:,0]))/2)
-    #delta = 2
+    if y_len > x_len:
+        max_len = y_len
+    else:
+        max_len = x_len
+
+    delta = sqrt(max_len)
 
     for i in range(len(points)-1):
 
@@ -173,25 +222,44 @@ def plot_shape_byedge(shape, lbl_points, lbls):
     return fig
 
 
-def plot_shape(shape, lbl_points, lbls, lw = 4, plt_points = 0):
-    fig = plt.figure(figsize = (4,4))
+def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0):
+    fig = plt.figure(figsize =(1.5,1.5))
+
     ax = fig.add_subplot(111)
-    plt.plot(shape[:, 0], shape[:, 1], color = '#1f77b4', linewidth = lw)
+
+    x_min = min(shape[:,0])
+    x_max = max(shape[:,0])
+    x_len = x_max - x_min
+    y_min = min(shape[:,1])
+    y_max = max(shape[:,1])
+    y_len = y_max - y_min
+
+    if x_len > y_len:
+        normalise = x_max
+    else:
+        normalise = y_max
+
+    shape = shape / normalise*5
+
+    lbl_points = lbl_points/normalise*5
+
+    plt.plot(shape[:, 0], shape[:, 1], color = '#1f77b4', linewidth = 2)
+
     if plt_points == 1:
-        plt.scatter(shape[:,0], shape[:,1],s=100, c = '#004575')
+        plt.scatter(shape[:,0], shape[:,1], s=50, c='#1f77b4')
     for i in range(len(lbls)):
-        plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', verticalalignment='center', fontsize = 'xx-large')
+        plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', rotation=ang, verticalalignment='center', fontsize = 12)
 
-    delta = (max(shape[:, 0]) - min(shape[:, 0])) / 100
+    all_points = ar(list(shape) + list(lbl_points))
 
-    x_min = min(shape[:,0])-2
-    x_max = max(shape[:,0])+2
-    y_min = min(shape[:,1])-2
-    y_max = max(shape[:,1])+2
+    x_min = min(all_points[:,0])-0.5
+    x_max = max(all_points[:, 0])+0.5
+    y_min = min(all_points[:, 1])-0.5
+    y_max = max(all_points[:, 1])+0.5
 
     plt.xlim(x_min, x_max)
     plt.ylim(y_min, y_max)
-    ax.set_aspect('equal', adjustable='box')
+    ax.set_aspect('equal')
     plt.axis('off')
 
     return fig

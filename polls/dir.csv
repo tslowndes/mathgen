@@ -20,9 +20,18 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 23,N002,9,Decimal Conversions,gen_decimal_conversions,0,0,0,0,0,0,0
 24,A005,10,Expanding Binomials,gen_expanding_binomials,0,0,0,0,0,0,0
 25,A006,7,Linear Sequences,gen_find_the_next_term,0,0,0,0,0,0,0
-26,S002,7,Area of Rectangle,gen_rectanlge_area,0,0,0,0,0,0,0
+26,S002,7,Area of Rectangle,gen_rectangle_area,0,0,0,0,0,0,0
 27,S002,9,Volume of Cuboids,gen_cuboid_volume,0,0,0,0,0,0,0
 28,S002,10,Volume of Triangular Prism,gen_triprism_volume,0,0,0,0,0,0,0
-29,S001,10,Pythagors Shorter Side,gen_pythagoras,4,1,0,0,0,0,1
+29,S001,10,Pythagors Shorter Side,gen_pythagoras,6,1,0,0,0,0,1
 30,S003,7,Perimeter of Rectangle,gen_rectangle_perimeter,0,0,0,0,0,0,0
 31,S004,9,Interior Angles: Finding the Sum,gen_sum_of_interior_angles,0,0,0,0,0,0,0
+32,N003,7,Unit Fractions of an Amount,gen_fraction_of_an_amount,10,1,0,0,0,0,0
+33,N003,8,Fractions of an Amount,gen_fraction_of_an_amount,10,0,0,0,0,0,0
+33,N003,9,Finding the Amount,gen_fraction_of_an_amount,10,0,1,0,0,0,0
+34,N004,7,Listing Multiples,gen_list_multiples,10,0,0,0,0,0,0
+35,N004,8,Listing Factors,gen_list_factors,10,0,0,0,0,0,0
+36,N004,9,Product of Primes,gen_product_of_primes,10,0,0,0,0,0,0
+37,N004,10,HCF,gen_HCF,10,0,0,0,0,0,0
+38,N004,11,LCM,gen_LCM,10,0,0,0,0,0,0
+39,D001,8,Median,gen_median,10,0,0,0,0,0,0

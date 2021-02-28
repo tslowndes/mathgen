@@ -83,3 +83,36 @@ def dividing_fractions():
 		answer = r'$\frac{' + str(n3) + '}{' + str(d3) + r'} = \frac{' + str(n4) + '}{' + str(d4) + '}$'
 
 	return question, answer
+
+def fraction_of_an_amount(unit, reverse=0):
+	if unit == 1:
+		d = random.randint(2,12)
+		n = 1
+	else:
+		d = random.randint(3,12)
+		n = random.randint(2, d - 1)
+
+	part = random.randint(2,10)
+	amount = d * part
+	ans = n * part
+
+	if reverse == 0:
+
+		q = r'$\frac{' + str(n) + '}{' + str(d) + '}\;\; of\;\; ' + str(amount) + '$'
+
+	else:
+
+		q = r'$\frac{' + str(n) + '}{' + str(d) + '}\;\; of\;\; x = ' + str(ans) + '$'
+		ans = amount
+
+	return q,ans
+
+def gen_fraction_of_an_amount(n,unit,reverse=0,d=0,e=0,f=0):
+	qs = []
+	ans = []
+	for i in range(n):
+		q,a = fraction_of_an_amount(unit, reverse)
+		qs.append(q)
+		ans.append(a)
+
+	return {'count': [i for i in range(0,n)], 'questions': qs, 'answers': ans}

@@ -12,13 +12,9 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
     for i in range(0,n):
         units = random.choice(['mm', 'cm', 'm'])
         tri = gen_ratriangle(hyp_or_small)
-        factor = tri.max()
-        tri = tri / tri.max() * 5
 
         a = tri[1][0] - tri[0][0]
         b = tri[2][1] - tri[1][1]
-
-
 
         r = min(a,b)/5
         v = tri[1]
@@ -32,14 +28,14 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
 
         lens = []
         for j in range(len(tri)-1):
-            length = str(round(sqrt(((tri[j][0] - tri[j+1][0])**2)+((tri[j][1] - tri[j+1][1])**2))*factor, 2))
+            length = str(round(sqrt(((tri[j][0] - tri[j+1][0])**2)+((tri[j][1] - tri[j+1][1])**2)), 2))
             length = length.strip('0')
             if length[-1] == '.':
                 length = length[:-1]
 
             lens.append(length)
 
-
+        ang = 0
         if i > 1:
 
             ang = random.randint(30, 360)
@@ -47,20 +43,17 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
             right_angle_marker = rotate_shape(right_angle_marker, c, ang*pi/180)
 
         lbl_points = labels_for_shape(tri)
+        tri = ar(list(tri) + list(right_angle_marker))
+
         if hyp_or_small == 0:
-            fig = plot_shape(tri, lbl_points, [str(lens[0]) + units, str(lens[1]) + units, 'x'])
+            fig = plot_shape(tri, lbl_points, ['  '+str(lens[0]) + units, '  '+str(lens[1]) + units, 'x'], 3, 0, 0)
         else:
-            fig = plot_shape(tri, lbl_points, [str(lens[0]) + units, 'x', str(lens[2]) + units])
-
-        plt.plot(right_angle_marker[:,0], right_angle_marker[:,1], color = '#1f77b4', linewidth = 4)
-
-
-
+            fig = plot_shape(tri, lbl_points, ['  '+str(lens[0]) + units, 'x', '  '+str(lens[2]) + units])
 
         r = random.randint(0,999999999999999)
         fn = 'temp_img/temp'+ str(r) + '.png'
 
-        fig.savefig('media/' + fn, bbox_inches='tight', pad_inches = 0, transparent=True)
+        fig.savefig('media/' + fn, dpi = 200, pad_inches = 0, transparent=True)
 
         fns.append(fn)
         if hyp_or_small == 0:
@@ -68,7 +61,7 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
         else:
             ans.append(str(lens[1]) + units)
 
-    count = [i for i in range(0,4)]
+    count = [i for i in range(0,n)]
     if n == 1:
         return fns[0], ans[0]
     else:

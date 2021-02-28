@@ -14,6 +14,7 @@ from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.number.place_value import *
 from polls.question_generators.number.direct_proportion import *
 from polls.question_generators.number.fdp_conversions import *
+from polls.question_generators.number.factors_multiples_primes import *
 ####### SHAPE #######
 from polls.question_generators.shape.pythagoras import *
 from polls.question_generators.shape.cuboid import *
@@ -93,11 +94,6 @@ def index(request):
         context['row_height'] = 100/max(context['count'])
 
         return HttpResponse(template.render(context, request))
-        #if img == 0:
-         #   return HttpResponse(template.render(context, request))
-        #else:
-
-         #   return HttpResponse(template_image.render(context, request))
 
     else:
         return HttpResponse(err_template.render({'content':'Task Not Found.'}, request))
