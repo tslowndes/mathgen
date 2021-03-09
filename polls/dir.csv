@@ -11,7 +11,7 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 9,A005,8,Expanding Brackets,gen_expanding_brackets,1,0,0,0,0,0,0
 10,A005,9,Expanding Brackets,gen_expanding_brackets,2,0,0,0,0,0,0
 11,S001,9,Pythagoras Hypotenuse,gen_pythagoras,4,0,0,0,0,0,0
-17,G001,7,Term 2.1,gen_white_rose_maths_starter,7,0,0,0,0,0,0
+17,G001,7,Term 2.1,gen_white_rose_maths_starter,7,3,0,0,0,0,0
 18,G001,8,Term 2.1,gen_white_rose_maths_starter,8,0,0,0,0,0,0
 19,G001,9,Term 2.1,gen_white_rose_maths_starter,9,0,0,0,0,0,0
 20,N001,8,Currency Conversion,gen_currency_conversion,0,0,0,0,0,0,0
@@ -35,3 +35,7 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 37,N004,10,HCF,gen_HCF,10,0,0,0,0,0,0
 38,N004,11,LCM,gen_LCM,10,0,0,0,0,0,0
 39,D001,8,Median,gen_median,10,0,0,0,0,0,0
+40,N005,7,Adding Fractions (Same denominator),gen_adding_fractions,10,1,0,0,0,0,0
+41,N005,8,Adding Unit Fractions,gen_adding_fractions,10,0,1,0,0,0,0
+42,N005,9,Adding Fractions,gen_adding_fractions,10,0,0,0,0,0,0
+

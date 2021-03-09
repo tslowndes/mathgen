@@ -5,6 +5,8 @@ from polls.question_generators.tools import *
 def gen_adding_algebra_terms(a1, a2, a3, a4, a5, a6):
     a = random.randint(1, 10)
     b = rand_no0(-10,10)
+    while a == b:
+        b = rand_no0(-10, 10)
     alpha = get_alpha()
 
     c = a + b
