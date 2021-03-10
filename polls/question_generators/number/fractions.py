@@ -15,15 +15,17 @@ def adding_fractions(same_denom=0, unit=0, negative = 0):
 		while d1 == d2:
 			d2 = random.randint(d1, 10)
 	else:
-		d1 = random.randint(2,10)
+		d1 = random.randint(3,10)
 		d2 = d1
 
 	if unit == 0:
-		n1 = random.randint(1, int((d1)/2))
-		n2 = random.randint(1, int((d2)/2))
-		while n2 == n1:
-			n1 = random.randint(1, int((d1) / 2))
-			n2 = random.randint(1, int((d2) / 2))
+		n1 = random.randint(1, d1-1)
+		n2 = random.randint(1, d2-1)
+		if n1 == n2:
+			if n2 - 1 > 0:
+				n2 = n2 - 1
+			elif n1 + 1 < d1:
+				n1 = n1 + 1
 	else:
 		n1, n2 = 1,1
 
@@ -65,17 +67,21 @@ def adding_fractions(same_denom=0, unit=0, negative = 0):
 		d4 = d4[:-1]
 	n3 = int(n3)
 	n4 = int(n4)
-
-	if n3 == n4:
-		if n3 > 0:
-			answer = r'$\frac{' + str(n3) + '}{' + str(d3) + '}$'
-		else:
-			answer = r'$-\frac{' + str(abs(n3)) + '}{' + str(d3) + '}$'
+	if n3 == d3:
+		answer = r'$\frac{' + str(n3) + '}{' + str(d3) + r'} = 1 $'
 	else:
-		if n3 > 0:
-			answer = r'$\frac{' + str(n3) + '}{' + str(d3) + r'} = \frac{' + str(n4) + '}{' + str(d4) + '}$'
+		if n3 == n4:
+			if n3 > 0:
+				answer = r'$\frac{' + str(n3) + '}{' + str(d3) + '}$'
+			elif n3 == 0:
+				answer = r'$0$'
+			else:
+				answer = r'$-\frac{' + str(abs(n3)) + '}{' + str(d3) + '}$'
 		else:
-			answer = r'$-\frac{' + str(abs(n3)) + '}{' + str(d3) + r'} = -\frac{' + str(abs(n4)) + '}{' + str(d4) + '}$'
+			if n3 > 0:
+				answer = r'$\frac{' + str(n3) + '}{' + str(d3) + r'} = \frac{' + str(n4) + '}{' + str(d4) + '}$'
+			else:
+				answer = r'$-\frac{' + str(abs(n3)) + '}{' + str(d3) + r'} = -\frac{' + str(abs(n4)) + '}{' + str(d4) + '}$'
 
 	return question, answer
 

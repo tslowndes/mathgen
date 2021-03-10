@@ -15,12 +15,13 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
     else:
         min = 1
 
-    if negxs ==1:
-        minx = -10
-    else:
-        minx = 1
-
     for i in range(0, n):
+
+        if i > 5:
+            minx = -10
+        else:
+            minx = 1
+
         count.append(i)
         a=0
         b=0
@@ -43,11 +44,12 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
             multidiv = 0
         else:
             multidiv = random.randint(0,1)
+            a = rand_no0_no1(2, 5)
 
         if multidiv == 0:
             c = (a*x) + b
         else:
-            c = rand_no0_no1(min, 9)
+            c = rand_no0_no1(b+1, 10)
             x = (c-b)*a
 
         if brackets == 1:
@@ -99,7 +101,7 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         if brackets == 1:
             x_side = str(d) + "(" + x_side + ")"
 
-        if random.randint(0,1)>0 or i < 4:
+        if random.randint(0,1)>0 or i < 6:
             q = x_side + " = " + ans_side
         else:
             q = ans_side + " = " + x_side
