@@ -5,6 +5,37 @@ from math import gcd
 def lcm(a, b):
 	return abs(a * b) // gcd(a, b)
 
+def mixed_numbers(mixed_to_improper):
+	whole_part = random.randint(1,5)
+	d = random.randint(2,10)
+	n = random.randint(1,d-1)
+
+	improper = n + (d * whole_part)
+
+	if mixed_to_improper == 0:
+		q = r'$ ' + str(whole_part) + r' \; \frac{' + str(n) + '}{' + str(d) + '}$'
+		ans = r'$\frac{' + str(improper) + '}{' + str(d) + '}$'
+	else:
+		ans = r'$ ' + str(whole_part) + r' \; \frac{' + str(n) + '}{' + str(d) + '}$'
+		q = r'$\frac{' + str(improper) + '}{' + str(d) + '}$'
+
+	return q, ans
+
+def gen_mixed_number(n,a,b,c,d,e):
+		qs = []
+		ans = []
+		for i in range(n):
+			if (i % 2) == 0:
+				q, a = mixed_numbers(0)
+			else:
+				q, a = mixed_numbers(1)
+
+			qs.append(q)
+			ans.append(a)
+
+		return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': ans}
+
+
 def adding_fractions(same_denom=0, unit=0, negative = 0):
 
 	subtract = random.randint(0,1)
