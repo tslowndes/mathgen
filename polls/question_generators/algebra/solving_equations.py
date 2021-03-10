@@ -43,8 +43,11 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         if a == 1 or brackets == 1 or bothsides == 1:
             multidiv = 0
         else:
-            multidiv = random.randint(0,1)
-            a = rand_no0_no1(2, 5)
+            if (i % 2) == 0:
+                multidiv = 0
+            else:
+                multidiv = 1
+                a = rand_no0_no1(2, 5)
 
         if multidiv == 0:
             c = (a*x) + b
