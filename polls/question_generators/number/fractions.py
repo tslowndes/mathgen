@@ -35,17 +35,25 @@ def gen_mixed_number(n,a,b,c,d,e):
 
 		return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': ans}
 
-def simplifying_fractions():
+def simplifying_fractions(simp_or_equiv):
 
     com_f = random.randint(2,8)
 
-    n1 = random.randint(1,3)*com_f
-    d1 = random.randint(3,6)*com_f
+    n1 = random.randint(2,4)*com_f
+    d1 = random.randint(5,8)*com_f
 
     n2, d2 = simplify_frac(abs(n1), d1)
-
-    q = r'$\frac{' + str(n1) + '}{' + str(d1) + '}$'
-    ans = r'$\frac{' + str(n2) + '}{' + str(d2) + '}$'
+    n2 = str(n2).strip('.0')
+    d2 = str(d2).strip('.0')
+    if simp_or_equiv==0:
+        q = r'$\frac{' + str(n1) + '}{' + str(d1) + '}$'
+        ans = r'$\frac{' + str(n2) + '}{' + str(d2) + '}$'
+    else:
+        ans = r'$\frac{' + str(n1) + '}{' + str(d1) + '}$'
+        if random.randint(0,1)==0:
+            q = r'$\frac{' + str(n2) + '}{' + str(d2) + r'} = \frac{[\;\;]}{' + str(d1) + '}$'
+        else:
+            q = r'$\frac{' + str(n2) + '}{' + str(d2) + r'} = \frac{' + str(n1) + '}{[\;\;]}$'
 
     return q,ans
 
@@ -53,7 +61,10 @@ def gen_simplifying_fractions(n,a,b,c,d,e):
     qs = []
     ans = []
     for i in range(n):
-        q, a = simplifying_fractions()
+        if (i % 2) ==0:
+            q, a = simplifying_fractions(0)
+        else:
+            q,a = simplifying_fractions(1)
 
         qs.append(q)
         ans.append(a)
