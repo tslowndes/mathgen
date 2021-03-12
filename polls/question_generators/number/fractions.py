@@ -35,6 +35,31 @@ def gen_mixed_number(n,a,b,c,d,e):
 
 		return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': ans}
 
+def simplifying_fractions():
+
+    com_f = random.randint(2,8)
+
+    n1 = random.randint(1,3)*com_f
+    d1 = random.randint(3,6)*com_f
+
+    n2, d2 = simplify_frac(abs(n1), d1)
+
+    q = r'$\frac{' + str(n1) + '}{' + str(d1) + '}$'
+    ans = r'$\frac{' + str(n2) + '}{' + str(d2) + '}$'
+
+    return q,ans
+
+def gen_simplifying_fractions(n,a,b,c,d,e):
+    qs = []
+    ans = []
+    for i in range(n):
+        q, a = simplifying_fractions()
+
+        qs.append(q)
+        ans.append(a)
+
+    return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': ans}
+
 
 def adding_fractions(same_denom=0, unit=0, negative = 0, whole = 0):
 

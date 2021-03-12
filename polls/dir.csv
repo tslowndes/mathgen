@@ -40,5 +40,6 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 42,N005,9,Adding Unit Fractions,gen_adding_fractions,10,0,1,0,0,0,0
 43,N005,10,Adding Fractions,gen_adding_fractions,10,0,0,0,0,0,0
 44,N005,11,Adding Fractions and Integers,gen_adding_fractions,10,1,0,1,0,0,0
+45,N006,7,Simplifying Fractions,gen_simplifying_fractions,10,0,0,0,0,0,0
 
 
