@@ -12,11 +12,7 @@
   <body>
     <table width="100%">
       <tr>
-      <th> Year 7 </th>
-        <th> Year 8 </th>
-        <th> Year 9 </th>
-        <th> Year 10 </th>
-        <th> Year 11 </th>
+        <th colspan="5"> {{strand}} </th>
       </tr>
       {% for i in count %}
         {% if year|lookup:i == 7 %}

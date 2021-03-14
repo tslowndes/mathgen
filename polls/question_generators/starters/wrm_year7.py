@@ -39,29 +39,28 @@ def wrm_7_starter(ht):
     ## Half term 2
 
     ## Half term 3
-    questions[8], answers[8] = linear_sequences.find_the_next_term(0, 0, 0, 0, 0, 0)
-    questions[8] = 'Find the next term: ' + questions[8]
-    questions[9], answers[9] = linear_sequences.find_the_next_term(1, 0, 0, 0, 0, 0)
-    questions[9] = 'Find the next term: ' + questions[9]
-    questions[10], answers[10] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
-    questions[10] = 'Simplify: ' + questions[10]
-    questions[11], answers[11] = gen_solving_equations(1, 0, 0, 1, 0, 0)
-    questions[11] = 'Solve the equation: ' + questions[11]
-    ## Half term 4
-    questions[12], answers[12] = frac_to_percentage()
-    questions[12] = r'Convert the fraction to a percentage: ' + questions[12]
-    questions[13], answers[13] = frac_to_decimal()
-    questions[13] = r'Convert the decimal to a fraction: ' + str(questions[13])
-    questions[14], answers[14] = name_the_value()
-    questions[14] = 'What is the value of the underlined digit? ' + questions[14]
-    a = random.randint(0,1)
-    questions[15], answers[15] = [gen_range(), find_median(0,0)][a]
-    if a == 0:
-        questions[15] = 'Find the range of: ' + questions[15]
+    if ht == 3:
+        questions[0], answers[0] = linear_sequences.find_the_next_term(0, 0, 0, 0, 0, 0)
+        questions[0] = 'Find the next term: ' + questions[0]
+        questions[1], answers[1] = linear_sequences.find_the_next_term(1, 0, 0, 0, 0, 0)
+        questions[1] = 'Find the next term: ' + questions[1]
+        questions[2], answers[2] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
+        questions[2] = 'Simplify: ' + questions[2]
+        questions[3], answers[3] = gen_solving_equations(1, 0, 0, 1, 0, 0)
+        questions[3] = 'Solve the equation: ' + questions[3]
+        ## Half term 4
+        questions[4], answers[4] = frac_to_percentage()
+        questions[4] = r'Convert the fraction to a percentage: ' + questions[4]
+        questions[5], answers[5] = frac_to_decimal()
+        questions[5] = r'Convert the decimal to a fraction: ' + str(questions[5])
+        questions[6], answers[6] = name_the_value()
+        questions[6] = 'What is the value of the underlined digit? ' + questions[6]
+        a = 0#random.randint(0,1)
+        questions[7], answers[7] = [gen_range(), find_median(0,0)][a]
+        if a == 0:
+            questions[7] = 'Find the range of: ' + questions[7]
 
     ## Half term 5
-
-    questions = questions[(ht-2)*8:((ht)*4)]
 
     return {'count': count,
             'questions': questions,

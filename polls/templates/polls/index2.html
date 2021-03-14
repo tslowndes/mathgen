@@ -60,8 +60,8 @@ MathJax = {
 
         .overlay .closebtn {
           position: absolute;
-          top: 85vh;
-          right: 50vw;
+          top: 90vh;
+          right: 48vw;
           font-size: 60px;
         }
 
@@ -151,19 +151,45 @@ MathJax = {
         {% if strand == "Starters" %}
             <div></div>
         {% else %}
+
+
         <!-- Example Overlay -->
         <div id="example_overlay" class="overlay" style="color:rgba(0,0,0,1); background-color:white;">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeExp()">&times;</a>
 
         <p class="overlay-content">
 
-        <div id="grid" style="color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 20% 70%; height:80%; align-items: center ; width:100vw; margin: 5vh 0 0 0">
 
-            <div style="height:100%; text-align:center; border-bottom: 2px solid black;">My Go</div><div style="height:100%; text-align:center; border-bottom: 2px solid black; border-left: 2px solid black;">Your Go</div>
-            <div style="height:100%;">{{questions|lookup:0}}</div><div style="border-left: 2px solid black; height:100%;">{{questions|lookup:1}}</div>
-            <div style="height:100%;"></div><div style="height:100%; border-left: 2px solid black;"></div>
-        </div>
+
+            <div id="grid" style="color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 90%; height:80%; align-items: center ; width:100vw; margin: 0vh 0 0 0">
+
+            <div style="height:100%; text-align:center; border-bottom: 0px solid black;"><h3>My Go</h3></div><div style="height:100%; text-align:center; border-bottom: 0px solid black; border-left: 0px solid black;"><h3>Your Go</h3></div>
+                    <div style="height:100%;">
+                        {{questions|lookup:0}}
+                        <canvas	width="1410vw" height="550vh" style="margin:10; padding:0;" id="mainCanvas"></canvas>
+                        <div class="controls">
+                            <ul>
+                                <li class="red selected"></li>
+                                <li class="blue"></li>
+                                <li class="yellow"></li>
+                                <li style="background: pink" onclick='clear_canvas_width ()'></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div style="border-left: 0px solid black; height:100%;">
+                        {{questions|lookup:1}}
+                    </div>
+                </div>
+
+
+            <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+            <script src="{% static 'polls/app.js' %}" type="text/javascript" charset="utf-8"></script>
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeExp()">&times;</a>
+
       </div>
+
+
         {% endif %}
 
         <!-- Footer Grid -->
