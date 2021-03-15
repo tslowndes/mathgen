@@ -47,10 +47,10 @@ $("#addNewColor").click(function () {
 });
 
 // On mouse events on the canvas
-$canvas.touchstart(function (e) {
+$canvas.mousedown(function (e) {
     lastEvent = e;
     mouseDown = true;
-}).touchmove(function (e) {
+}).mousemove(function (e) {
     // Draw lines
     if (mouseDown) {
         context.beginPath();
@@ -62,7 +62,7 @@ $canvas.touchstart(function (e) {
         context.stroke();
         lastEvent = e;
     }
-}).touchend(function () {
+}).mouseup(function () {
     mouseDown = false;
 }).mouseleave(function () {
     $canvas.mouseup();
