@@ -1,6 +1,6 @@
 var colour = $(".selected").css("background-color");
-var $canvas = $("canvas");
-var context = $canvas[0].getContext("2d");
+var canvas = document.getElementById("mainCanvas");
+var context = canvas.getContext("2d");
 var lastEvent;
 var mouseDown = false;
 
@@ -48,12 +48,12 @@ $("#addNewColor").click(function () {
 
 // On mouse events on the canvas
 
-$canvas.addEventListener("mousedown", function (e) {
+canvas.addEventListener("mousedown", function (e) {
     lastEvent = e;
     mouseDown = true;
 }, false);
 
-$canvas.addEventListener("mousemove", function (e) {
+canvas.addEventListener("mousemove", function (e) {
     // Draw lines
     if (mouseDown) {
         context.beginPath();
@@ -67,11 +67,11 @@ $canvas.addEventListener("mousemove", function (e) {
     }
 }, false);
 
-$canvas.addEventListener("mouseup", function (e) {
+canvas.addEventListener("mouseup", function (e) {
     mouseDown = false;
 }, false);
 
-$canvas.addEventListener("mouseup", function (e) {
+canvas.addEventListener("mouseleave", function (e) {
     mouseDown = false;
 }, false);
 
