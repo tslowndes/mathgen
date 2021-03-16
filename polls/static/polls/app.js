@@ -77,6 +77,7 @@ canvas.addEventListener("mouseleave", function (e) {
 
 // Set up touch events for mobile, etc
 canvas.addEventListener("touchstart", function (e) {
+e.preventDefault();
         mousePos = getTouchPos(canvas, e);
   var touch = e.touches[0];
   var mouseEvent = new MouseEvent("mousedown", {
@@ -84,18 +85,23 @@ canvas.addEventListener("touchstart", function (e) {
     clientY: touch.clientY
   });
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 }, false);
 canvas.addEventListener("touchend", function (e) {
+e.preventDefault();
   var mouseEvent = new MouseEvent("mouseup", {});
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 }, false);
 canvas.addEventListener("touchmove", function (e) {
+e.preventDefault();
   var touch = e.touches[0];
   var mouseEvent = new MouseEvent("mousemove", {
     clientX: touch.clientX,
     clientY: touch.clientY
   });
   canvas.dispatchEvent(mouseEvent);
+  e.preventDefault();
 }, false);
 
 // Get the position of a touch relative to the canvas
@@ -113,11 +119,13 @@ document.body.addEventListener("touchstart", function (e) {
     e.preventDefault();
   }
 }, false);
+
 document.body.addEventListener("touchend", function (e) {
   if (e.target == canvas) {
     e.preventDefault();
   }
 }, false);
+
 document.body.addEventListener("touchmove", function (e) {
   if (e.target == canvas) {
     e.preventDefault();
