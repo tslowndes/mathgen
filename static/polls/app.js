@@ -66,6 +66,15 @@ $canvas.mousedown(function (e) {
     mouseDown = false;
 }).mouseleave(function () {
     $canvas.mouseup();
+}).touchstart(function (e){
+    e.preventDefault()
+    $canvas.mousedown()
+}).touchmove(function (e){
+    e.preventDefault()
+    $canvas.mousemove()
+}).touchend(function (e){
+    e.preventDefault()
+    $canvas.mouseup()
 });
 
 // Clear the canvas when button is clicked
