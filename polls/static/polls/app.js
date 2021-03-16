@@ -47,10 +47,13 @@ $("#addNewColor").click(function () {
 });
 
 // On mouse events on the canvas
-$canvas.mousedown(function (e) {
+
+$canvas.addEventListener("mousedown", function (e) {
     lastEvent = e;
     mouseDown = true;
-}).mousemove(function (e) {
+}, false);
+
+$canvas.addEventListener("mousemove", function (e) {
     // Draw lines
     if (mouseDown) {
         context.beginPath();
@@ -62,20 +65,15 @@ $canvas.mousedown(function (e) {
         context.stroke();
         lastEvent = e;
     }
-}).mouseup(function () {
+}, false);
+
+$canvas.addEventListener("mouseup", function (e) {
     mouseDown = false;
-}).mouseleave(function () {
-    $canvas.mouseup();
-}).touchstart(function (e){
-    $canvas.mousedown()
-    e.preventDefault()
-}).touchmove(function (e){
-    $canvas.mousemove()
-    e.preventDefault()
-}).touchend(function (e){
-    $canvas.mouseup()
-    e.preventDefault()
-});
+}, false);
+
+$canvas.addEventListener("mouseup", function (e) {
+    mouseDown = false;
+}, false);
 
 // Clear the canvas when button is clicked
 function clear_canvas_width() {
