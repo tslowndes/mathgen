@@ -1,6 +1,6 @@
 var colour = $(".selected").css("background-color");
-var canvas = $("canvas");
-var context = canvas[0].getContext("2d");
+var canvas = document.getElementById("mainCanvas");
+var context = canvas.getContext("2d");
 var lastEvent;
 var mouseDown = false;
 
