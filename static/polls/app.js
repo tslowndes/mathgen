@@ -67,14 +67,14 @@ $canvas.mousedown(function (e) {
 }).mouseleave(function () {
     $canvas.mouseup();
 }).touchstart(function (e){
-    e.preventDefault()
     $canvas.mousedown()
+    e.preventDefault()
 }).touchmove(function (e){
-    e.preventDefault()
     $canvas.mousemove()
-}).touchend(function (e){
     e.preventDefault()
+}).touchend(function (e){
     $canvas.mouseup()
+    e.preventDefault()
 });
 
 // Clear the canvas when button is clicked
