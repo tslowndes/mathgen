@@ -156,26 +156,25 @@ MathJax = {
         <!-- Example Overlay -->
         <div id="example_overlay" class="overlay" style="color:rgba(0,0,0,1); background-color:white;">
 
-        <p class="overlay-content">
-
-            <div id="grid" style="color: black; grid-template-columns:50% 50%; grid-template-rows: 50% 50%; height:13vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
+            <canvas	width="2000vw" height="700vh" style="position: absolute; top: -50;z-index:1;" id="mainCanvas"></canvas>
+            <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 50% 50%; height:20vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
                 <div style="height:100%; text-align:center; border-bottom: 0px solid black;">
-                    <h4>My Go</h4>
+                    <h2>My Go</h2>
                 </div>
                 <div style="height:100%; text-align:center; border-bottom: 0px solid black; border-left: 0px solid black;">
-                    <h4>Your Go</h4>
+                    <h2>Your Go</h2>
                 </div>
-                <div style="height:100%;">
+                <div style="height:100%; font-size:45px">
                     {{questions|lookup:0}}
                 </div>
-                <div style="border-left: 0px solid black; height:100%;">
+                <div style="border-left: 0px solid black; height:100%; font-size:45px">
                     {{questions|lookup:1}}
                 </div>
             </div>
 
-            <canvas	width="1500vw" height="570vh" style="margin:30px auto auto auto;" id="mainCanvas"></canvas>
 
-            <div class="controls" style="align-items: center; width:100%;">
+
+            <div class="controls" style="position:absolute; z-index:2; align-items: center; width:100%; top:100vh;">
                 <ul>
                     <li class="red selected"></li>
                     <li class="blue"></li>
@@ -188,7 +187,6 @@ MathJax = {
             <script src="{% static 'polls/app.js' %}" type="text/javascript" charset="utf-8"></script>
 
             <a href="javascript:void(0)" class="closebtn" onclick="closeExp()">&times;</a>
-        </p>
       </div>
 
 
