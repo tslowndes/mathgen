@@ -44,7 +44,10 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 46,N006,7,Multiplying Fractions,gen_multiply_dividing_fractions,0,0,0,0,0,0,0
 46,N006,8,Dividing Fractions,gen_multiply_dividing_fractions,1,0,0,0,0,0,0
 47,N006,9,Multiplying Fractions by an Integer,gen_multiply_dividing_fractions,0,1,0,0,0,0,0
-48,N008,7,Percentages of an Amount (Non-Calc),gen_percentages_non_calc,10,0,0,0,0,0,0
-49,N008,8,Percentages of an Amount (Non-Calc),gen_percentages_non_calc,10,1,0,0,0,0,0
-50,N008,9,Percentages of an Amount (Calc),gen_percentages_non_calc,10,0,1,0,0,0,0
+48,N008,7,Factors of 100,gen_percentages_non_calc,10,0,0,1,0,0,0
+49,N008,8,Percentages of an Amount (Non-Calc 1 step),gen_percentages_non_calc,10,0,0,0,0,0,0
+50,N008,9,Percentages of an Amount (Non-Calc),gen_percentages_non_calc,10,1,0,0,0,0,0
+51,N008,10,Percentages of an Amount (Calc),gen_percentages_non_calc,10,0,1,0,0,0,0
+52,A007,7,Solving Inequalities (1 step),solving_inequalities,10,0,0,1,0,0,0
+53,A007,8,Solving Inequalities (2 step),solving_inequalities,10,0,0,2,0,0,0
 

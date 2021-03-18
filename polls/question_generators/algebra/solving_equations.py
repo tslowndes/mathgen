@@ -17,7 +17,7 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
 
     for i in range(0, n):
 
-        if i > 5:
+        if i > 7:
             minx = -10
         else:
             minx = 1
@@ -88,7 +88,7 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
                 x_side = r"\frac{" + alpha + "}{" + str(a) + "}"
 
         else:
-            if random.randint(0,1) > 0 or i < 4:
+            if random.randint(0,1) > 0 or i < 7:
                 if multidiv == 0:
                     x_side = str(a) + alpha + " + " + str(b)
                 else:
@@ -104,7 +104,7 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         if brackets == 1:
             x_side = str(d) + "(" + x_side + ")"
 
-        if random.randint(0,1)>0 or i < 6:
+        if random.randint(0,1)>0 or i < 7:
             q = x_side + " = " + ans_side
         else:
             q = ans_side + " = " + x_side

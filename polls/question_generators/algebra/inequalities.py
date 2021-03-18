@@ -1,5 +1,6 @@
 import random
 from polls.question_generators.tools import *
+
 def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
     count = []
     qs = []
@@ -19,28 +20,54 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
         minx = 1
 
     for i in range(0, n):
+        subtract = 0
+        if i > 4:
+            min = -10
         count.append(i)
         a=0
         b=0
         x=0
 
         if steps == 1:
-            if random.randint(0,1) == 0:
+            if i == 0:
                 a = 1
-                b = rand_no0_no1(min, 9)
-            else:
+                b = rand_no0_no1(1, 9)
+            elif i == 1:
+                a = 1
+                b = rand_no0_no1(-9, -1)
+            elif i == 2:
                 a = rand_no0_no1(minx, 9)
                 b = 0
+            else:
+                if random.randint(0,1) == 0:
+                    a = 1
+                    b = rand_no0_no1(min, 9)
+                    if b < 0:
+                        subtract = 1
+                else:
+                    a = rand_no0_no1(minx, 9)
+                    b = 0
         else:
-            a = rand_no0_no1(minx, 9)
-            b = rand_no0_no1(min, 9)
+            if i == 0:
+                a = rand_no0_no1(minx, 9)
+                b = random.randint(1,9)
+            elif i == 1:
+                a = rand_no0_no1(minx, 9)
+                b = random.randint(-9,-1)
+                subtract = 1
+            else:
+                a = rand_no0_no1(minx, 9)
+                b = rand_no0_no1(min, 9)
 
         x = rand_no0_no1(minx, 9)
 
         if a == 1 or brackets == 1 or bothsides == 1:
             multidiv = 0
         else:
-            multidiv = random.randint(0,1)
+            if (i % 2) != 0:
+                multidiv = 1
+            else:
+                multidiv = 0
 
         if multidiv == 0:
             c = (a*x) + b
@@ -81,7 +108,7 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
                 x_side = r"\frac{" + alpha + "}{" + str(a) + "}"
 
         else:
-            if random.randint(0,1) > 0 or i < 4:
+            if random.randint(0,1) > 0 or i < 7 or subtract == 1:
                 if multidiv == 0:
                     x_side = str(a) + alpha + " + " + str(b)
                 else:
@@ -101,12 +128,13 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
 
         if random.randint(0,1)>0 or i < 4:
             q = x_side + sign + ans_side
+            ans.append('$' + alpha + sign + str(x) + '$')
         else:
-            q = ans_side + sign + x_side
+            q = ans_side + sign + ' ' + x_side
+            ans.append('$' + str(x) + sign + ' ' + alpha + '$')
 
         qs.append('$' + q + '$')
 
-        ans.append('$' + alpha + sign + str(x) + '$')
     if n > 1:
         return {
             'count': count,
