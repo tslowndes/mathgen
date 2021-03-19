@@ -55,7 +55,7 @@ def wrm_7_starter(ht):
         questions[5] = r'Convert the decimal to a fraction: ' + str(questions[5])
         questions[6], answers[6] = name_the_value()
         questions[6] = 'What is the value of the underlined digit? ' + questions[6]
-        a = 0#random.randint(0,1)
+        a = random.randint(0,1)
         questions[7], answers[7] = [gen_range(), find_median(0,0)][a]
         if a == 0:
             questions[7] = 'Find the range of: ' + questions[7]

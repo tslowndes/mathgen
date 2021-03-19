@@ -50,4 +50,6 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 51,N008,10,Percentages of an Amount (Calc),gen_percentages_non_calc,10,0,1,0,0,0,0
 52,A007,7,Solving Inequalities (1 step),solving_inequalities,10,0,0,1,0,0,0
 53,A007,8,Solving Inequalities (2 step),solving_inequalities,10,0,0,2,0,0,0
+54,N009,7,Crossing Zero,gen_crossing_zero,10,0,0,0,0,0,0
+54,N009,8,Adding Negative Numbers,gen_adding_negatives,10,0,0,0,0,0,0
 

@@ -17,6 +17,8 @@ from polls.question_generators.number.direct_proportion import *
 from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.number.factors_multiples_primes import *
 from polls.question_generators.number.percentages import *
+from polls.question_generators.number.negatives import *
+
 ####### SHAPE #######
 from polls.question_generators.shape.pythagoras import *
 from polls.question_generators.shape.cuboid import *

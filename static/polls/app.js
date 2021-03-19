@@ -62,6 +62,7 @@ canvas.addEventListener("mousemove", function (e) {
         context.strokeStyle = colour;
         context.lineWidth = 5;
         context.lineCap = 'round';
+        context.lineJoin = 'round'
         context.stroke();
         lastEvent = e;
     }

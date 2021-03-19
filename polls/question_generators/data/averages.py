@@ -31,7 +31,11 @@ def find_median(odd_or_even,decimal):
 
     med = np.median(numbers)
 
-    q = 'Find the median of: ' + str(numbers)
+    q = 'Find the median of: '
+    for n in range(len(numbers)):
+        q = q + (str(numbers[n]))
+        if n != len(numbers)-1:
+            q = q + ', '
     a = str(med)
 
     return q,a
