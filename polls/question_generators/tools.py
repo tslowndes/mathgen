@@ -7,8 +7,12 @@ def name_chooser():
     names = ['Adam', 'Muhammad', 'Alex', 'Jeremy', 'Ibrahim', 'William', 'Pedro', 'Giovanni', 'Fran', 'Jess', 'Selma', 'Mia', 'Clare', 'Asha', 'Lily']
     return random.choice(names)
 
+def as_fraction(n,d):
+    return r'\frac{' + str(n) + '}{' + str(d) + '}'
+
 def thing_chooser():
     things = ['pounds', 'sweets', 'bananas', '', '']
+
 def rand_no0_no1(min, max):
     result = 0
     while result == 0 or result == 1:

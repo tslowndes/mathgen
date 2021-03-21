@@ -42,6 +42,45 @@ def negative_addition(type, additive_inverse=0):
     ans = '$' + str(ans) + '$'
     return q,ans
 
+def negative_mutliplication(multi_or_div, type):
+    #Type 1 = -1 * 4
+    #Type 2 = -4 * -1
+    a = random.randint(-12,-1)
+    b = random.randint(1,12)
+    if type == 2:
+        b = -1 * b
+
+    c = a * b
+
+    if multi_or_div == 0:
+        if random.randint(0,1) == 0:
+            q = '$' + str(a) + r'\times' + str(b) + '$'
+        else:
+            q = '$' + str(b) + r'\times' + str(a) + '$'
+        ans = '$' + str(c) + '$'
+    else:
+        q = '$' + str(c) + r'\div' + str(a) + '$'
+        ans = '$' + str(b) + '$'
+
+    return q,ans
+
+def gen_negative_multiplication(n,a,b,c,d,e):
+    questions = []
+    answers = []
+    count = [i for i in range(10)]
+    type = [1,1,1,1,1,2,2,2,2,2]
+    multi_or_div = [0,1,0,1,0,1,0,1,0,1]
+
+    random.shuffle(type)
+    random.shuffle(multi_or_div)
+
+    for i in range(10):
+        q,a = negative_mutliplication(multi_or_div[i], type[i])
+        questions.append(q)
+        answers.append(a)
+
+    return {'questions':questions, 'answers':answers, 'count':count}
+
 def gen_crossing_zero(n,a,b,c,d,e):
     questions = []
     answers = []

@@ -52,4 +52,7 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 53,A007,8,Solving Inequalities (2 step),solving_inequalities,10,0,0,2,0,0,0
 54,N009,7,Crossing Zero,gen_crossing_zero,10,0,0,0,0,0,0
 54,N009,8,Adding Negative Numbers,gen_adding_negatives,10,0,0,0,0,0,0
-
+55,N009,9,Mutliplying Negative Numbers,gen_negative_multiplication,10,0,0,0,0,0,0
+56,A008,7,1-Step Substitution,gen_substitutions,10,1,0,0,0,0,0
+56,A008,8,2-Step Substitution,gen_substitutions,10,2,0,0,0,0,0
+56,A008,9,Substitution w. Brackets,gen_substitutions,10,3,0,0,0,0,0
