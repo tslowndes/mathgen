@@ -5,14 +5,65 @@
 <link rel="stylesheet" type="text/css" href="{% static 'polls/contents.css' %}">
 <html>
   <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico" />
     <meta charset="utf-8">
     <title>MATHGEN - {{strand}}</title>
+
+    <script>
+      function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue, check;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 1; i < tr.length; i++) {
+          check = 0;
+
+          td = tr[i].getElementsByTagName("td");
+          for (j = 0; j < td.length; j++) {
+
+            if (td[j]) {
+              txtValue = td[j].textContent || td[j].innerText;
+
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                check = 1;
+              }
+
+            }
+          }
+          if (check > 0) {
+              tr[i].style.display = "";
+          } else {
+              tr[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+
+    <style>
+    input{
+    background:rgba(0, 0, 0,0.05);
+    border:0px;
+    font-size:Large;
+    padding:10px 10px 10px 10px;
+    border-radius:300px;
+    }
+    input:focus {
+        outline:none;
+    }
+    </style>
+
   </head>
   <body>
-    <table width="100%">
+    <table id="myTable" width="100%">
       <tr>
-        <th colspan="4" style="text-align:left; margin:0 10px 0 0"> {{strand}} </th>
+        <th colspan="4" style="text-align:left; margin:0 10px 0 0;"> {{strand}} </th>
+        <th><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." style="position:relative; z-index:0;">
+        <!-- <i class="fa fa-search" style="position:relative; z-index:0; top:50%;"></i> -->
         <th>
                       <div style="text-align: center; margin:0 0 0 0;">
 
@@ -21,6 +72,7 @@
           </div>
 
         </th>
+
       </tr>
       {% for i in count %}
         {% if year|lookup:i == 7 %}
