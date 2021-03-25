@@ -87,7 +87,7 @@ def th_suffix(n):
     else:
         return 'th'
 
-def generate_from_nth(negx, first_5_or_random):
+def generate_from_nth(negx, first_5_or_random, gen_or_find):
     if negx == 0:
         a = random.randint(1,10)
         b = rand_no0_no1(-10,10)
@@ -96,8 +96,12 @@ def generate_from_nth(negx, first_5_or_random):
         b = rand_no0_no1(-10,10)
 
     if first_5_or_random == 0:
-        q = '$' + tidy_algebra(str(a) + 'n + ' + str(b)) + '$ Find the first five terms.'
-        ans = str(a*1+b) + ', ' + str(a*2+b) + ', ' + str(a*3+b) + ', ' + str(a*4+b) + ', ' + str(a*5+b)
+        if gen_or_find == 0:
+            q = '$' + tidy_algebra(str(a) + 'n + ' + str(b)) + '$ Find the first five terms.'
+            ans = str(a*1+b) + ', ' + str(a*2+b) + ', ' + str(a*3+b) + ', ' + str(a*4+b) + ', ' + str(a*5+b)
+        else:
+            q = str(a*1+b) + ', ' + str(a*2+b) + ', ' + str(a*3+b) + ', ' + str(a*4+b) + ', ' + str(a*5+b)
+            ans = '$' + tidy_algebra(str(a) + 'n + ' + str(b)) + '$'
     else:
         n = random.randint(10,50)
         q = '$' + tidy_algebra(str(a) + 'n + ' + str(b)) + '$ Find the ' + str(n) + th_suffix(n) + ' term.'
@@ -111,11 +115,28 @@ def gen_generate_from_nth(n,a,b,c,d,e):
 
     for i in range(10):
         if i < 5:
-            q,a = generate_from_nth(0,0)
+            q,a = generate_from_nth(0,0,0)
         elif i < 8:
-            q,a = generate_from_nth(0,1)
+            q,a = generate_from_nth(0,1,0)
         else:
-            q,a = generate_from_nth(1,1)
+            q,a = generate_from_nth(1,1,0)
+
+        questions.append(q)
+        answers.append(a)
+
+    return {'questions':questions, 'answers':answers, 'count':count}
+
+def gen_find_nth_term(n,a,b,c,d,e):
+    questions = []
+    answers = []
+    count = [i for i in range(10)]
+
+    for i in range(10):
+        if i < 5:
+            q,a = generate_from_nth(0,0,1)
+        else:
+            q,a = generate_from_nth(1,0,1)
+
 
         questions.append(q)
         answers.append(a)

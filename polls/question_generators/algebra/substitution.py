@@ -22,7 +22,7 @@ def one_step_substitution(minx,maxx,add_or_multi,op_or_inv):
             ans = c / a
     return q,ans
 
-def two_step_substitution(minx,maxx,multi_or_div, add_or_subtract,brackets):
+def two_step_substitution(minx,maxx,multi_or_div, add_or_subtract,brackets,vars=1):
     a = random.randint(2,10)
     x = rand_no0_no1(minx, maxx)
     if add_or_subtract == 0:
@@ -31,13 +31,23 @@ def two_step_substitution(minx,maxx,multi_or_div, add_or_subtract,brackets):
         b = random.randint(-10,-1)
 
     alpha = get_alpha()
+    alpha2 = get_alpha()
+    while alpha == alpha2:
+        alpha2=get_alpha()
 
     if multi_or_div == 0:
         if brackets == 0:
-            q = '$' + alpha + ' = ' + str(x) + '$ $' + tidy_algebra(str(a) + alpha + ' + ' + str(b)) + '= ?$'
-            ans = a*x + b
+            if vars==1:
+                q = '$' + alpha + ' = ' + str(x) + '$ $' + tidy_algebra(str(a) + alpha + ' + ' + str(b)) + '= ?$'
+                ans = a*x + b
+            else:
+                q = random.choice(['$' + alpha + ' = ' + str(x) + ', ' + alpha2 + '=' + str(a) + '$ $' + tidy_algebra(alpha2 + alpha + ' + ' + str(b)) + '= ?$', '$' + alpha + ' = ' + str(x) + ', ' + alpha2 + ' = ' + str(b) + '$ $' + tidy_algebra(str(a) + alpha + ' + ' + alpha2) + '= ?$'])
+                ans = a*x + b
         else:
-            q = '$' + alpha + ' = ' + str(x) + '$ $' + tidy_algebra(str(a) + '(' + alpha + ' + ' + str(b)) + ') = ?$'
+            if vars == 1:
+                q = '$' + alpha + ' = ' + str(x) + '$ $' + tidy_algebra(str(a) + '(' + alpha + ' + ' + str(b)) + ') = ?$'
+            else:
+                q = random.choice(['$' + alpha + ' = ' + str(x) + ', ' + alpha2 + ' = ' + str(a)  + '$ $' + tidy_algebra(alpha2 + '(' + alpha + ' + ' + str(b)) + ') = ?$', '$' + alpha + ' = ' + str(x) + ', ' + alpha2 + ' = ' + str(b) + '$ $' + tidy_algebra(str(a) + '(' + alpha + ' + ' + alpha2) + ') = ?$'])
             ans = a*(x + b)
     else:
         if brackets == 0:
@@ -45,10 +55,7 @@ def two_step_substitution(minx,maxx,multi_or_div, add_or_subtract,brackets):
             q = '$' + alpha + ' = ' + str(c) + '$ $' + tidy_algebra(as_fraction(alpha,a) + ' + ' + str(b)) + '= ?$'
             ans = c/a + b
         else:
-            if add_or_subtract == 0:
-                c = (x*a)-b
-            else:
-                c = (x*a)+b
+            c = (x*a)-b
             q = '$' + alpha + ' = ' + str(c) + '$ $' + tidy_algebra(as_fraction(alpha + ' + ' + str(b),a)) + '= ?$'
             ans = x
 
@@ -67,9 +74,17 @@ def gen_substitutions(n, steps, neg_xs,d,e,f):
             else:
                 q,a = one_step_substitution(2,10,add_or_multi[i],random.randint(0,1))
         elif steps == 2:
-            q,a = two_step_substitution(2,10,add_or_multi[i],random.randint(0,1),0)
+            if i < 5:
+                q,a = two_step_substitution(2,10,add_or_multi[i],random.randint(0,1),0)
+            elif i < 7:
+                q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0)
+            else:
+                q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0,2)
         elif steps == 3:
-            q,a = two_step_substitution(2,10,add_or_multi[i], random.randint(0,1), 1)
+            if i < 7:
+                q,a = two_step_substitution(2,10,add_or_multi[i], random.randint(0,1), 1)
+            else:
+                q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),1)
 
         questions.append(q)
         answers.append(a)
