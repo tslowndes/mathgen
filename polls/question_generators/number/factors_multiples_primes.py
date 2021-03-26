@@ -143,7 +143,7 @@ def product_of_primes(bigones=0):
     if bigones == 1:
         primes = [2, 3, 5, 7, 11, 13, 17]
     else:
-        primes = [2, 3, 5, 7]
+        primes = [2, 3, 5]
     numbers = random.randint(2, 4)
     product = [random.choice(primes) for i in range(numbers)]
 
@@ -156,6 +156,8 @@ def product_of_primes(bigones=0):
 
     format = ''
     times = ''
+    unique.sort()
+
     for n in unique:
         if unique.index(n) == 0:
             times = ''
@@ -174,12 +176,16 @@ def product_of_primes(bigones=0):
 def gen_product_of_primes(n, b, c, d, e, f):
     qs = []
     anss = []
-
-    for i in range(n):
+    i=0
+    while i < n:
         if i < 6:
             q, a = product_of_primes(0)
         else:
             q, a = product_of_primes(1)
-        qs.append(q)
-        anss.append(a)
+
+        if q not in qs:
+            qs.append(q)
+            anss.append(a)
+            i = i + 1
+
     return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': anss}
