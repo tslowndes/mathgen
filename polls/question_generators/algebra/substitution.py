@@ -52,11 +52,17 @@ def two_step_substitution(minx,maxx,multi_or_div, add_or_subtract,brackets,vars=
     else:
         if brackets == 0:
             c = x * a
-            q = '$' + alpha + ' = ' + str(c) + '$ $' + tidy_algebra(as_fraction(alpha,a) + ' + ' + str(b)) + '= ?$'
+            if vars == 1:
+                q = '$' + alpha + ' = ' + str(c) + '$ $' + tidy_algebra(as_fraction(alpha,a) + ' + ' + str(b)) + '= ?$'
+            else:
+                q = random.choice(['$' + alpha + ' = ' + str(c) + ', ' + alpha2 + ' = ' + str(a)  + '$ $' + tidy_algebra(as_fraction(alpha,alpha2) + ' + ' + str(b)) + '= ?$','$' + alpha + ' = ' + str(c) + ', ' + alpha2 + ' = ' + str(b)  + '$ $' + tidy_algebra(as_fraction(alpha,a) + ' + ' + alpha2) + '= ?$'])
             ans = c/a + b
         else:
             c = (x*a)-b
-            q = '$' + alpha + ' = ' + str(c) + '$ $' + tidy_algebra(as_fraction(alpha + ' + ' + str(b),a)) + '= ?$'
+            if vars ==1 :
+                q = '$' + alpha + ' = ' + str(c) + '$ $' + tidy_algebra(as_fraction(alpha + ' + ' + str(b),a)) + '= ?$'
+            else:
+                q = random.choice(['$' + alpha + ' = ' + str(c) + ', ' + alpha2 + ' = ' + str(a)  +  '$ $' + tidy_algebra(as_fraction(alpha + ' + ' + str(b),alpha2)) + '= ?$', '$' + alpha + ' = ' + str(c) + ', ' + alpha2 + ' = ' + str(b)  +  '$ $' + tidy_algebra(as_fraction(alpha + ' + ' + alpha2,a)) + '= ?$'])
             ans = x
 
     return q,ans
@@ -76,15 +82,15 @@ def gen_substitutions(n, steps, neg_xs,d,e,f):
         elif steps == 2:
             if i < 5:
                 q,a = two_step_substitution(2,10,add_or_multi[i],random.randint(0,1),0)
-            elif i < 7:
+            elif i < 6:
                 q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0)
             else:
                 q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0,2)
         elif steps == 3:
-            if i < 7:
-                q,a = two_step_substitution(2,10,add_or_multi[i], random.randint(0,1), 1)
+            if i < 6:
+                q,a = two_step_substitution(2,10,add_or_multi[i], random.randint(0,1), 1, 1)
             else:
-                q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),1)
+                q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),1, 2)
 
         questions.append(q)
         answers.append(a)
