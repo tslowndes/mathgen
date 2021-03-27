@@ -58,4 +58,6 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 56,A008,9,Substitution w. Brackets,gen_substitutions,10,3,0,0,0,0,0
 57,A006,8,Linear Sequences from Words,gen_generate_from_words,10,0,0,0,0,0,0
 58,A006,9,Linear Sequences from nth Term,gen_generate_from_nth,10,0,0,0,0,0,0
-58,A006,10,Finding the nth Term,gen_find_nth_term,10,0,0,0,0,0,0
+59,A006,10,Finding the nth Term,gen_find_nth_term,10,0,0,0,0,0,0
+60,A009,7,Multiplying Algebraic Terms,gen_multiplying_terms,0,0,0,0,0,0,0
+61,A009,8,Laws of Indices: Multiplying,gen_law_of_indices,0,0,0,0,0,0,0

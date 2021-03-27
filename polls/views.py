@@ -10,6 +10,7 @@ from polls.question_generators.algebra.linear_sequences import *
 from polls.question_generators.algebra.expanding_and_factorising import *
 from polls.question_generators.algebra.inequalities import *
 from polls.question_generators.algebra.substitution import *
+from polls.question_generators.algebra.indices import *
 ####### NUMBER #######
 from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.number.place_value import *
