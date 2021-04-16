@@ -12,8 +12,8 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 10,A005,9,Expanding Brackets,gen_expanding_brackets,2,0,0,0,0,0,0
 11,S001,9,Pythagoras Hypotenuse,gen_pythagoras,4,0,0,0,0,0,0
 17,G001,7,1 Term 2.1,gen_white_rose_maths_starter,7,3,0,0,0,0,0
-18,G001,8,2 Term 2.1,gen_white_rose_maths_starter,8,0,0,0,0,0,0
-19,G001,9,3 Term 2.1,gen_white_rose_maths_starter,9,0,0,0,0,0,0
+18,G001,8,2 Term 2.1,gen_white_rose_maths_starter,8,3,0,0,0,0,0
+19,G001,9,3 Term 2.1,gen_white_rose_maths_starter,9,3,0,0,0,0,0
 20,N001,8,Currency Conversion,gen_currency_conversion,0,0,0,0,0,0,0
 21,N002,7,Fraction Conversions,gen_fraction_conversions,0,0,0,0,0,0,0
 22,N002,8,Percentage Conversions,gen_percentage_conversions,0,0,0,0,0,0,0
@@ -61,3 +61,5 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 59,A006,10,Finding the nth Term,gen_find_nth_term,10,0,0,0,0,0,0
 60,A009,7,Multiplying Algebraic Terms,gen_multiplying_terms,0,0,0,0,0,0,0
 61,A009,8,Laws of Indices: Multiplying,gen_law_of_indices,0,0,0,0,0,0,0
+62,G002,7,1 Term 2.2,gen_white_rose_maths_starter,7,4,0,0,0,0,0
+63,G002,8,2 Term 2.2,gen_white_rose_maths_starter,8,4,0,0,0,0,0

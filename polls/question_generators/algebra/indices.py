@@ -30,6 +30,7 @@ def multiplying_terms(n_alphas):
         ans = '$' + tidy_algebra(unique[0] + '^' + str(alphas.count(unique[0])) +'\;' + unique[1] + '^' + str(alphas.count(unique[1]))) + '$'
     return q,ans
 
+
 def laws_of_indices_multiplying(n_terms, min_i, coefficient):
     alpha1 = get_alpha()
     i = []
