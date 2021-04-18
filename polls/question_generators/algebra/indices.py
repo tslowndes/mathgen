@@ -67,6 +67,8 @@ def laws_of_indices_dividing(n_terms, min_i, coefficient):
         c_ans = ''
     else:
         c_ans = 0
+
+
     for j in range(n_terms):
         if n_terms == 2:
             if j == 0:
@@ -127,7 +129,7 @@ def gen_law_of_indices(multi_or_div,a,b,c,d,e):
                 q, a = laws_of_indices_multiplying(2,-3, 1)
             else:
                 q, a = laws_of_indices_multiplying(random.randint(2,3),-10, 1)
-        if multi_or_div == 1:
+        elif multi_or_div == 1:
             if i < 5:
                 q, a = laws_of_indices_dividing(2,2,0)
             elif i < 8:
