@@ -2,7 +2,7 @@ import os, sys
 sys.path.append(os.path.join('../../', "lib"))
 from polls.question_generators.tools import *
 
-def gen_adding_algebra_terms(a1, a2, a3, a4, a5, a6):
+def adding_algebra_terms(a1, a2, a3, a4, a5, a6):
     a = random.randint(1, 10)
     b = rand_no0(-10,10)
     while a == b:
@@ -14,6 +14,22 @@ def gen_adding_algebra_terms(a1, a2, a3, a4, a5, a6):
     answer = '$' + tidy_algebra(str(c) + alpha) + '$'
 
     return question, answer
+
+def gen_adding_algebra_terms(n, a2, a3, a4, a5, a6):
+    count = []
+    qs = []
+    anss = []
+    for i in range(0, n):
+        count.append(i)
+        q,a = adding_algebra_terms(0,0,0,0,0,0)
+        qs.append(q)
+        anss.append(a)
+
+    return {
+        'count': count,
+        'questions': qs,
+        'answers': anss
+    }
 
 def gen_collecting_like_terms(powers, doubleletters, a3, a4, a5, a6):
     count = []

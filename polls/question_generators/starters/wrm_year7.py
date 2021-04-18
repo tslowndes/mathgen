@@ -47,7 +47,7 @@ def wrm_7_starter(ht):
         questions[j], answers[j] = linear_sequences.find_the_next_term(1, 0, 0, 0, 0, 0)
         questions[j] = 'Find the next term: ' + questions[j]
         j += 1
-        questions[j], answers[j] = gen_adding_algebra_terms(0, 0, 0, 0, 0, 0)
+        questions[j], answers[j] = adding_algebra_terms(0, 0, 0, 0, 0, 0)
         questions[j] = 'Simplify: ' + questions[j]
         j += 1
         questions[j], answers[j] = gen_solving_equations(1, 0, 0, 1, 0, 0)
@@ -122,13 +122,14 @@ def wrm_8_starter(ht):
     if ht == 4 or ht == 5:
         a = expanding_and_factorising.gen_expanding_brackets(0, 0, 0, 0, 0, 0)
         questions[j], answers[j] = a['questions'][0], a['answers'][0]
+        questions[j] = 'Expand ' + questions[j]
         j+=1
         questions[j], answers[j] = inequalities.solving_inequalities(1,1,0,2,0,0)
         j+=1
         a = random.randint(0,1)
         b = [linear_sequences.generate_from_nth(0,0,0),linear_sequences.generate_from_nth(0,0,1)]
         if a == 1:
-            questions[j] = r'Find the nth term of the sequence $\;\;$' + b[a][0]
+            questions[j] = r'Find the nth term of the sequence $ $' + b[a][0]
             answers[j] = b[a][1]
         else:
             questions[j] = b[a][0]

@@ -56,6 +56,64 @@ def laws_of_indices_multiplying(n_terms, min_i, coefficient):
 
     return q, ans
 
+def laws_of_indices_dividing(n_terms, min_i, coefficient):
+    alpha1 = get_alpha()
+    i = []
+    cs = []
+    q = '$'
+    fraction = 0
+    index_ans = 0
+    if coefficient == 0:
+        c_ans = ''
+    else:
+        c_ans = 0
+    for j in range(n_terms):
+        if n_terms == 2:
+            if j == 0:
+                fraction = random.randint(0,1)
+        i_temp = rand_no0_no1(min_i,10)
+        while i_temp in i:
+            i_temp = rand_no0_no1(min_i, 10)
+        i.append(i_temp)
+        if coefficient == 0:
+            cs.append('')
+        else:
+            c = random.randint(2,5)
+            while c in cs:
+                c = random.randint(2, 5)
+            cs.append(c)
+
+        if j == 0:
+            index_ans = i[-1]
+            if coefficient == 1:
+                c_ans = cs[-1]
+        else:
+            index_ans = index_ans - i[-1]
+            if coefficient == 1:
+                c_ans = c_ans * cs[-1]
+
+    for j in range(n_terms):
+        if j == 0:
+            if fraction == 0:
+                q = q + str(c_ans) + alpha1 + '^{' + str(i[j]) + '}'
+            else:
+                q = q + r'\frac{' + str(c_ans) + alpha1 + '^{' + str(i[j]) + '}' + '}{'
+        else:
+            if fraction == 0:
+                q = q + r' \div ' + str(cs[j-1]) + alpha1 + '^{' + str(i[j]) + '}'
+            else:
+                q = q + str(cs[j-1]) + alpha1 + '^{' + str(i[j]) + '}}'
+
+
+    q = q + '$'
+
+    if coefficient == 0:
+        ans = '$' + alpha1 + '^{' + str(index_ans) + '}$'
+    else:
+        ans = '$' + str(cs[-1]) + alpha1 + '^{' + str(index_ans) + '}$'
+
+    return q, ans
+
 def gen_law_of_indices(multi_or_div,a,b,c,d,e):
     questions = []
     answers = []
@@ -69,6 +127,14 @@ def gen_law_of_indices(multi_or_div,a,b,c,d,e):
                 q, a = laws_of_indices_multiplying(2,-3, 1)
             else:
                 q, a = laws_of_indices_multiplying(random.randint(2,3),-10, 1)
+        if multi_or_div == 1:
+            if i < 5:
+                q, a = laws_of_indices_dividing(2,2,0)
+            elif i < 8:
+                q, a = laws_of_indices_dividing(2,-3, 1)
+            else:
+                q, a = laws_of_indices_dividing(random.randint(2,3),-10, 1)
+
 
         questions.append(q)
         answers.append(a)

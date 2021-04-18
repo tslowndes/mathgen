@@ -122,7 +122,12 @@ MathJax = {
         {% for i in count %}
 
             {% if imgs|lookup:i == 0 %}
-                <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
+
+                {% if questions|lookup:i|length > 55 %}
+                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div style="font-size:26px;">{{questions|lookup:i|linebreaksbr}}</div>
+                {% else %}
+                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
+                {% endif %}
 
             {% else %}
                 <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img src="/media/{{questions|lookup:i}}" style="height:100%"></div>
@@ -140,7 +145,7 @@ MathJax = {
 
         <p class="overlay-content">
 
-        <div id="grid" style="width:100vw; margin: 13vh 0 0 0 ">
+        <div id="grid" style="width:100vw; margin: 13vh 0 0 0; font-size:36px;">
 
             {% for i in count %}
                 <div>({{alphas|lookup:i}})</div><div>{{answers|lookup:i}}</div>
