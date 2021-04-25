@@ -35,16 +35,18 @@ def gen_mixed_number(n,a,b,c,d,e):
 
         return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': ans}
 
-def simplifying_fractions(simp_or_equiv):
+def simplifying_fractions(simp_or_equiv, max_com_factor):
 
-    com_f = random.randint(4,10)
+    com_f = random.randint(4,max_com_factor)
 
     d1 = random.randint(2,10)
     n1 = random.randint(1, d1-1)
-    d1 = d1 * com_f
-    n1 = n1 * com_f
+    n1, d1 = simplify_frac(n1, d1)
 
-    n2, d2 = simplify_frac(abs(n1), d1)
+    d1 = int(d1 * com_f)
+    n1 = int(n1 * com_f)
+
+    n2, d2 = simplify_frac(n1, d1)
     n2 = str(n2)[:-2]
     d2 = str(d2)[:-2]
     if simp_or_equiv==0:
@@ -64,9 +66,15 @@ def gen_simplifying_fractions(n,a,b,c,d,e):
     ans = []
     for i in range(n):
         if (i % 2) ==0:
-            q, a = simplifying_fractions(0)
+            if i < 6:
+                q, a = simplifying_fractions(0, 8)
+            else:
+                q, a = simplifying_fractions(0, 12)
         else:
-            q,a = simplifying_fractions(1)
+            if i < 6:
+                q,a = simplifying_fractions(1, 8)
+            else:
+                q, a = simplifying_fractions(1, 12)
 
         qs.append(q)
         ans.append(a)
