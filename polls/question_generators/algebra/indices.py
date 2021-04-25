@@ -56,6 +56,43 @@ def laws_of_indices_multiplying(n_terms, min_i, coefficient):
 
     return q, ans
 
+def laws_of_indices_brackets(n_brackets, min_i, coefficient):
+    if coefficient == 0:
+        c = ''
+    else:
+        c = random.randint(2,4)
+
+    letter = get_alpha()
+    i_s = []
+    for i in range(n_brackets+1):
+        if coefficient == 1:
+            i_s.append(rand_no0_no1(min_i,4))
+        else:
+            i_s.append(rand_no0_no1(min_i, 10))
+
+    q = '$'
+    for i in range(n_brackets):
+        q = q + '('
+
+    q = q + str(c) + letter
+
+    for i in range(n_brackets+1):
+        if i < n_brackets:
+            q = q + '^{' + str(i_s[i]) + '})'
+        else:
+            q = q + '^{' + str(i_s[i]) + '}'
+
+    q = q + '$'
+
+    if coefficient == 1:
+        ans = '$' + str(c**np.prod(i_s[1:])) + letter + '^{' + str(np.prod(i_s)) + '}$'
+    else:
+        ans = '$' + letter + '^{' + str(np.prod(i_s)) + '}$'
+
+    return q,ans
+
+
+
 def laws_of_indices_dividing(n_terms, min_i, coefficient):
     alpha1 = get_alpha()
     i = []
@@ -136,6 +173,15 @@ def gen_law_of_indices(multi_or_div,a,b,c,d,e):
                 q, a = laws_of_indices_dividing(2,-3, 1)
             else:
                 q, a = laws_of_indices_dividing(random.randint(2,3),-10, 1)
+        elif multi_or_div == 2:
+            if i < 4:
+                q, a = laws_of_indices_brackets(1, 0, 0)
+            elif i < 6:
+                q, a = laws_of_indices_brackets(1,-5, 0)
+            elif i < 8:
+                q, a = laws_of_indices_brackets(1, 0, 1)
+            else:
+                q, a = laws_of_indices_brackets(2, 0, 1)
 
 
         questions.append(q)
