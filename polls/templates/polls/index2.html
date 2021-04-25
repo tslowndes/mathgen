@@ -117,7 +117,11 @@ MathJax = {
       </div>
 
         <!-- Question grid -->
-      <div id="grid" style="padding:0; width: 96%; font-size:36px;">
+        {% if imgs|lookup:0 == 0 %}
+            <div id="grid" style="grid-template-columns: 5% 45% 5% 45%; padding:0; width: 96%; font-size:36px;">
+        {% else %}
+            <div id="grid" style="grid-template-columns: 5% 20% 5% 20% 5% 20% 5% 20%; padding:0; width: 96%; font-size:36px;">
+        {% endif %}
 
         {% for i in count %}
 
@@ -169,10 +173,18 @@ MathJax = {
                     <h2>Your Go</h2>
                 </div>
                 <div style="height:100%; font-size:45px">
-                    {{examples|lookup:0}}
+                    {% if imgs|lookup:0 == 0 %}
+                        {{examples|lookup:0}}
+                    {% else %}
+                        <img src="/media/{{examples|lookup:0}}" style="height:100%">
+                    {% endif %}
                 </div>
                 <div style="border-left: 0px solid black; height:100%; font-size:45px">
-                    {{examples|lookup:1}}
+                    {% if imgs|lookup:1 == 0 %}
+                        {{examples|lookup:1}}
+                    {% else %}
+                        <img src="/media/{{examples|lookup:1}}" style="height:100%">
+                    {% endif %}
                 </div>
             </div>
 

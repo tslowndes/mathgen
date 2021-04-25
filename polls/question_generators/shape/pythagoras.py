@@ -3,14 +3,30 @@ sys.path.append(os.path.join('../../', "lib"))
 from polls.question_generators.tools import *
 from polls.question_generators.shape.shape_tools import *
 from scipy import array as ar
+import math
 
 def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
     clear_temp_img()
     fns = []
     ans = []
+    mixture = []
+    for i in range(n):
+        if (i % 2) == 0:
+            mixture.append(0)
+        else:
+            mixture.append(1)
+
+    random.shuffle(mixture)
+    temp_save = 0
     n = int(n)
     for i in range(0,n):
+        angs = []
         units = random.choice(['mm', 'cm', 'm'])
+
+        if hyp_or_small == 2:
+            temp_save = 2
+            hyp_or_small = mixture[i]
+
         tri = gen_ratriangle(hyp_or_small)
 
         a = tri[1][0] - tri[0][0]
@@ -36,19 +52,32 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
             lens.append(length)
 
         ang = 0
-        if i > 1:
-
+        if i == 1:
+            ang = random.choice([90,180,270,360])
+        elif i > 1:
             ang = random.randint(30, 360)
-            tri = rotate(tri, ang)
-            right_angle_marker = rotate_shape(right_angle_marker, c, ang*pi/180)
+        tri = rotate(tri, ang)
+        right_angle_marker = rotate_shape(right_angle_marker, c, ang*pi/180)
+
+        for j in range(len(tri)-1):
+            if tri[j+1][0] == tri[j][0]:
+                angs.append(90)
+            elif tri[j+1][1] == tri[j][1]:
+                angs.append(0)
+            else:
+                m = (tri[j+1][1] - tri[j][1])/(tri[j+1][0] - tri[j][0])
+                angs.append(math.degrees(math.atan(m)))
+        print(angs)
+
 
         lbl_points = labels_for_shape(tri)
         tri = ar(list(tri) + list(right_angle_marker))
 
+
         if hyp_or_small == 0:
-            fig = plot_shape(tri, lbl_points, ['  '+str(lens[0]) + units, '  '+str(lens[1]) + units, 'x'], 3, 0, 0)
+            fig = plot_shape(tri, lbl_points, ['  '+str(lens[0]) + units, '  '+str(lens[1]) + units, 'x'], 3, 0, angs)
         else:
-            fig = plot_shape(tri, lbl_points, ['  '+str(lens[0]) + units, 'x', '  '+str(lens[2]) + units])
+            fig = plot_shape(tri, lbl_points, ['  '+str(lens[0]) + units, 'x', '  '+str(lens[2]) + units], 3, 0, angs)
 
         r = random.randint(0,999999999999999)
         fn = 'temp_img/temp'+ str(r) + '.png'
@@ -60,6 +89,9 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
             ans.append(str(lens[-1]) + units)
         else:
             ans.append(str(lens[1]) + units)
+
+        if temp_save == 2:
+            hyp_or_small = 2
 
     count = [i for i in range(0,n)]
     if n == 1:

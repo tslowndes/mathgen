@@ -122,10 +122,10 @@ def gen_ratriangle(hyp_or_small=0):
     x = [0]
     y = [0]
     if hyp_or_small == 0:
-        a = random.randint(3,20)
-        b = random.randint(a+1,a+5)
+        a = random.randint(7,20)
+        b = random.randint(a+1,a*2)
     else:
-        a = random.randint(3, 10)
+        a = random.randint(7, 10)
         c = random.randint(a+1,a+5)
         b = sqrt(c ** 2 - a ** 2)
 
@@ -155,7 +155,7 @@ def labels_for_shape(points):
     else:
         max_len = x_len
 
-    delta = sqrt(max_len)
+    delta = max_len/5
 
     for i in range(len(points)-1):
 
@@ -239,16 +239,20 @@ def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0):
     else:
         normalise = y_max
 
-    shape = shape / normalise*5
+    #shape = shape / normalise * 5
 
-    lbl_points = lbl_points/normalise*5
+    #lbl_points = lbl_points/normalise*5
 
     plt.plot(shape[:, 0], shape[:, 1], color = '#1f77b4', linewidth = 2)
 
     if plt_points == 1:
         plt.scatter(shape[:,0], shape[:,1], s=50, c='#1f77b4')
     for i in range(len(lbls)):
-        plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', rotation=ang, verticalalignment='center', fontsize = 12)
+        if ang == 0:
+            plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', rotation=0, verticalalignment='center', fontsize = 9)
+        else:
+            plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', rotation=ang[i],
+                     verticalalignment='center', fontsize=9)
 
     all_points = ar(list(shape) + list(lbl_points))
 
@@ -256,9 +260,12 @@ def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0):
     x_max = max(all_points[:, 0])+0.5
     y_min = min(all_points[:, 1])-0.5
     y_max = max(all_points[:, 1])+0.5
-
-    plt.xlim(x_min, x_max)
-    plt.ylim(y_min, y_max)
+    if x_max > y_max:
+        lim_max = x_max
+    else:
+        lim_max = y_max
+    plt.xlim(x_min, lim_max)
+    plt.ylim(y_min, lim_max)
     ax.set_aspect('equal')
     plt.axis('off')
 
