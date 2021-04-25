@@ -86,23 +86,20 @@ def HCF(n_max):
 
 def LCM(max_n):
     primes = [2, 3, 5, 7]
-   # n1 = random.choice(primes)
-    #n2 = random.choice(primes)
-    #numbers1 = [n1] + [n2] + [random.choice(primes[:n_max])]
-    #numbers2 = [n1] + [n2] + [random.choice(primes[:n_max])]
-    #while np.prod(numbers1)==np.prod(numbers2):
-    #    numbers1 = [n1] + [n2] + [random.choice(primes[:n_max])]
-    #    numbers2 = [n1] + [n2] + [random.choice(primes[:n_max])]
+
     numbers1 = random.randint(5, max_n)
     numbers2 = random.randint(5, max_n)
-
-    while numbers1 == numbers2:
+    lcm = numbers1 * numbers2
+    while lcm == numbers1 * numbers2 or lcm == numbers1 or lcm == numbers2:
         numbers1 = random.randint(5, max_n)
         numbers2 = random.randint(5, max_n)
-    LCM = np.lcm(numbers1, numbers2)
+        while numbers1 == numbers2:
+            numbers1 = random.randint(5, max_n)
+            numbers2 = random.randint(5, max_n)
+        lcm = np.lcm(numbers1, numbers2)
 
     q = 'Find the LCM of ' + str(numbers1) + ' and ' + str(numbers2)
-    a = str(LCM)
+    a = str(lcm)
 
     return q,a
 

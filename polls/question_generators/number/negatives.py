@@ -45,8 +45,8 @@ def negative_addition(type, additive_inverse=0):
 def negative_mutliplication(multi_or_div, type):
     #Type 1 = -1 * 4
     #Type 2 = -4 * -1
-    a = random.randint(-12,-1)
-    b = random.randint(1,12)
+    a = random.randint(-12,-2)
+    b = random.randint(2,12)
     if type == 2:
         b = -1 * b
 
