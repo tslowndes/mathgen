@@ -87,10 +87,13 @@ def th_suffix(n):
     else:
         return 'th'
 
-def generate_from_nth(negx, first_5_or_random, gen_or_find):
-    if negx == 0:
+def generate_from_nth(negx, first_5_or_random, gen_or_find, negb = 1):
+    if negx == 0 and negb == 1:
         a = random.randint(1,10)
         b = rand_no0_no1(-10,10)
+    elif negx==0 and negb==0:
+        a = random.randint(1,10)
+        b = rand_no0_no1(1,10)
     else:
         a = rand_no0_no1(-10,10)
         b = rand_no0_no1(-10,10)
@@ -132,10 +135,12 @@ def gen_find_nth_term(n,a,b,c,d,e):
     count = [i for i in range(10)]
 
     for i in range(10):
-        if i < 5:
-            q,a = generate_from_nth(0,0,1)
+        if i < 4:
+            q,a = generate_from_nth(0,0,1,0)
+        elif i < 8:
+            q,a = generate_from_nth(0,0,1,1)
         else:
-            q,a = generate_from_nth(1,0,1)
+            q,a = generate_from_nth(1,0,1,1)
 
 
         questions.append(q)
