@@ -111,9 +111,9 @@ MathJax = {
   <body style="background-color:#bcdff5;">
 
         <!-- Header Block -->
-      <div id="grid" style="margin:0 0 0 0; grid-template-columns:80% 20%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:36; font-weight:400;">
+      <div id="grid" style="margin:0 0 0 0; grid-template-columns:70% 30%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:36; font-weight:400;">
           <div style="padding:1.5vh 0 0 2vw;">{{title}}</div>
-          <div style="padding:1.5vh 0 0 2vw;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:20px;">{{strand}}</a><a href="/"  class="button1" style="font-size:20px;">Home</a></div>
+          <div style="padding:1.5vh 0 0 2vw;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2.5vh;">{{strand}}</a><a href="/"  class="button1" style="font-size:2.5vh;">Home</a></div>
       </div>
 
         <!-- Question grid -->
@@ -127,7 +127,7 @@ MathJax = {
 
             {% if imgs|lookup:i == 0 %}
 
-                {% if questions|lookup:i|length > 55 %}
+                {% if questions|lookup:i|length > 70 %}
                     <div style="text-align:center;">({{alphas|lookup:i}})</div><div style="font-size:26px;">{{questions|lookup:i|linebreaksbr}}</div>
                 {% else %}
                     <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
@@ -216,10 +216,11 @@ MathJax = {
 
           <div style="text-align: center;">
 
-            <a href=# onclick="openAns()" class="button1" style="font-size:20px;">Answers</a>
+            <a href=# onclick="openAns()" class="button1" style="font-size:2.5vh;">Answers</a>
               {% if strand != "Starters" %}
-                <a href=# onclick="openExp()" class="button1" style="font-size:20px;">Example</a>
+                <a href=# onclick="openExp()" class="button1" style="font-size:2.5vh;">Example</a>
               {% endif %}
+              <a href=# onclick="window.location.reload();" class="button1" style="font-size:2.5vh;">New Qs</a>
 
 
           </div>

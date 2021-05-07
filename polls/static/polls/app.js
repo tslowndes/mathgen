@@ -7,12 +7,18 @@ var mouseDown = false;
 // When clicking on colours items
 $(".controls").on("click", "li", function () {
     //  Deselect aibling elements
-    $(this).siblings().removeClass("selected");
+
     //  Select clicked element
-    $(this).addClass("selected");
+    //window.alert($(this).css("background-color"))
+    if ($(this).css("background-color") !== "rgb(255, 192, 203)"){
+        $(this).siblings().removeClass("selected");
+        $(this).addClass("selected");
+        colour = $(this).css("background-color");
+    }
 
     // Cache current colour
-    colour = $(this).css("background-color");
+
+
 
 });
 
