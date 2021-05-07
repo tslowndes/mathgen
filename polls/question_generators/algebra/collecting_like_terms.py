@@ -36,10 +36,16 @@ def gen_collecting_like_terms(powers, doubleletters, a3, a4, a5, a6):
     qs = []
     anss = []
     for i in range(0, 10):
-        y1 = rand_no0(-10, 10)
-        y2 = rand_no0(-10, 10)
-        x1 = rand_no0(-10, 10)
-        x2 = rand_no0(-10, 10)
+        if i < 7:
+            y1 = rand_no0(0, 10)
+            y2 = rand_no0(-1*(y1-1), 5)
+            x1 = rand_no0(0, 10)
+            x2 = rand_no0(-1*(x1-1), 5)
+        else:
+            y1 = rand_no0(-10, 10)
+            y2 = rand_no0(-10, 10)
+            x1 = rand_no0(-10, 10)
+            x2 = rand_no0(-10, 10)
 
         if powers == 0 and doubleletters == 0:
             alpha1 = 'a'
@@ -73,10 +79,16 @@ def gen_collecting_like_terms(powers, doubleletters, a3, a4, a5, a6):
                 alpha2 = random.choice('abcdefghjklmnpqrstuvwxyz')
             alpha2 = alpha1 + alpha2
 
-
-
-        terms = [str(y1) + alpha1, str(y2) + alpha1, str(x1) + alpha2, str(x2) + alpha2]
-        random.shuffle(terms)
+        if i < 2:
+            terms = [str(y1) + alpha1, str(y2) + alpha1, str(x1) + alpha2, str(x2) + alpha2]
+        elif i < 6:
+            if random.randint(0,1) == 0:
+                terms = [str(y1) + alpha1, str(x1) + alpha2, str(y2) + alpha1, str(x2) + alpha2]
+            else:
+                terms = [str(y1) + alpha1, str(x1) + alpha2, str(x2) + alpha2, str(y2) + alpha1]
+        else:
+            terms = [str(y1) + alpha1, str(y2) + alpha1, str(x1) + alpha2, str(x2) + alpha2]
+            random.shuffle(terms)
         terms = terms[0] + ' + ' + terms[1] + ' + ' + terms[2] + ' + ' + terms[3]
 
         if y1 + y2 == 0:
