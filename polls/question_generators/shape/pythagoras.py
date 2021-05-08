@@ -52,9 +52,11 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
             lens.append(length)
 
         ang = 0
-        if i == 1:
+        if i < 2:
+            ang = 0
+        elif i < 4:
             ang = random.choice([90,180,270,360])
-        elif i > 1:
+        else:
             ang = random.randint(30, 360)
         tri = rotate(tri, ang)
         right_angle_marker = rotate_shape(right_angle_marker, c, ang*pi/180)
@@ -67,7 +69,6 @@ def gen_pythagoras(n, hyp_or_small,a2=0,a3=0,a4=0,a5=0):
             else:
                 m = (tri[j+1][1] - tri[j][1])/(tri[j+1][0] - tri[j][0])
                 angs.append(math.degrees(math.atan(m)))
-        print(angs)
 
 
         lbl_points = labels_for_shape(tri)

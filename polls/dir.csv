@@ -67,3 +67,4 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 65,S002,10,Volume of Triangular Prism,gen_triprism_volume,0,0,0,0,0,0,0
 66,S003,7,Perimeter of Rectangle,gen_rectangle_perimeter,0,0,0,0,0,0,0
 67,S004,9,Interior Angles: Finding the Sum,gen_sum_of_interior_angles,0,0,0,0,0,0,0
+68,S005,9,Area of a triangle,gen_triangles,0,0,0,0,0,0,0

@@ -2,6 +2,8 @@ import random
 import os
 from os import listdir
 from math import gcd
+import os
+import time
 
 def name_chooser():
     names = ['Adam', 'Muhammad', 'Alex', 'Jeremy', 'Ibrahim', 'William', 'Pedro', 'Giovanni', 'Fran', 'Jess', 'Selma', 'Mia', 'Clare', 'Asha', 'Lily']
@@ -27,8 +29,12 @@ def rand_no0(min, max):
 
 def clear_temp_img():
     mypath = 'media/temp_img/'
+    now = time.time()
     for f in listdir(mypath):
-        os.remove(mypath + f)
+        path = mypath + f
+        if os.stat(path).st_mtime < now - 60:
+            if os.path.isfile(path):
+                os.remove(path)
 
 def get_alpha():
     return random.choice('abcdefghjklmnpqrstuvwxyz')

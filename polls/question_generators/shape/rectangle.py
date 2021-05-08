@@ -1,11 +1,14 @@
 import random
 from scipy import array as ar
 from polls.question_generators.shape.shape_tools import *
+from polls.question_generators.tools import *
+import math
 
 def gen_rectangle_area(a1,a2,a3,a4,a5,a6):
+    clear_temp_img()
     questions = []
     answers = []
-    count = [i for i in range(6)]
+    count = [i for i in range(8)]
 
     for i in count:
         if i == 4:
@@ -20,12 +23,16 @@ def gen_rectangle_area(a1,a2,a3,a4,a5,a6):
     return {'questions': questions, 'answers': answers, 'count': count}
 
 def gen_rectangle_perimeter(a1,a2,a3,a4,a5,a6):
+    clear_temp_img()
     questions = []
     answers = []
-    count = [i for i in range(6)]
+    count = [i for i in range(8)]
 
     for i in count:
-        q,a = rectangle_area_perimeter(1)
+        if i < 4:
+            q,a = rectangle_area_perimeter(1, 0)
+        else:
+            q,a = rectangle_area_perimeter(1,random.randint(10,170))
         questions.append(q)
         answers.append(a)
 
@@ -45,11 +52,20 @@ def rectangle_area_perimeter(area_or_perimeter, rotate_shape = 0):
     filler = ''
     for i in range(len(str(w))+len(units)):
         filler = filler + ' '
+
     labels = [str(l) + units, filler + str(w) + units, '', '']
+    angs = []
 
+    for j in range(len(points) - 1):
+        if points[j + 1][0] == points[j][0]:
+            angs.append(90)
+        elif points[j + 1][1] == points[j][1]:
+            angs.append(0)
+        else:
+            m = (points[j + 1][1] - points[j][1]) / (points[j + 1][0] - points[j][0])
+            angs.append(math.degrees(math.atan(m)))
 
-
-    fig = plot_shape(points, label_points, labels)
+    fig = plot_shape(points, label_points, labels, 3, 0, angs)
     #if area_or_perimeter == 0:
     #    plt.text(l / 2, w / 2, 'Area = ?', horizontalalignment='center', verticalalignment='center', fontsize='large')
     #else:

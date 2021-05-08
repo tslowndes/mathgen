@@ -222,7 +222,7 @@ def plot_shape_byedge(shape, lbl_points, lbls):
     return fig
 
 
-def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0):
+def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0, height_arrow=0, height_lbl=0,height_ang=0,height_txt=''):
     fig = plt.figure(figsize =(1.5,1.5))
 
     ax = fig.add_subplot(111)
@@ -253,6 +253,9 @@ def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0):
         else:
             plt.text(lbl_points[i][0], lbl_points[i][1], lbls[i], horizontalalignment='center', rotation=ang[i],
                      verticalalignment='center', fontsize=9)
+    if height_arrow != 0:
+        plt.plot([height_arrow[0][0], height_arrow[1][0]],[height_arrow[0][1], height_arrow[1][1]], '--', color = '#1f77b4', linewidth = 1)
+        plt.text(height_lbl[0],height_lbl[1], height_txt, horizontalalignment='center', verticalalignment='center', rotation=height_ang, fontsize = 9)
 
     all_points = ar(list(shape) + list(lbl_points))
 
@@ -268,6 +271,7 @@ def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0):
     plt.ylim(y_min, lim_max)
     ax.set_aspect('equal')
     plt.axis('off')
+    plt.tight_layout()
 
     return fig
 

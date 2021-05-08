@@ -124,10 +124,10 @@ function reloadP() {
   <body style="background-color:#bcdff5;">
 
         <!-- Header Block -->
-      <div id="grid" style="margin:0 0 0 0; grid-template-columns:70% 30%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:36; font-weight:400;">
-          <div style="padding:1.5vh 0 0 2vw;">{{title}}</div>
-          <div style="padding:1.5vh 0 0 2vw;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2.5vh;">{{strand}}</a><a href="/"  class="button1" style="font-size:2.5vh;">Home</a></div>
-      </div>
+          <div id="grid" style="margin:0 0 0 0; grid-template-columns:70% 30%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:36; font-weight:400;">
+              <div style="padding:1.5vh 0 0 2vw;">{{title}}</div>
+              <div style="padding:1.5vh 0 0 2vw; text-align:right;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2.5vh;">{{strand}}</a><a href="/"  class="button1" style="font-size:2.5vh;">Home</a></div>
+          </div>
 
         <!-- Question grid -->
         {% if imgs|lookup:0 == 0 %}
@@ -179,31 +179,29 @@ function reloadP() {
 
             <canvas	width="4000vw" height="4000vh" style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas"></canvas>
             <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 50% 50%; height:20vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
-                <div style="height:15vh; text-align:center; border-right: 5px solid black;">
+                <div style="height:15vh; text-align:center; border-right: 0px solid black;">
                     <h2>My Go</h2>
                 </div>
                 <div style="height:15vh; text-align:center; border-bottom: 0px solid black; border-left: 0px solid black;">
                     <h2>Your Go</h2>
                 </div>
-                <div style="height:15vh; font-size:45px; border-right: 5px solid black;">
+                <div style="height:15vh; font-size:35px; border-right: 3px solid black;">
                     {% if imgs|lookup:0 == 0 %}
                         {{examples|lookup:0}}
                     {% else %}
-                        <img src="/media/{{examples|lookup:0}}" style="height:100%">
+                        <img src="/media/{{examples|lookup:0}}" style="width=40vw;">
                     {% endif %}
                 </div>
-                <div style="border-left: 0px solid black; height:15vh; font-size:45px; ">
+                <div style="border-left: 0px solid black; height:15vh; font-size:35px; ">
                     {% if imgs|lookup:1 == 0 %}
                         {{examples|lookup:1}}
                     {% else %}
-                        <img src="/media/{{examples|lookup:1}}" style="height:100%">
+                        <img src="/media/{{examples|lookup:1}}" style="width=40vw;">
                     {% endif %}
                 </div>
-                <div style="height:70vh;border-right: 5px solid black;"> </div><div style="height:100px;"> </div>
+                <div style="height:70vh;border-right: 3px solid black;"> </div><div style="height:100px;"> </div>
 
             </div>
-
-
 
             <div class="controls" style="position:absolute; z-index:2; align-items: center; width:100%; top:90vh;">
                 <ul>
