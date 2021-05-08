@@ -7,6 +7,19 @@ MathJax = {
     inlineMath: [['$', '$'], ['\\(', '\\)']]
   }
 };
+
+window.onload = function() {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        sessionStorage.removeItem("reloading");
+        openExp();
+    }
+}
+
+function reloadP() {
+    sessionStorage.setItem("reloading", "true");
+    document.location.reload();
+}
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
@@ -88,7 +101,7 @@ MathJax = {
 
             }
       </style>
-              <script>
+      <script>
             function openAns() {
               document.getElementById("answer_overlay").style.width = "100%";
             }
@@ -166,26 +179,28 @@ MathJax = {
 
             <canvas	width="4000vw" height="4000vh" style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas"></canvas>
             <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 50% 50%; height:20vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
-                <div style="height:100%; text-align:center; border-bottom: 0px solid black;">
+                <div style="height:15vh; text-align:center; border-right: 5px solid black;">
                     <h2>My Go</h2>
                 </div>
-                <div style="height:100%; text-align:center; border-bottom: 0px solid black; border-left: 0px solid black;">
+                <div style="height:15vh; text-align:center; border-bottom: 0px solid black; border-left: 0px solid black;">
                     <h2>Your Go</h2>
                 </div>
-                <div style="height:100%; font-size:45px">
+                <div style="height:15vh; font-size:45px; border-right: 5px solid black;">
                     {% if imgs|lookup:0 == 0 %}
                         {{examples|lookup:0}}
                     {% else %}
                         <img src="/media/{{examples|lookup:0}}" style="height:100%">
                     {% endif %}
                 </div>
-                <div style="border-left: 0px solid black; height:100%; font-size:45px">
+                <div style="border-left: 0px solid black; height:15vh; font-size:45px; ">
                     {% if imgs|lookup:1 == 0 %}
                         {{examples|lookup:1}}
                     {% else %}
                         <img src="/media/{{examples|lookup:1}}" style="height:100%">
                     {% endif %}
                 </div>
+                <div style="height:70vh;border-right: 5px solid black;"> </div><div style="height:100px;"> </div>
+
             </div>
 
 
@@ -195,7 +210,9 @@ MathJax = {
                     <li class="red selected"></li>
                     <li class="blue"></li>
                     <li class="yellow"></li>
-                    <li style="background: pink;" onclick='clear_canvas_width ()'></li>
+                    <li class="green"></li>
+                    <li class="eraser" style="background: url('/media/eraserB.png') no-repeat center center; background-size:40px;" onclick='clear_canvas_width ()'></li>
+                    <li class="refresh" style="background: url('/media/refreshB.png') no-repeat center center; background-size:40px;" onclick="reloadP();"></li>
                 </ul>
             </div>
 

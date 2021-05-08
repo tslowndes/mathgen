@@ -6,50 +6,12 @@ var mouseDown = false;
 
 // When clicking on colours items
 $(".controls").on("click", "li", function () {
-    //  Deselect aibling elements
 
-    //  Select clicked element
-    //window.alert($(this).css("background-color"))
-    if ($(this).css("background-color") !== "rgb(255, 192, 203)"){
-        $(this).siblings().removeClass("selected");
-        $(this).addClass("selected");
-        colour = $(this).css("background-color");
+    if ($(this).css("background-color") !== "rgba(0, 0, 0, 0)"){
+            $(this).siblings().removeClass("selected");
+            $(this).addClass("selected");
+            colour = $(this).css("background-color");
     }
-
-    // Cache current colour
-
-
-
-});
-
-
-// When New colour is pressed by user
-$("#revealColorSelect").click(function () {
-    // Show colour select or hide the color select
-    changeColor();
-    $("#colorSelect").toggle();
-});
-
-// Update the new colour span
-function changeColor() {
-    var r = $("#red").val();
-    var g = $("#green").val();
-    var b = $("#blue").val();
-    $("#newColor").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
-}
-
-// When new colour sliders change
-$("input[type=range]").change(changeColor);
-
-
-// When add colour is pressed
-$("#addNewColor").click(function () {
-    // Append the colours to the controls
-    var $newColor = $("<li></li>");
-    $newColor.css("background-color", $("#newColor").css("background-color"));
-    $(".controls ul").append($newColor);
-    // Select the new added colour
-    $newColor.click();
 });
 
 // On mouse events on the canvas

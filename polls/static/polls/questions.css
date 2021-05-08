@@ -148,15 +148,18 @@ ul li {
 }
 
 .red {
-	background: #E74C3C;
+	background: #FF6F69;
 }
 
 .blue {
-	background: #3498DB;
+	background: #87BDD8;
 }
 
 .yellow {
-	background: #F1C40F;
+	background: #FFCC5C;
+}
+.green {
+    background: #96CEB4;
 }
 
 .clear {
