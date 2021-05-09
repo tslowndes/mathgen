@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 
+
 def random_polygon():
     points = (np.random.rand(50, 2) - .5)   # 30 random points in 2-D
     hull = ConvexHull(points)
@@ -154,16 +155,23 @@ def labels_for_shape(points):
         max_len = y_len
     else:
         max_len = x_len
-
+    centroid = (np.mean(points[:,0]), np.mean(points[:,1]))
+    print(centroid)
     delta = max_len/5
 
     for i in range(len(points)-1):
 
         temp_lbls = find_label_point(points[i], points[i+1], delta)
+        lbl_dists = (np.sqrt(((temp_lbls[0][0]-centroid[0])**2)+((temp_lbls[0][1]-centroid[1])**2)), np.sqrt(((temp_lbls[1][0]-centroid[0])**2)+((temp_lbls[1][1]-centroid[1])**2)))
+        if lbl_dists[0] > lbl_dists[1]:
+            lbls.append(temp_lbls[0])
+        else:
+            lbls.append(temp_lbls[1])
 
-        for lbl in temp_lbls:
-            if is_in_shape([lbl],points) == False:
-                lbls.append(lbl)
+        #for lbl in temp_lbls:
+            #if is_in_shape([lbl],points) == False:
+            #    lbls.append(lbl)
+
     return ar(lbls)
 
 def find_label_point(v1,v2, delta):
