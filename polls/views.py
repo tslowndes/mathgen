@@ -26,6 +26,7 @@ from polls.question_generators.shape.cuboid import *
 from polls.question_generators.shape.rectangle import *
 from polls.question_generators.shape.interior_angles import *
 from polls.question_generators.shape.triangles import *
+from polls.question_generators.shape.parallelogram import *
 ####### STARTERS #######
 from polls.question_generators.starters.wrm_year7 import *
 

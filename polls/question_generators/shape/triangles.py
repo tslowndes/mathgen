@@ -13,7 +13,7 @@ def gen_triangles(a1,a2,a3,a4,a5,a6):
     random.shuffle(scalene)
     scalene = [0,0] + scalene
     for i in count:
-        if i < 5:
+        if i < 4:
             q,a = area_of_triangle(scalene[i],0)
         else:
             q, a = area_of_triangle(scalene[i],1)
@@ -36,19 +36,34 @@ def area_of_triangle(scalene, lbls):
     points = points + [[0,0]]
 
     units = random.choice(['mm', 'cm', 'm'])
-    lengths = [points[1][0], round(math.sqrt(((points[1][0]-points[2][0])**2)+((points[1][1]-points[2][1])**2)),0), round(math.sqrt((points[2][0]**2)+(points[2][1]**2)), 1)]
+    lengths = [points[1][0], round(math.sqrt(((points[1][0]-points[2][0])**2)+((points[1][1]-points[2][1])**2)),1), round(math.sqrt((points[2][0]**2)+(points[2][1]**2)), 1)]
 
     label_points = labels_for_shape(ar(points))
     label_points = ar([[points[1][0]/2, -1*math.sqrt(height/4)], label_points[1], label_points[2]])
+
+    angs = []
+
+    for j in range(len(points) - 1):
+        if points[j + 1][0] == points[j][0]:
+            angs.append(90)
+        elif points[j + 1][1] == points[j][1]:
+            angs.append(0)
+        else:
+            m = (points[j + 1][1] - points[j][1]) / (points[j + 1][0] - points[j][0])
+            angs.append(math.degrees(math.atan(m)))
+
     #points = [points[2], points[1], points[0], points[2], [points[2][0], 0]]
     if lbls == 0:
         labels = [str(lengths[0]) + units, '', '']
     else:
         #if scalene == 1:
-        labels = [str(lengths[0]) + units,'', str(lengths[2]) + units]
-        #else:
-        #    labels = random.choice([[str(lengths[0]) + units, str(lengths[1]) + units, ''],
-        #                            [str(lengths[0]) + units, '', str(lengths[2]) + units]])
+        if points[0][0] == points[2][0]:
+            labels = [str(lengths[0]) + units, str(lengths[1]) + units, '']
+        elif points[1][0] == points[2][0] or scalene == 1:
+            labels = [str(lengths[0]) + units,'', str(lengths[2]) + units]
+        else:
+            labels = random.choice([[str(lengths[0]) + units, str(lengths[1]) + units, ''],
+                                    [str(lengths[0]) + units, '', str(lengths[2]) + units]])
 
     height_arrow = [points[2], [points[2][0],0]]
     height_txt = str(height) + units
@@ -69,7 +84,7 @@ def area_of_triangle(scalene, lbls):
             height_lbl = [height_arrow[1][0] - math.sqrt(height/10), height_arrow[0][1]/2]
             height_ang = 90
 
-    fig = plot_shape(ar(points), label_points, labels, 3, 0, 0, height_arrow, height_lbl, height_ang, height_txt)
+    fig = plot_shape(ar(points), label_points, labels, 3, 0, angs, height_arrow, height_lbl, height_ang, height_txt)
 
     r = random.randint(0, 999999999999999)
     fn = 'temp_img/temp' + str(r) + '.png'
