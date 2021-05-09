@@ -259,10 +259,10 @@ def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0, height_
 
     all_points = ar(list(shape) + list(lbl_points))
 
-    x_min = min(all_points[:,0])-0.5
-    x_max = max(all_points[:, 0])+0.5
-    y_min = min(all_points[:, 1])-0.5
-    y_max = max(all_points[:, 1])+0.5
+    x_min = min(all_points[:,0])-0.2
+    x_max = max(all_points[:, 0])+0.2
+    y_min = min(all_points[:, 1])-0.2
+    y_max = max(all_points[:, 1])+0.2
     if x_max > y_max:
         lim_max = x_max
     else:
@@ -271,7 +271,8 @@ def plot_shape(shape, lbl_points, lbls, lw = 1, plt_points = 0, ang = 0, height_
     plt.ylim(y_min, lim_max)
     ax.set_aspect('equal')
     plt.axis('off')
-    plt.tight_layout()
+    fig.tight_layout()
+    #plt.tight_layout()
 
     return fig
 
