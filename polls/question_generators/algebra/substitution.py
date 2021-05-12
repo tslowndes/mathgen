@@ -78,12 +78,21 @@ def gen_substitutions(n, steps, neg_xs,d,e,f):
             if i > 5:
                 q,a = one_step_substitution(-10,-2,add_or_multi[i],random.randint(0,1))
             else:
-                q,a = one_step_substitution(2,10,add_or_multi[i],random.randint(0,1))
+                if neg_xs == 0:
+                    q,a = one_step_substitution(2,10,add_or_multi[i],random.randint(0,1))
+                else:
+                    q,a = one_step_substitution(-5,-1,add_or_multi[i],random.randint(0,1))
         elif steps == 2:
             if i < 5:
-                q,a = two_step_substitution(2,10,add_or_multi[i],random.randint(0,1),0)
+                if neg_xs == 0:
+                    q,a = two_step_substitution(2,10,add_or_multi[i],random.randint(0,1),0)
+                else:
+                    q,a = two_step_substitution(-5,-1,add_or_multi[i],random.randint(0,1),0)
             elif i < 6:
-                q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0)
+                if neg_xs == 0:
+                    q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0)
+                else:
+                     q,a = two_step_substitution(-10,-1,add_or_multi[i],random.randint(0,1),0)
             else:
                 q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0,2)
         elif steps == 3:
