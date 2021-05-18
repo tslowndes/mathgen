@@ -13,7 +13,8 @@ def as_fraction(n,d):
     return r'\frac{' + str(n) + '}{' + str(d) + '}'
 
 def thing_chooser():
-    things = ['pounds', 'sweets', 'bananas', '', '']
+    things = ['sweets', 'bananas', 'apples', 'pens','pencils','slices of cake']
+    return random.choice(things)
 
 def rand_no0_no1(min, max):
     result = 0

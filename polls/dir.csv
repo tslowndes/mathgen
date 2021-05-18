@@ -68,4 +68,6 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 66,S003,7,Perimeter of Rectangle,gen_rectangle_perimeter,0,0,0,0,0,0,0
 67,A008,10,1-Step Substitution: Negatives,gen_substitutions,10,1,1,0,0,0,0
 68,A008,11,2-Step Substitution: Negatives,gen_substitutions,10,2,1,0,0,0,0
+69,N010,8,Sharing into a ratio: Total,gen_sharing_into_ratio,0,0,0,0,0,0,0
+70,N010,9,Sharing into a ratio: One value,gen_sharing_into_ratio,10,1,0,0,0,0,0
 
