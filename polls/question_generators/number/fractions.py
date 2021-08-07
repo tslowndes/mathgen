@@ -13,11 +13,11 @@ def mixed_numbers(mixed_to_improper):
     improper = n + (d * whole_part)
 
     if mixed_to_improper == 0:
-        q = r'$ ' + str(whole_part) + r' \; \frac{' + str(n) + '}{' + str(d) + '}$'
+        q = r'$' + str(whole_part) + r'\;\frac{' + str(n) + '}{' + str(d) + '}' + r'=\frac{\left [\;\;\right ]}{\left[\;\;\right]}$'
         ans = r'$\frac{' + str(improper) + '}{' + str(d) + '}$'
     else:
-        ans = r'$ ' + str(whole_part) + r' \; \frac{' + str(n) + '}{' + str(d) + '}$'
-        q = r'$\frac{' + str(improper) + '}{' + str(d) + '}$'
+        ans = r'$' + str(whole_part) + r'\;\frac{' + str(n) + '}{' + str(d) + '}$'
+        q = r'$\frac{' + str(improper) + '}{' + str(d) + '}' + r' = \left[\;\;\right]\frac{\left[\;\;\right]}{\left [\;\;\right]}$'
 
     return q, ans
 
@@ -91,9 +91,12 @@ def adding_fractions(same_denom=0, unit=0, negative = 0, whole = 0):
         d2 = random.randint(d1,10)
         while d1 == d2:
             d2 = random.randint(d1, 10)
-    else:
+    elif same_denom == 1:
         d1 = random.randint(3,10)
         d2 = d1
+    elif same_denom == 2:
+        d1 = random.randint(3,10)
+        d2 = d1 * 2
 
     if unit == 0:
         if whole == 1:

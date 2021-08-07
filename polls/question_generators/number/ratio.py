@@ -4,18 +4,18 @@ from polls.question_generators.tools import *
 def gen_sharing_into_ratio(n,total_value_difference,c,d,e,f):
     questions = []
     answers = []
-    count = [i for i in range(10)]
+    count = [i for i in range(n)]
     for i in count:
         if total_value_difference == 0:
             if i < 6:
-                q, a = sharing_into_ratio(random.randint(2,8), random.randint(3,5))
+                q, a = sharing_into_ratio(8, 6)
             else:
-                q, a = sharing_into_ratio(random.randint(2,12), random.randint(3,12))
+                q, a = sharing_into_ratio(12, 12)
         else:
             if i < 6:
-                q, a = sharing_into_ratio(random.randint(2,8), random.randint(3,5), total_value_difference)
+                q, a = sharing_into_ratio(8, 6, total_value_difference)
             else:
-                q, a = sharing_into_ratio(random.randint(2,12), random.randint(3,12), total_value_difference)
+                q, a = sharing_into_ratio(12, 12, total_value_difference)
 
         questions.append(q)
         answers.append(a)

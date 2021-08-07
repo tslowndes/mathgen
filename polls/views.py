@@ -19,7 +19,10 @@ from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.number.factors_multiples_primes import *
 from polls.question_generators.number.percentages import *
 from polls.question_generators.number.negatives import *
-
+from polls.question_generators.number.standard_form import *
+from polls.question_generators.number.numerical_indices import *
+from polls.question_generators.number.arithmetic import *
+from polls.question_generators.number.money import *
 ####### SHAPE #######
 from polls.question_generators.shape.pythagoras import *
 from polls.question_generators.shape.cuboid import *
@@ -27,6 +30,9 @@ from polls.question_generators.shape.rectangle import *
 from polls.question_generators.shape.interior_angles import *
 from polls.question_generators.shape.triangles import *
 from polls.question_generators.shape.parallelogram import *
+from polls.question_generators.shape.angles import *
+from polls.question_generators.shape.trigonometry import *
+
 ####### STARTERS #######
 from polls.question_generators.starters.wrm_year7 import *
 

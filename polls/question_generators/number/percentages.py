@@ -23,13 +23,7 @@ def percentages_non_calc(n=-1,compound=0,calc=0, facts=0):
                     q = r'$ [\;\;] \times ' + str(n) + ' = 100 $'
         else:
             if compound == 0:
-                if n < 6:
-                    percentages = easy_small + easy_big
-                    random.seed(int(str(datetime.datetime.now().time())[6:8]))
-                    random.shuffle(percentages)
-                    percentage = percentages[n]
-                else:
-                    percentage = random.choice(easy_small + easy_big)
+                percentage = random.choice(easy_small + easy_big)
             else:
                 percentage = 25
                 while percentage ==25:
@@ -61,7 +55,10 @@ def percentages_non_calc(n=-1,compound=0,calc=0, facts=0):
         percentage = Decimal(percentage)
         amount = Decimal(amount)
         ans = str(percentage / Decimal(100.0) * amount)
-        while ans[-1] == '0' or ans[-1] == '.':
+        if "." in ans:
+            while ans[-1] == "0":
+                ans = ans[:-1]
+        if ans[-1] == ".":
             ans = ans[:-1]
 
     return q,ans

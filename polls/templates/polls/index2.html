@@ -140,14 +140,15 @@ function reloadP() {
 
             {% if imgs|lookup:i == 0 %}
 
-                {% if questions|lookup:i|length > 70 %}
-                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div style="font-size:26px;">{{questions|lookup:i|linebreaksbr}}</div>
+                {% if questions|lookup:i|first_char:0 == "$" %}
+                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div style="font-size:5vh;">{{questions|lookup:i|linebreaksbr}}</div>
                 {% else %}
-                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div>{{questions|lookup:i|linebreaksbr}}</div>
+                    <!--<div style="text-align:center;">({{alphas|lookup:i}})</div><div style="font-size:30px;">{{questions|lookup:i|linebreaksbr}}</div>-->
+                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div style={{questions|lookup:i|get_font_size:0}}>{{questions|lookup:i|linebreaksbr}}</div>
                 {% endif %}
 
             {% else %}
-                <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img src="/media/{{questions|lookup:i}}" style="width:100%"></div>
+                <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img src="/media/{{questions|lookup:i}}" style="height:auto;"></div>
 
             {% endif %}
 

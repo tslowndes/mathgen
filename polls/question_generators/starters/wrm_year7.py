@@ -1,5 +1,6 @@
 import os, sys
 sys.path.append(os.path.join('../../', "lib"))
+import random
 from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.algebra import linear_sequences
 from polls.question_generators.algebra.collecting_like_terms import *
@@ -19,8 +20,11 @@ from polls.question_generators.shape import pythagoras
 from polls.question_generators.shape import cuboid
 from polls.question_generators.number import arithmetic
 from polls.question_generators.number import money
+from polls.question_generators.number import negatives, fractions, standard_form, percentages
 from polls.question_generators.algebra import inequalities
 from polls.question_generators.algebra import indices
+from polls.question_generators.shape import angles
+
 
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
     print('ht = ' + str(ht))
@@ -77,6 +81,20 @@ def wrm_7_starter(ht):
         j += 1
         questions[j], answers[j] = arithmetic.multiply_decimals()
         j += 1
+    if ht == 5 or ht == 6:
+        questions[j], answers[j] = gen_solving_equations(1, 1, 0, 2, 0, 0)
+        j += 1
+        questions[j], answers[j] = negatives.negative_addition(random.randint(3,4), 0)
+        j += 1
+        questions[j], answers[j] = fractions.mixed_numbers(random.randint(0,1))
+        j += 1
+        questions[j], answers[j] = fractions.adding_fractions(0, 0, 0, 0)
+        j += 1
+
+    if ht == 6:
+        questions[j], answers[j] = angles.basic_angle_facts()
+        j+=1
+        questions[j], answers[j] = angles.angles_on_a_straight_line(2)
 
     return {'count': count,
             'questions': questions,
@@ -136,6 +154,27 @@ def wrm_8_starter(ht):
             answers[j] = b[a][1]
         j+=1
         questions[j], answers[j] = indices.laws_of_indices_multiplying(2,2,0)
+    if ht == 6:
+        a = expanding_and_factorising.gen_expanding_brackets(0, 0, 0, 0, 0, 0)
+        questions[j], answers[j] = a['questions'][0], a['answers'][0]
+        j+=1
+        questions[j], answers[j] = fractions.fraction_of_an_amount(0, 0, 0)
+        j+=1
+        questions[j], answers[j] = percentages.percentages_non_calc(n=-1,compound=0,calc=0, facts=0)
+        j+=1
+        questions[j], answers[j] = indices.laws_of_indices_multiplying(2,2,0)
+        j+=1
+        questions[j], answers[j] = standard_form.standard_form_large(5, 0, 0, 0)
+        questions[j] = "Write " + str(questions[j]) + " in standard form."
+        j+=1
+        questions[j], answers[j] = money.basic_purchase(1)
+        j+=1
+        questions[j], answers[j] = " "," "
+        j+=1
+        questions[j], answers[j] = " "," "
+
+
+
 
     return {'count': count,
             'questions': questions,

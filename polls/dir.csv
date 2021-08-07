@@ -68,6 +68,35 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 66,S003,7,Perimeter of Rectangle,gen_rectangle_perimeter,0,0,0,0,0,0,0
 67,A008,10,1-Step Substitution: Negatives,gen_substitutions,10,1,1,0,0,0,0
 68,A008,11,2-Step Substitution: Negatives,gen_substitutions,10,2,1,0,0,0,0
-69,N010,8,Sharing into a ratio: Total,gen_sharing_into_ratio,0,0,0,0,0,0,0
-70,N010,9,Sharing into a ratio: One value,gen_sharing_into_ratio,10,1,0,0,0,0,0
-
+69,N010,8,Sharing into a ratio: Total,gen_sharing_into_ratio,8,0,0,0,0,0,0
+70,N010,9,Sharing into a ratio: One value,gen_sharing_into_ratio,8,1,0,0,0,0,0
+71,G003,7,1 Term 3.1,gen_white_rose_maths_starter,7,5,0,0,0,0,0
+72,G004,7,1 Term 3.2,gen_white_rose_maths_starter,7,6,0,0,0,0,0
+73,S004,7,Angles on a straight line,gen_angles_straight_line,0,0,0,0,0,0
+74,N011,7,Powers of 10,gen_power_of_ten,10,0,0,0,0,0,0
+75,N011,8,Standard Form: 10s 100s 1000s,gen_standard_form,10,0,3,0,0,0,0
+76,N011,9,Ordinary Form: 10s 100s 1000s,gen_standard_form,10,0,3,1,0,0,0
+75,N011,10,Standard Form: 10 000+,gen_standard_form,10,0,8,0,0,0,0
+76,N011,11,Ordinary Form: 10 000+,gen_standard_form,10,0,8,1,0,0,0
+77,N012,7,Place Value: Columns,gen_name_the_value,10,0,0,0,0,0,0
+78,N013,7,Powers Indices Exponents: Non-Calc,gen_numerical_indices,10,1,0,0,0,0,0
+79,N013,8,Powers Indices Exponents: Calc,gen_numerical_indices,10,0,0,0,0,0,0
+80,N005,11,Adding Fractions: Simple Denominator,gen_adding_fractions,10,2,0,0,0,0,0
+81,N014,7,Negative Powers of 10,gen_power_of_ten,10,1,0,0,0,0,0
+82,N015,7,Mental Multiplication: Multiples of 10,gen_mental_multiplication,10,0,0,0,0,0,0
+83,N016,7,Money: Change,gen_basic_purchase,10,0,0,0,0,0,0
+84,N016,8,Money: Saving,gen_basic_save,10,0,0,0,0,0,0
+85,N016,9,Money: Profit,gen_profit,10,0,0,0,0,0,0
+86,N014,8,Standard Form: Tenth Hundredth,gen_standard_form,10,1,-4,0,0,0,0
+87,N014,9,Standard Form: Very Small,gen_standard_form,10,1,-8,0,0,0,0
+88,N014,10,Standard Form: Adjustments,gen_standard_form,10,1,8,0,1,0,0
+89,G003,8,2 Term 3.1,gen_white_rose_maths_starter,8,6,0,0,0,0,0
+90,S004,8,Angles around a Point,gen_angles_straight_line,1,0,0,0,0,0,0
+91,S005,7,Trigonometry - Find Side - Mutliplication,gen_trigonometry,0,0,0,0,0,0,0
+92,S005,8,Trigonometry - Find Side - Division,gen_trigonometry,0,1,0,0,0,0,0
+93,S005,9,Trigonometry - Find Side - Mixed Multiplication,gen_trigonometry,1,0,0,0,0,0,0
+94,S005,10,Trigonometry - Find Side - Mixed Division,gen_trigonometry,1,1,0,0,0,0,0
+95,S005,11,Trigonometry - Find Side - Mixed,gen_trigonometry,1,2,0,0,0,0,0
+96,S006,7,Trigonometry - Find Angle - One Function,gen_trigonometry,0,0,1,0,0,0,0
+97,S006,8,Trigonometry - Find Angle - Mixed Functions,gen_trigonometry,1,0,1,0,0,0,0
+98,S006,9,Trigonometry - Mixed,gen_trigonometry,1,2,2,0,0,0,0

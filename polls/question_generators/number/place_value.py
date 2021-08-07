@@ -2,11 +2,11 @@ import random
 
 def name_the_value(a1=0, a2=0, a3=0, a4=0, a5=0, a6=0):
     value = random.random()
-    multiplier = random.choice([10,100,1000,10000, 100000,1000000, 10000000, 100000000, 1000000000])
+    multiplier = random.choice([10000, 100000,1000000, 10000000, 100000000, 1000000000])
     value = str(round(value * multiplier, random.randint(0,3)))
     u = random.randint(0,len(value)-1)
 
-    while value[u] == '.' or value[u] == '0':
+    while value[u] == '.':
         u = random.randint(0, len(value)-1)
 
     question = '$' + value[:u] + r'\underline{' + value[u] + '}' + value[u+1:] + '$'
@@ -34,4 +34,16 @@ def get_column(col_num):
     }
     return columns.get(col_num, "Invalid month")
 
+def gen_name_the_value(n,a,b,c,d,e):
+    questions = []
+    answers = []
+    count = [i for i in range(10)]
 
+    for i in range(n):
+        q,a = name_the_value()
+
+
+        questions.append(q)
+        answers.append(a)
+
+    return {'questions':questions, 'answers':answers, 'count':count}
