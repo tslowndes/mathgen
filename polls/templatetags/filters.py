@@ -28,3 +28,8 @@ def get_font_size(d,key):
         len_d = max_len
 
     return "font-size:" + str(3 + (2*((max_len-len_d)/max_len))) +"vh;"
+
+@register.filter
+def addstr(arg1, arg2):
+    """concatenate arg1 & arg2"""
+    return str(arg1) + str(arg2)
