@@ -68,11 +68,18 @@ def index(request):
         possibles = globals().copy()
         possibles.update(locals())
         method = possibles.get(method_name)
-        #Call method and get questions
+        #Call method and get examples
         context = method(args[0], args[1], args[2], args[3], args[4], args[5])
         examples = context['questions']
+
+        #Call method and get your gos
+        context = method(args[0], args[1], args[2], args[3], args[4], args[5])
+        yourgos = context['questions']
+
+        #Call method and get questions and answers
         context = method(args[0], args[1], args[2], args[3], args[4], args[5])
         context['examples']=examples
+        context['yourgos']=yourgos
         alphas = []
         for i in range(len(context['questions'])):
             alphas.append(string.ascii_lowercase[i])

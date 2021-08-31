@@ -11,12 +11,14 @@ MathJax = {
 
 window.onload = function() {
     var reloading = sessionStorage.getItem("reloading");
+
     if (reloading) {
         sessionStorage.removeItem("reloading");
         openExp();
     }
 
     var colour = $(".selected").css("background-color");
+
     // When clicking on colours items
     $(".controls").on("click", "li", function () {
         if ($(this).css("background-color") !== "rgba(0, 0, 0, 0)"){
@@ -75,12 +77,14 @@ window.onload = function() {
           canvas.dispatchEvent(mouseEvent);
           e.preventDefault();
         }, false);
+
         canvas.addEventListener("touchend", function (e) {
         e.preventDefault();
           var mouseEvent = new MouseEvent("mouseup", {});
           canvas.dispatchEvent(mouseEvent);
           e.preventDefault();
         }, false);
+
         canvas.addEventListener("touchmove", function (e) {
         e.preventDefault();
           var touch = e.touches[0];
@@ -123,46 +127,49 @@ window.onload = function() {
       }
     }, false);
 
-    // Clear the canvas when button is clicked
-    function clear_canvas_width() {
-        var s = document.getElementById("mainCanvas");
-        var w = s.width;
-        s.width = 10;
-        s.width = w;
-    }
-
-    }
-
-    function reloadP() {
-        sessionStorage.setItem("reloading", "true");
-        document.location.reload();
-    }
-
-    var slideIndex = 1;
     showSlides(slideIndex);
 
-    // Next/previous controls
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
     }
 
-    // Thumbnail image controls
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
 
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("mySlides");
-      if (n > slides.length) {slideIndex = slides.length}
-      if (n < 1) {slideIndex = 1}
-      for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-      }
+function reloadP() {
+    sessionStorage.setItem("reloading", "true");
+    document.location.reload();
+}
 
-      slides[slideIndex-1].style.display = "block";
+var slideIndex = 1;
 
-    }
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = slides.length}
+  if (n < 1) {slideIndex = 1}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+  var no = document.getElementById("slidenumber")
+  no.innerText = slideIndex.toString(10).concat(" / ").concat(slides.length)
+}
+
+  // Clear the canvas when button is clicked
+function clear_canvas_width() {
+    var s = document.getElementById("mainCanvas".concat(slideIndex-1));
+    var w = s.width;
+    s.width = 10;
+    s.width = w;
+}
+
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
@@ -421,7 +428,7 @@ window.onload = function() {
 
 <div class="mySlides fade">
 
-<canvas	class="canvases" width="1000px" height="1000px" style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas{{i}}"></canvas>
+<canvas	class="canvases" width="4000px" height="4000px" style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas{{i}}"></canvas>
 
             <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 50% 50%; height:20vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
                 <div style="height:15vh; text-align:center; border-right: 0px solid black;">
@@ -439,9 +446,9 @@ window.onload = function() {
                 </div>
                 <div style="padding: 5px 5px 5px 5px; border-left: 0px solid black; height:15vh; font-size:35px; ">
                     {% if imgs|lookup:i == 0 %}
-                        {{examples|lookup:i}}
+                        {{yourgos|lookup:i}}
                     {% else %}
-                        <img src="/media/{{examples|lookup:i}}" style="width=40vw;">
+                        <img src="/media/{{yourgos|lookup:i}}" style="width=40vw;">
                     {% endif %}
                 </div>
                 <div style="height:70vh;border-right: 3px solid black;"> </div><div style="height:100px;"> </div>
@@ -463,7 +470,7 @@ window.onload = function() {
                     <li class="refresh" style="background: url('/media/refreshB.png') no-repeat center center; background-size:40px;" onclick="reloadP();"></li>
                 </ul>
             </div>
-
+            <h2 id="slidenumber" style="position:absolute; bottom:0px; right:0;"> slides </h2>
             <a href="javascript:void(0)" class="closebtn" onclick="closeExp()" style="z-index:5;">&times;</a>
 
             <!--<script src="{% static 'polls/app.js' %}" type="text/javascript" charset="utf-8"></script>-->

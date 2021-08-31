@@ -21,7 +21,13 @@ def rand_no0_no1(min, max):
     while result == 0 or result == 1:
         result = random.randint(min, max)
     return result
-
+    
+def strip_0(s):
+    s = str(s).strip("0")
+    if s[-1]==".":
+        s = s[:-1]
+    return s
+    
 def rand_no0(min, max):
     result = 0
     while result == 0:

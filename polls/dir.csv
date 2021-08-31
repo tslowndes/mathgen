@@ -90,7 +90,7 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 86,N014,8,Standard Form: Tenth Hundredth,gen_standard_form,10,1,-4,0,0,0,0
 87,N014,9,Standard Form: Very Small,gen_standard_form,10,1,-8,0,0,0,0
 88,N014,10,Standard Form: Adjustments,gen_standard_form,10,1,8,0,1,0,0
-89,G003,8,2 Term 3.1,gen_white_rose_maths_starter,8,6,0,0,0,0,0
+89,G003,8,2 Term 3.1,gen_white_rose_maths_starter,8,5,0,0,0,0,0
 90,S004,8,Angles around a Point,gen_angles_straight_line,1,0,0,0,0,0,0
 91,S005,7,Trigonometry - Find Side - Mutliplication,gen_trigonometry,0,0,0,0,0,0,0
 92,S005,8,Trigonometry - Find Side - Division,gen_trigonometry,0,1,0,0,0,0,0
@@ -100,3 +100,9 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 96,S006,7,Trigonometry - Find Angle - One Function,gen_trigonometry,0,0,1,0,0,0,0
 97,S006,8,Trigonometry - Find Angle - Mixed Functions,gen_trigonometry,1,0,1,0,0,0,0
 98,S006,9,Trigonometry - Mixed,gen_trigonometry,1,2,2,0,0,0,0
+99,G005,7,1 Term 1.1,gen_white_rose_maths_starter,7,1,0,0,0,0,0
+100,G006,7,1 Term 1.2,gen_white_rose_maths_starter,7,2,0,0,0,0,0
+101,G004,8,2 Term 1.1,gen_white_rose_maths_starter,8,1,0,0,0,0,0
+102,G005,8,2 Term 1.2,gen_white_rose_maths_starter,8,2,0,0,0,0,0
+103,S002,10,Area of Trapezium,gen_parallelogram,1,0,0,0,0,0,0
+104,G006,8,2 Term 3.2,gen_white_rose_maths_starter,8,6,0,0,0,0,0

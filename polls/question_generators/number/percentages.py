@@ -1,8 +1,9 @@
 import random
 from decimal import Decimal
 import datetime
+from polls.question_generators import tools
 
-def percentages_non_calc(n=-1,compound=0,calc=0, facts=0):
+def percentages_non_calc(n=-1,compound=0,calc=0, facts=0, increase=0):
     if calc == 0:
         easy_small = [1,5,10]
         easy_big = [20,25,50]
@@ -50,17 +51,24 @@ def percentages_non_calc(n=-1,compound=0,calc=0, facts=0):
             amount = random.randint(2,9) * 100
         if calc == 1:
             amount = int(str(amount/10)[:-2])
-
-        q = str(percentage) + '% of ' + str(amount)
-        percentage = Decimal(percentage)
-        amount = Decimal(amount)
-        ans = str(percentage / Decimal(100.0) * amount)
-        if "." in ans:
-            while ans[-1] == "0":
+        
+        if increase == 0:
+            q = str(percentage) + '% of ' + str(amount)
+            percentage = Decimal(percentage)
+            amount = Decimal(amount)
+            ans = str(percentage / Decimal(100.0) * amount)
+            if "." in ans:
+                while ans[-1] == "0":
+                    ans = ans[:-1]
+            if ans[-1] == ".":
                 ans = ans[:-1]
-        if ans[-1] == ".":
-            ans = ans[:-1]
-
+        elif increase == 1:
+            q = "Increase " + str(amount) + " by " + str(percentage) +"%"
+            ans = tools.strip_0(amount * (1 + (percentage / Decimal(100.0))))
+        elif increase == 2:
+                q = "Decrease " + str(amount) + " by " + str(percentage) +"%"
+                ans = tools.strip_0(amount * (1 - (percentage / Decimal(100.0))))
+                
     return q,ans
 
 def gen_percentages_non_calc(n, compound, calc,facts,d,e):

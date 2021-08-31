@@ -2,6 +2,11 @@
 .MathJax_Display {
     margin: 1vh 0 3vh 0 !important;
 }
+
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+
 span {
     top: 0;
     height: 5vh;
@@ -167,9 +172,11 @@ ul li {
 }
 
 .selected {
-	border: 7px solid #68B25B;
-	width: 40px;
-	height: 40px;
+	width: 54px;
+	height: 54px;
+	-webkit-box-shadow: inset 1px 1px 10px #333;
+    -moz-box-shadow:    inset 1px 1px 10px #333;
+    box-shadow:         inset 1px 1px 10px #333;
 }
 
 /* BUTTON STYLES

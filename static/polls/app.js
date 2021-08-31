@@ -1,9 +1,9 @@
 
 var colour = $(".selected").css("background-color");
-//var canvas = document.getElementById("mainCanvas1");
-//var context = canvas.getContext("2d");
-//var lastEvent;
-//var mouseDown = false;
+var canvas = document.getElementById("mainCanvas1");
+var context = canvas.getContext("2d");
+var lastEvent;
+var mouseDown = false;
 
 
 // When clicking on colours items

@@ -17,13 +17,13 @@ from polls.question_generators.number import factors_multiples_primes
 from polls.question_generators.algebra import inequalities
 from polls.question_generators.algebra import expanding_and_factorising
 from polls.question_generators.shape import pythagoras
-from polls.question_generators.shape import cuboid
+from polls.question_generators.shape import cuboid, parallelogram
 from polls.question_generators.number import arithmetic
 from polls.question_generators.number import money
-from polls.question_generators.number import negatives, fractions, standard_form, percentages
+from polls.question_generators.number import negatives, fractions, standard_form, percentages,rounding
 from polls.question_generators.algebra import inequalities
 from polls.question_generators.algebra import indices
-from polls.question_generators.shape import angles
+from polls.question_generators.shape import angles, shape_facts, circles
 
 
 def gen_white_rose_maths_starter(year, ht, a2, a3, a4, a5):
@@ -43,6 +43,26 @@ def wrm_7_starter(ht):
     questions = [0 for i in range(24)]
     answers = [0 for i in range(24)]
     j = 0
+    if ht == 1: 
+        questions[j], answers[j] = arithmetic.times_tables(6,random.randint(0,1))
+        j+=1
+        questions[j], answers[j] = arithmetic.addition(0,0)
+        j+=1
+        questions[j], answers[j] = arithmetic.addition(0,1)
+        j+=1
+        questions[j], answers[j] = arithmetic.long_mult(0)
+        j+=1
+        
+        
+    if ht == 1 or ht ==2:
+        questions[j], answers[j] = arithmetic.long_mult(1)
+        j+=1
+        questions[j], answers[j] = arithmetic.order_of_operations()
+        j+=1
+        questions[j], answers[j] = rounding.round_to_nearest()
+        j+=1
+        questions[j], answers[j] = fractions.adding_fractions(1, 0, 0, 0)
+        j += 1
 
     if ht == 2 or ht == 3:
         questions[j], answers[j] = linear_sequences.find_the_next_term(0, 0, 0, 0, 0, 0)
@@ -95,7 +115,11 @@ def wrm_7_starter(ht):
         questions[j], answers[j] = angles.basic_angle_facts()
         j+=1
         questions[j], answers[j] = angles.angles_on_a_straight_line(2)
-
+        j+=1
+        questions[j], answers[j] = shape_facts.polygon_names()
+        j+=1
+        questions[j], answers[j] = shape_facts.classify_angles()
+        j+=1
     return {'count': count,
             'questions': questions,
             'answers': answers}
@@ -106,7 +130,17 @@ def wrm_8_starter(ht):
     questions = [0 for i in range(8)]
     answers = [0 for i in range(8)]
     j = 0
-
+    if ht == 1:
+        starter = wrm_7_starter(random.randint(2,6))
+        questions = starter['questions']
+        answers = starter['answers']
+    
+    if ht == 2:
+        starter = wrm_7_starter(random.randint(2,6))
+        questions[0:4] = starter['questions'][4:8]
+        answers[0:4] = starter['answers'][4:8]
+        j = 4
+    
     if ht == 2 or ht == 3:
         questions[j], answers[j] = sharing_into_ratio(5, 6)
         j += 1
@@ -154,24 +188,29 @@ def wrm_8_starter(ht):
             answers[j] = b[a][1]
         j+=1
         questions[j], answers[j] = indices.laws_of_indices_multiplying(2,2,0)
-    if ht == 6:
-        a = expanding_and_factorising.gen_expanding_brackets(0, 0, 0, 0, 0, 0)
-        questions[j], answers[j] = a['questions'][0], a['answers'][0]
         j+=1
-        questions[j], answers[j] = fractions.fraction_of_an_amount(0, 0, 0)
+        
+    if ht == 5 or ht == 6:
+        questions[j], answers[j] = percentages.percentages_non_calc(-1,random.randint(0,1),random.randint(0,1), 0, random.randint(1,2))
         j+=1
-        questions[j], answers[j] = percentages.percentages_non_calc(n=-1,compound=0,calc=0, facts=0)
-        j+=1
-        questions[j], answers[j] = indices.laws_of_indices_multiplying(2,2,0)
-        j+=1
-        questions[j], answers[j] = standard_form.standard_form_large(5, 0, 0, 0)
+        questions[j], answers[j] = standard_form.standard_form_large(9, 1, 0, random.randint(0,1))
         questions[j] = "Write " + str(questions[j]) + " in standard form."
+        j+=1
+        dp = random.randint(1,3)
+        questions[j], answers[j] = rounding.rounding(0,dp)
+        questions[j] = "Round " + str(questions[j]) + " to " + str(dp) + " decimal places."
         j+=1
         questions[j], answers[j] = money.basic_purchase(1)
         j+=1
-        questions[j], answers[j] = " "," "
+    if ht == 6:
+        # interior angles 
+        # exterior angles
+        # area of circles
+        questions[j], answers[j] = circles.circle_measure(random.randint(0,1), random.randint(0,1), 0)
         j+=1
-        questions[j], answers[j] = " "," "
+        # area of trapezia
+        questions[j], answers[j] = parallelogram.area_of_parallelogram(0, 1, 0, 1)
+        j+=1
 
 
 
