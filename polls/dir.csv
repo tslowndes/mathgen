@@ -70,44 +70,44 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 68,N009,7,Crossing Zero,gen_crossing_zero,10,0,0,0,0,0,0
 69,N009,8,Adding Negative Numbers,gen_adding_negatives,10,0,0,0,0,0,0
 70,N009,9,Mutliplying Negative Numbers,gen_negative_multiplication,10,0,0,0,0,0,0
-71,N010,8,Sharing into a ratio: Total,gen_sharing_into_ratio,8,0,0,0,0,0,0
-72,N010,9,Sharing into a ratio: One value,gen_sharing_into_ratio,8,1,0,0,0,0,0
-73,N011,7,Powers of 10,gen_power_of_ten,10,0,0,0,0,0,0
-74,N011,8,Standard Form: 10s 100s 1000s,gen_standard_form,10,0,3,0,0,0,0
-75,N011,9,Ordinary Form: 10s 100s 1000s,gen_standard_form,10,0,3,1,0,0,0
-76,N011,10,Standard Form: 10 000+,gen_standard_form,10,0,8,0,0,0,0
-77,N011,11,Ordinary Form: 10 000+,gen_standard_form,10,0,8,1,0,0,0
-78,N012,7,Place Value: Columns,gen_name_the_value,10,0,0,0,0,0,0
-79,N013,7,Powers Indices Exponents: Non-Calc,gen_numerical_indices,10,1,0,0,0,0,0
-80,N013,8,Powers Indices Exponents: Calc,gen_numerical_indices,10,0,0,0,0,0,0
-81,N014,7,Negative Powers of 10,gen_power_of_ten,10,1,0,0,0,0,0
-82,N014,8,Standard Form: Tenth Hundredth,gen_standard_form,10,1,-4,0,0,0,0
-83,N014,9,Standard Form: Very Small,gen_standard_form,10,1,-8,0,0,0,0
-84,N014,10,Standard Form: Adjustments,gen_standard_form,10,1,8,0,1,0,0
-85,N015,7,Mental Multiplication: Multiples of 10,gen_mental_multiplication,10,0,0,0,0,0,0
-86,N016,7,Money: Change,gen_basic_purchase,10,0,0,0,0,0,0
-87,N016,8,Money: Saving,gen_basic_save,10,0,0,0,0,0,0
-88,N016,9,Money: Profit,gen_profit,10,0,0,0,0,0,0
-89,S001,7,Pythagoras Hypotenuse,gen_pythagoras,8,0,0,0,0,0,0
-90,S001,8,Pythagoras Shorter Side,gen_pythagoras,8,1,0,0,0,0,1
-91,S001,9,Pythagoras Mixture,gen_pythagoras,8,2,0,0,0,0,1
-92,S002,7,Area of Rectangle,gen_rectangle_area,0,0,0,0,0,0,0
-93,S002,8,Area of a triangle,gen_triangles,0,0,0,0,0,0,0
-94,S002,9,Area of Parallelogram,gen_parallelogram,0,0,0,0,0,0,0
-95,S002,10,Area of Trapezium,gen_parallelogram,1,0,0,0,0,0,0
-96,S003,7,Perimeter of Rectangle,gen_rectangle_perimeter,0,0,0,0,0,0,0
-97,S004,7,Angles on a straight line,gen_angles_straight_line,0,0,0,0,0,0,
-98,S004,8,Angles around a Point,gen_angles_straight_line,1,0,0,0,0,0,0
-99,S005,7,Trigonometry - Find Side - Mutliplication,gen_trigonometry,0,0,0,0,0,0,0
-100,S005,8,Trigonometry - Find Side - Division,gen_trigonometry,0,1,0,0,0,0,0
-101,S005,9,Trigonometry - Find Side - Mixed Multiplication,gen_trigonometry,1,0,0,0,0,0,0
-102,S005,10,Trigonometry - Find Side - Mixed Division,gen_trigonometry,1,1,0,0,0,0,0
-103,S005,11,Trigonometry - Find Side - Mixed,gen_trigonometry,1,2,0,0,0,0,0
-104,S006,7,Trigonometry - Find Angle - One Function,gen_trigonometry,0,0,1,0,0,0,0
-105,S006,8,Trigonometry - Find Angle - Mixed Functions,gen_trigonometry,1,0,1,0,0,0,0
-106,S006,9,Trigonometry - Mixed,gen_trigonometry,1,2,2,0,0,0,0
-107,N010,10,Sharing into a ratio: 1:n,gen_sharing_into_ratio,8,1,1,0,0,0,0
-108,N017,7,Simplifying Ratio,gen_simplifying_ratio,0,0,0,0,0,0,0
-109,N010,11,Ratio as Fractions,gen_sharing_into_ratio,8,0,0,1,0,0,0
-110,N017,8,Sharing into a Ratio Mixed,gen_sharing_into_ratio,8,2,0,0,0,0,0
-111,N017,9,Sharing into a Ratio Mixed,gen_sharing_into_ratio,8,3,0,0,0,0,0
+71,N010,7,Sharing into a ratio: 1:n,gen_sharing_into_ratio,8,1,1,0,0,0,0
+72,N010,8,Sharing into a ratio: One value,gen_sharing_into_ratio,8,1,0,0,0,0,0
+73,N010,9,Sharing into a ratio: Total,gen_sharing_into_ratio,8,0,0,0,0,0,0
+74,N010,10,Sharing into a Ratio Difference,gen_sharing_into_ratio,8,2,0,0,0,0,0
+75,N010,11,Sharing into a Ratio Mixed,gen_sharing_into_ratio,8,3,0,0,0,0,0
+76,N011,7,Simplifying Ratio,gen_simplifying_ratio,0,0,0,0,0,0,0
+77,N011,8,Ratio as Fractions,gen_sharing_into_ratio,8,0,0,1,0,0,0
+78,N012,7,Powers of 10,gen_power_of_ten,10,0,0,0,0,0,0
+79,N012,8,Standard Form: 10s 100s 1000s,gen_standard_form,10,0,3,0,0,0,0
+80,N012,9,Ordinary Form: 10s 100s 1000s,gen_standard_form,10,0,3,1,0,0,0
+81,N012,10,Standard Form: 10 000+,gen_standard_form,10,0,8,0,0,0,0
+82,N012,11,Ordinary Form: 10 000+,gen_standard_form,10,0,8,1,0,0,0
+83,N013,7,Place Value: Columns,gen_name_the_value,10,0,0,0,0,0,0
+84,N014,7,Powers Indices Exponents: Non-Calc,gen_numerical_indices,10,1,0,0,0,0,0
+85,N014,8,Powers Indices Exponents: Calc,gen_numerical_indices,10,0,0,0,0,0,0
+86,N015,7,Negative Powers of 10,gen_power_of_ten,10,1,0,0,0,0,0
+87,N015,8,Standard Form: Tenth Hundredth,gen_standard_form,10,1,-4,0,0,0,0
+88,N015,9,Standard Form: Very Small,gen_standard_form,10,1,-8,0,0,0,0
+89,N015,10,Standard Form: Adjustments,gen_standard_form,10,1,8,0,1,0,0
+90,N016,7,Mental Multiplication: Multiples of 10,gen_mental_multiplication,10,0,0,0,0,0,0
+91,N017,7,Money: Change,gen_basic_purchase,10,0,0,0,0,0,0
+92,N017,8,Money: Saving,gen_basic_save,10,0,0,0,0,0,0
+93,N017,9,Money: Profit,gen_profit,10,0,0,0,0,0,0
+94,S001,7,Pythagoras Hypotenuse,gen_pythagoras,8,0,0,0,0,0,0
+95,S001,8,Pythagoras Shorter Side,gen_pythagoras,8,1,0,0,0,0,1
+96,S001,9,Pythagoras Mixture,gen_pythagoras,8,2,0,0,0,0,1
+97,S002,7,Area of Rectangle,gen_rectangle_area,0,0,0,0,0,0,0
+98,S002,8,Area of a triangle,gen_triangles,0,0,0,0,0,0,0
+99,S002,9,Area of Parallelogram,gen_parallelogram,0,0,0,0,0,0,0
+100,S002,10,Area of Trapezium,gen_parallelogram,1,0,0,0,0,0,0
+101,S003,7,Perimeter of Rectangle,gen_rectangle_perimeter,0,0,0,0,0,0,0
+102,S004,7,Angles on a straight line,gen_angles_straight_line,0,0,0,0,0,0,
+103,S004,8,Angles around a Point,gen_angles_straight_line,1,0,0,0,0,0,0
+104,S005,7,Trigonometry - Find Side - Mutliplication,gen_trigonometry,0,0,0,0,0,0,0
+105,S005,8,Trigonometry - Find Side - Division,gen_trigonometry,0,1,0,0,0,0,0
+106,S005,9,Trigonometry - Find Side - Mixed Multiplication,gen_trigonometry,1,0,0,0,0,0,0
+107,S005,10,Trigonometry - Find Side - Mixed Division,gen_trigonometry,1,1,0,0,0,0,0
+108,S005,11,Trigonometry - Find Side - Mixed,gen_trigonometry,1,2,0,0,0,0,0
+109,S006,7,Trigonometry - Find Angle - One Function,gen_trigonometry,0,0,1,0,0,0,0
+110,S006,8,Trigonometry - Find Angle - Mixed Functions,gen_trigonometry,1,0,1,0,0,0,0
+111,S006,9,Trigonometry - Mixed,gen_trigonometry,1,2,2,0,0,0,0
