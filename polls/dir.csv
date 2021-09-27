@@ -106,3 +106,8 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 104,S006,7,Trigonometry - Find Angle - One Function,gen_trigonometry,0,0,1,0,0,0,0
 105,S006,8,Trigonometry - Find Angle - Mixed Functions,gen_trigonometry,1,0,1,0,0,0,0
 106,S006,9,Trigonometry - Mixed,gen_trigonometry,1,2,2,0,0,0,0
+107,N010,10,Sharing into a ratio: 1:n,gen_sharing_into_ratio,8,1,1,0,0,0,0
+108,N017,7,Simplifying Ratio,gen_simplifying_ratio,0,0,0,0,0,0,0
+109,N010,11,Ratio as Fractions,gen_sharing_into_ratio,8,0,0,1,0,0,0
+110,N017,8,Sharing into a Ratio Mixed,gen_sharing_into_ratio,8,2,0,0,0,0,0
+111,N017,9,Sharing into a Ratio Mixed,gen_sharing_into_ratio,8,3,0,0,0,0,0

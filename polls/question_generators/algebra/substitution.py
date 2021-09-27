@@ -22,8 +22,15 @@ def one_step_substitution(minx,maxx,add_or_multi,op_or_inv):
             ans = c / a
     return q,ans
 
-def two_step_substitution(minx,maxx,multi_or_div, add_or_subtract,brackets,vars=1):
-    a = random.randint(2,10)
+def two_step_substitution(minx,maxx,multi_or_div, add_or_subtract,brackets,vars=1,negcoef=0):
+    if multi_or_div == 1:
+        negcoef = 0
+        
+    if negcoef==0:
+        a = random.randint(2,10)
+    else:
+        a = random.randint(-10,-2)
+        
     x = rand_no0_no1(minx, maxx)
     if add_or_subtract == 0:
         b = random.randint(1,10)
@@ -83,16 +90,16 @@ def gen_substitutions(n, steps, neg_xs,d,e,f):
                 else:
                     q,a = one_step_substitution(-5,-1,add_or_multi[i],random.randint(0,1))
         elif steps == 2:
-            if i < 5:
+            if i < 4:
                 if neg_xs == 0:
                     q,a = two_step_substitution(2,10,add_or_multi[i],random.randint(0,1),0)
                 else:
                     q,a = two_step_substitution(-5,-1,add_or_multi[i],random.randint(0,1),0)
-            elif i < 6:
+            elif i < 7:
                 if neg_xs == 0:
-                    q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0)
+                    q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0,1,random.randint(0,1))
                 else:
-                     q,a = two_step_substitution(-10,-1,add_or_multi[i],random.randint(0,1),0)
+                     q,a = two_step_substitution(-10,-1,add_or_multi[i],random.randint(0,1),0,1,random.randint(0,1))
             else:
                 q,a = two_step_substitution(-5,5,add_or_multi[i],random.randint(0,1),0,2)
         elif steps == 3:

@@ -153,18 +153,21 @@ ul li {
 }
 
 .red {
-	background: #FF6F69;
+	background: #FF6970;
 }
 
 .blue {
-	background: #87BDD8;
+	background: #4D9DC5;
 }
 
 .yellow {
-	background: #FFCC5C;
+	background: #FFB410;
 }
 .green {
-    background: #96CEB4;
+    background: #62B68F;
+}
+.white {
+    background: white;
 }
 
 .clear {

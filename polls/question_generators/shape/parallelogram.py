@@ -41,7 +41,7 @@ def area_of_parallelogram(scalene, lbls, rot, para_trap=0):
         base = random.randint(6,12)
         offset = random.randint(1,int(round(base*0.4,0)))
         offset2 = random.randint(0,1)
-        if base - offset - offset2 < 0:
+        if base - (offset*2) - offset2 <= 0:
             offset2 = 0
         points = [[0,0], [base,0], [base-offset-offset2,height], [offset, height], [0,0]]
 
@@ -53,7 +53,7 @@ def area_of_parallelogram(scalene, lbls, rot, para_trap=0):
     if para_trap == 0:
         lengths = [base, round(math.sqrt(offset**2 + height**2),1), base, round(math.sqrt(offset**2 + height**2),1)]
     else:
-        lengths = [base, round(math.sqrt((offset+offset2)**2 + height**2),1), base-offset-offset2, round(math.sqrt(offset**2 + height**2),1)]
+        lengths = [base, round(math.sqrt((offset+offset2)**2 + height**2),2), base-(offset*2)-offset2, round(math.sqrt(offset**2 + height**2),1)]
         
     label_points = labels_for_shape(ar(points))
 
@@ -81,16 +81,20 @@ def area_of_parallelogram(scalene, lbls, rot, para_trap=0):
         else:
             labels = random.choice([[str(lengths[0]) + units, str(lengths[1]) + units, str(lengths[2])+units, ''], [str(lengths[0]) + units, '', str(lengths[2])+units, str(lengths[1]) + units]])
         
+    if random.randint(0,1)==1:
+        height_arrow = [points[3], [offset,0]]
+        height_txt = str(height) + units
+        height_lbl = [offset+math.sqrt(height/10), height/2]
+        height_ang=-90
+    else:
+        height_arrow = [points[2], [base-offset-offset2,0]]
+        height_txt = str(height) + units
+        height_lbl = [base-offset-offset2-math.sqrt(height/10), height/2]
+        height_ang = 90
         
-    height_arrow = [points[3], [offset,0]]
-    height_txt = str(height) + units
-
-    height_lbl = [offset+math.sqrt(height/10), height/2]
     if rot == 1:
         height_ang = -90+ang
         height_arrow = rotate(ar(height_arrow), ang).tolist()
-    else:
-        height_ang = -90
 
     fig = plot_shape(ar(points), label_points, labels, 3, 0, angs, height_arrow, height_lbl, height_ang, height_txt)
     plt.text(-2,height + 0.25*height,"A=?")

@@ -23,6 +23,7 @@ from polls.question_generators.number.standard_form import *
 from polls.question_generators.number.numerical_indices import *
 from polls.question_generators.number.arithmetic import *
 from polls.question_generators.number.money import *
+from polls.question_generators.number.ratio import *
 ####### SHAPE #######
 from polls.question_generators.shape.pythagoras import *
 from polls.question_generators.shape.cuboid import *

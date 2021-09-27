@@ -9,6 +9,10 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 
+def get_shape_name(n):
+    sides =[3,4,5,6,7,8,9,10,11,12]
+    names = ["Triangle", "Quadrilateral", "Pentagon","Hexagon", "Heptagon", "Octagon","Nonagon","Decagon","Hendecagon","Dodecagon"]
+    return names[sides.index(n)]
 
 def random_polygon():
     points = (np.random.rand(50, 2) - .5)   # 30 random points in 2-D

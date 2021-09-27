@@ -23,10 +23,12 @@ def rand_no0_no1(min, max):
     return result
     
 def strip_0(s):
-    s = str(s).strip("0")
-    if s[-1]==".":
-        s = s[:-1]
-    return s
+    if '.' in str(s):
+        s = str(s).strip("0")
+        if s[-1]==".":
+            s = s[:-1]
+    return str(s)
+    
     
 def rand_no0(min, max):
     result = 0
