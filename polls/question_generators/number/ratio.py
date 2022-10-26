@@ -36,7 +36,7 @@ def gen_sharing_into_ratio(n,total_value_difference,unit_ratio,fraction,e,f):
             else:
                 q, a = sharing_into_ratio(12, 12, total_value_difference,unit_ratio,fraction)
         elif total_value_difference == 3:
-                q, a = sharing_into_ratio(12, 12, random.randint(0,1),unit_ratio,fraction)
+                q, a = sharing_into_ratio(10,8, random.randint(0,2),unit_ratio,fraction)
 
         questions.append(q)
         answers.append(a)
@@ -85,7 +85,7 @@ def sharing_into_ratio(max_part, max_number, total_or_value_or_difference=0, uni
             else:
                 question = name1 + ' and ' + name2 + ' share some ' + thing + ' in the ratio ' + str(b) + ':' + str(c) + '.\n ' + name2 + ' gets ' + str(c*a) + ' ' + thing + '. ' + '\n How many ' + thing + ' does ' + name1 + ' get?'
                 answer = str(b*a) + ' ' + thing
-                
+
         elif total_or_value_or_difference==2:
             name1=name_chooser()
             name2=name_chooser()

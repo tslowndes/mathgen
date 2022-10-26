@@ -5,9 +5,24 @@ import random
 from polls.question_generators.shape.shape_tools import *
 import math
 
-def circle_measure(circ_or_area, r_or_d, backwards):
+def gen_circle_measure(circ_or_area,r_or_d,backwards,derive_pi,e,f):
+    questions = []
+    answers = []
+    count = [i for i in range(8)]
+
+    for i in count:
+        q,a = circle_measure(circ_or_area, r_or_d, backwards,derive_pi)
+        while a in answers:
+            q,a = circle_measure(circ_or_area, r_or_d, backwards,derive_pi)
+        questions.append(q)
+        answers.append(a)
+    return {'questions': questions, 'answers': answers, 'count': count}
+
+def circle_measure(circ_or_area, r_or_d, backwards,derive_pi):
+    if r_or_d == 2:
+         r_or_d = random.randint(0,1)
     # plotting
-    radius=random.randint(1,20)
+    radius=random.randint(1,40)
     diam=2*radius
     circum=diam*math.pi
     area = math.pi * (radius**2)
@@ -28,13 +43,14 @@ def circle_measure(circ_or_area, r_or_d, backwards):
     circle_x = np.append(circle_x, circle_x)
     circle_y = np.append(circle_y, -1*circle_y)
 
-    n = random.randint(0,len(circle_x))
+    n = random.randint(0,len(circle_x)-1)
     if r_or_d == 0:
         rx = [0, circle_x[n]]
         ry = [0, circle_y[n]]
     else:
         rx = [circle_x[n], -1*circle_x[n]]
         ry = [circle_y[n], -1*circle_y[n]]
+       
 
     r = [[rx[0],ry[0]],[rx[1],ry[1]]]
     label_points = labels_for_shape(ar(r))
@@ -45,10 +61,15 @@ def circle_measure(circ_or_area, r_or_d, backwards):
         plt.text(label_points[0][0],label_points[0][1],str(radius), horizontalalignment='center', verticalalignment='center', fontsize = 'small')
     else:
         plt.text(label_points[0][0],label_points[0][1],str(diam), horizontalalignment='center', verticalalignment='center', fontsize = 'small')
-    
+
     if circ_or_area == 0:
-         plt.text(-2,0.8,"C=?", fontsize = 'large')
-         ans = round(circum,2)
+        if derive_pi == 0:
+             plt.text(-2,0.8,"C=?", fontsize = 'large')
+             ans = round(circum,2)
+        else:
+            plt.text(-2.5,0.8,"C="+str(round(circum,2)), fontsize = 'small')
+            ans = round(circum/(2*circle_r),2)
+
     else:
          plt.text(-2,0.8,"A=?", fontsize = 'large')
          ans = round(area,2)
@@ -60,6 +81,6 @@ def circle_measure(circ_or_area, r_or_d, backwards):
 
     fig.savefig('media/' + fn, pad_inches=0.1, dpi=300, transparent=True, bbox_inches='tight')
 
-    
+
     #return fig
     return fn, ans

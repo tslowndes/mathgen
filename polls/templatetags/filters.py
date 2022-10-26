@@ -27,7 +27,7 @@ def get_font_size(d,key):
     if len_d > max_len:
         len_d = max_len
 
-    return "font-size:" + str(3 + (2*((max_len-len_d)/max_len))) +"vh;"
+    return "font-size:" + str(30 + (4*((max_len-len_d)/max_len))) +"px;"
 
 @register.filter
 def addstr(arg1, arg2):

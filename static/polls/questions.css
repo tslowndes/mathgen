@@ -1,6 +1,6 @@
 
 .MathJax_Display {
-    margin: 1vh 0 3vh 0 !important;
+    margin: 1vh 0 1vh 0 !important;
 }
 
 body {
@@ -11,7 +11,6 @@ span {
     top: 0;
     height: 5vh;
     bottom: 10vh;
-    vertical-align:middle;
 
 }
 
@@ -24,7 +23,7 @@ mjx-container {
     display: block;
     text-align: center;
     vertical-align: middle;
-    margin: 10px;
+    margin: 0px;
 }
 
 .mjx-chtml.MJXc-display{

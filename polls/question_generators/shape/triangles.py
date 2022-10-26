@@ -26,8 +26,11 @@ def gen_triangles(a1,a2,a3,a4,a5,a6):
 def area_of_triangle(scalene, lbls):
 
     height = random.randint(5,12)
-    points = [[0,0], [random.randint(5,12),0]]
-    base = points[1][0]
+    base = random.randint(5,12)
+    if (base%2) != 0:
+        base += 1
+    points = [[0,0], [base,0]]
+
     if scalene ==1:
         scalene_overhang = random.randint(points[1][0],points[1][0]+5)
         points = points + [[scalene_overhang, height]]
@@ -85,7 +88,7 @@ def area_of_triangle(scalene, lbls):
             height_ang = 90
 
     fig = plot_shape(ar(points), label_points, labels, 3, 0, angs, height_arrow, height_lbl, height_ang, height_txt)
-
+    plt.tight_layout()
     r = random.randint(0, 999999999999999)
     fn = 'temp_img/temp' + str(r) + '.png'
 

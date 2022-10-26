@@ -1,180 +1,188 @@
 {% load filters %}
 {% load static %}
-
 <script src="https://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  }
-};
-
-window.onload = function() {
-    var reloading = sessionStorage.getItem("reloading");
-
-    if (reloading) {
-        sessionStorage.removeItem("reloading");
-        openExp();
-    }
-
-    var colour = $(".selected").css("background-color");
-
-    // When clicking on colours items
-    $(".controls").on("click", "li", function () {
-        if ($(this).css("background-color") !== "rgba(0, 0, 0, 0)"){
-                $(this).siblings().removeClass("selected");
-                $(this).addClass("selected");
-                colour = $(this).css("background-color");
-        }
-    });
-
-    //for (var i = 0; i < 10; i++) {
-    document.querySelectorAll('.canvases').forEach(canvas => {
-
-        //var canvas = document.getElementById("mainCanvas".concat(i));
-        var context = canvas.getContext("2d");
-        var lastEvent;
-        var mouseDown = false;
-
-        // On mouse events on the canvas
-
-        canvas.addEventListener("mousedown", function (e) {
-            lastEvent = e;
-            mouseDown = true;
-        }, false);
-
-        canvas.addEventListener("mousemove", function (e) {
-            // Draw lines
-            if (mouseDown) {
-                context.beginPath();
-                context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
-                context.lineTo(e.offsetX, e.offsetY);
-                context.strokeStyle = colour;
-                context.lineWidth = 5;
-                context.lineCap = 'round';
-                context.stroke();
-                lastEvent = e;
-            }
-        }, false);
-
-        canvas.addEventListener("mouseup", function (e) {
-            mouseDown = false;
-        }, false);
-
-        canvas.addEventListener("mouseleave", function (e) {
-            mouseDown = false;
-        }, false);
-
-        // Set up touch events for mobile, etc
-        canvas.addEventListener("touchstart", function (e) {
-        e.preventDefault();
-                mousePos = getTouchPos(canvas, e);
-          var touch = e.touches[0];
-          var mouseEvent = new MouseEvent("mousedown", {
-            clientX: touch.clientX,
-            clientY: touch.clientY
-          });
-          canvas.dispatchEvent(mouseEvent);
-          e.preventDefault();
-        }, false);
-
-        canvas.addEventListener("touchend", function (e) {
-        e.preventDefault();
-          var mouseEvent = new MouseEvent("mouseup", {});
-          canvas.dispatchEvent(mouseEvent);
-          e.preventDefault();
-        }, false);
-
-        canvas.addEventListener("touchmove", function (e) {
-        e.preventDefault();
-          var touch = e.touches[0];
-          var mouseEvent = new MouseEvent("mousemove", {
-            clientX: touch.clientX,
-            clientY: touch.clientY
-          });
-          canvas.dispatchEvent(mouseEvent);
-          e.preventDefault();
-        }, false);
-
-    //end of loop
-    })
-
-    // Get the position of a touch relative to the canvas
-    function getTouchPos(canvasDom, touchEvent) {
-      var rect = canvasDom.getBoundingClientRect();
-      return {
-        x: touchEvent.touches[0].clientX - rect.left,
-        y: touchEvent.touches[0].clientY - rect.top
-      };
-    }
-
-    // Prevent scrolling when touching the canvas
-    document.body.addEventListener("touchstart", function (e) {
-      if (e.target == canvas) {
-        e.preventDefault();
-      }
-    }, false);
-
-    document.body.addEventListener("touchend", function (e) {
-      if (e.target == canvas) {
-        e.preventDefault();
-      }
-    }, false);
-
-    document.body.addEventListener("touchmove", function (e) {
-      if (e.target == canvas) {
-        e.preventDefault();
-      }
-    }, false);
-
-    showSlides(slideIndex);
-
-    }
-
-
-function reloadP() {
-    sessionStorage.setItem("reloading", "true");
-    document.location.reload();
-}
-
-var slideIndex = 1;
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = slides.length}
-  if (n < 1) {slideIndex = 1}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  slides[slideIndex-1].style.display = "block";
-  var no = document.getElementById("slidenumber")
-  no.innerText = slideIndex.toString(10).concat(" / ").concat(slides.length)
-}
-
-  // Clear the canvas when button is clicked
-function clear_canvas_width() {
-    var s = document.getElementById("mainCanvas".concat(slideIndex-1));
-    var w = s.width;
-    s.width = 10;
-    s.width = w;
-}
-
-</script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js" integrity="sha512-5XAS7mhslf6oGjLxzmY4iYfFwDGf8G1ZBeWdymR/+y8ZCvPWwI3Ff+WrS+kabqYdIEwYaLEnJhsuymZxgrneQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'polls/questions.css' %}">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+  displayMath: [ ['$','$'], ["\\[","\\]"] ],
+  processEscapes: true },
+  "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+<script>
+
+    window.onload = function() {
+        var reloading = sessionStorage.getItem("reloading");
+
+        if (reloading) {
+            sessionStorage.removeItem("reloading");
+            openExp();
+        };
+
+        var colour = $(".selected").css("background-color");
+
+        // When clicking on colours items
+        $(".controls").on("click", "li", function () {
+            if ($(this).css("background-color") !== "rgba(0, 0, 0, 0)"){
+                    $(this).siblings().removeClass("selected");
+                    $(this).addClass("selected");
+                    colour = $(this).css("background-color");
+            }
+
+        });
+
+        document.querySelectorAll('.canvases').forEach(canvas => {
+
+            var context = canvas.getContext("2d");
+            var lastEvent;
+            var mouseDown = false;
+
+            // On mouse events on the canvas
+            canvas.addEventListener("mousedown", function (e) {
+                lastEvent = e;
+                mouseDown = true;
+            }, false);
+
+            canvas.addEventListener("mousemove", function (e) {
+                // Draw lines
+                // e.prevent_default();
+                if (mouseDown) {
+                    context.beginPath();
+                    context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
+                    context.lineTo(e.offsetX, e.offsetY);
+                    context.strokeStyle = colour;
+                    if (colour == "rgb(255, 255, 255)"){
+                        context.lineWidth = 20;
+                    } else {
+                        context.lineWidth = 5;
+                    }
+
+                    context.lineCap = 'round';
+                    context.stroke();
+                    lastEvent = e;
+                }
+            }, false);
+
+            canvas.addEventListener("mouseup", function (e) {
+                mouseDown = false;
+            }, false);
+
+            canvas.addEventListener("mouseleave", function (e) {
+                mouseDown = false;
+            }, false);
+
+            // Set up touch events for mobile, etc
+            canvas.addEventListener("touchstart", function (e) {
+                e.preventDefault();
+                mousePos = getTouchPos(canvas, e);
+                var touch = e.touches[0];
+                var mouseEvent = new MouseEvent("mousedown", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+                e.preventDefault();
+            }, false);
+
+            canvas.addEventListener("touchend", function (e) {
+                e.preventDefault();
+                var mouseEvent = new MouseEvent("mouseup", {});
+                canvas.dispatchEvent(mouseEvent);
+                e.preventDefault();
+            }, false);
+
+            canvas.addEventListener("touchmove", function (e) {
+                e.preventDefault();
+                var touch = e.touches[0];
+                var mouseEvent = new MouseEvent("mousemove", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+                e.preventDefault();
+            }, false);
+
+        //end of loop
+        })
+
+        // Get the position of a touch relative to the canvas
+        function getTouchPos(canvasDom, touchEvent) {
+          var rect = canvasDom.getBoundingClientRect();
+          return {
+            x: touchEvent.touches[0].clientX - rect.left,
+            y: touchEvent.touches[0].clientY - rect.top
+          };
+        }
+
+        // Prevent scrolling when touching the canvas
+        document.body.addEventListener("touchstart", function (e) {
+          if (e.target == canvas) {
+            e.preventDefault();
+          }
+        }, false);
+
+        document.body.addEventListener("touchend", function (e) {
+          if (e.target == canvas) {
+            e.preventDefault();
+          }
+        }, false);
+
+        document.body.addEventListener("touchmove", function (e) {
+          if (e.target == canvas) {
+            e.preventDefault();
+          }
+        }, false);
+
+        showSlides(slideIndex);
+
+        }
+
+    function reloadP() {
+        sessionStorage.setItem("reloading", "true");
+        document.location.reload();
+    }
+
+    var slideIndex = 1;
+
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      if (n > slides.length) {slideIndex = slides.length}
+      if (n < 1) {slideIndex = 1}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "block";
+      var no = document.getElementById("slidenumber")
+      no.innerText = slideIndex.toString(10).concat(" / ").concat(slides.length)
+    }
+
+      // Clear the canvas when button is clicked
+    function clear_canvas_width() {
+        var s = document.getElementById("mainCanvas".concat(slideIndex-1));
+        var w = s.width;
+        s.width = 10;
+        s.width = w;
+    }
+</script>
 
 <html>
 
@@ -183,6 +191,9 @@ function clear_canvas_width() {
       <title>MATHGEN - {{title}}</title>
           <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico" />
       <style>
+
+        html, body {margin: 0; height: 100%; overflow: hidden}
+
         body {
           font-family: 'Lato', sans-serif;
         }
@@ -269,14 +280,14 @@ function clear_canvas_width() {
   cursor: pointer;
   position: absolute;
   top: 50vh;
-  width: auto;
+  width: 3vw;
   margin-top: 0px;
   padding: 16px;
   color: white;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
+  border-radius: 3px 3px 3px 3px;
   user-select: none;
 }
 
@@ -343,6 +354,22 @@ function clear_canvas_width() {
   from {opacity: .4}
   to {opacity: 1}
 }
+@media print {
+    body {
+        position: fixed;
+    }
+    a.button1{
+        display: none;
+    }
+
+}
+
+span {
+}
+.mjx-chtml  {
+    font-size: 100% !important;
+}
+
       </style>
       <script>
             function openAns() {
@@ -360,6 +387,35 @@ function clear_canvas_width() {
             function closeExp() {
               document.getElementById("example_overlay").style.width = "0%";
             }
+            function gen_pdf() {
+                var doc = new jsPDF('l','pt','a4');
+                doc.addHTML($('#content')[0], function(bla){doc.save('saveInCallback.pdf');});
+            }
+
+
+            function getSnap() {
+              document.getElementById("content").style.display = "block";
+              html2canvas(document.getElementById("content"), {
+                onrendered: function(canvas) {
+                  var imgData = canvas.toDataURL('image/png');
+
+                  // Generate PDF
+                  var doc = new jsPDF('l', 'pt', 'a4');
+                  const imgProps = doc.getImageProperties(imgData);
+                  var width = doc.internal.pageSize.getWidth();
+                  var height = doc.internal.pageSize.getHeight();
+                  doc.addImage(imgData, 'PNG', 0, 0,width, imgProps.height * (width/imgProps.width));
+                  doc.addPage();
+                  doc.addImage(imgData, 'PNG', 0, 0,width, imgProps.height * (width/imgProps.width));
+                  doc.addPage();
+                  doc.addImage(imgData, 'PNG', 0, 0,width, imgProps.height * (width/imgProps.width));
+                  doc.addPage();
+                  doc.addImage(imgData, 'PNG', 0, 0,width, imgProps.height * (width/imgProps.width));
+                  doc.save('printout.pdf');
+                }
+              });
+            document.getElementById("content").style.display = "none";
+            }
 
         </script>
     <meta charset="utf-8">
@@ -368,16 +424,28 @@ function clear_canvas_width() {
   <body style="background-color:#bcdff5;">
 
         <!-- Header Block -->
-          <div id="grid" style="margin:0 0 0 0; grid-template-columns:70% 30%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:36; font-weight:400;">
+          <div id="grid" style="margin:0 0 0 0; grid-template-columns:70% 30%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:4vh; font-weight:600;">
               <div style="padding:1.5vh 0 0 2vw;">{{title}}</div>
-              <div style="padding:1.5vh 0 0 2vw; text-align:right;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2.5vh;">{{strand}}</a><a href="/"  class="button1" style="font-size:2.5vh;">Home</a></div>
+              <div style="padding:1.5vh 0 0 2vw; text-align:right;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2vh;">{{strand}}</a><a href="/"  class="button1" style="font-size:2vh;">Home</a></div>
           </div>
+        <div id="content1">
+
+
+
+
+
 
         <!-- Question grid -->
         {% if imgs|lookup:0 == 0 %}
-            <div id="grid" style="grid-template-columns: 5% 45% 5% 45%; padding:0; width: 96%; font-size:36px;">
+
+                <div id="grid" style="grid-template-columns: 5% 45% 5% 45%; padding:0; width: 100%; height:82vh; font-size:40px; margin:0; align-items: center;">
+
         {% else %}
-            <div id="grid" style="grid-template-columns: 5% 20% 5% 20% 5% 20% 5% 20%; padding:0; width: 96%; font-size:36px;">
+            {% if strand == "Starters" %}
+                <div id="grid" style="grid-template-columns: 5% 45% 5% 45%; padding:0; width: 100%; height:82vh; font-size:40px; margin:0; align-items: center;">
+            {% else %}
+                <div id="grid" style="grid-template-columns: 5% 20% 5% 20% 5% 20% 5% 20%; padding:0; height:87vh; width: 100%; font-size:40px; margin:0; align-items: center;">
+            {% endif %}
         {% endif %}
 
         {% for i in count %}
@@ -385,19 +453,30 @@ function clear_canvas_width() {
             {% if imgs|lookup:i == 0 %}
 
                 {% if questions|lookup:i|first_char:0 == "$" %}
-                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div style="font-size:5vh;">{{questions|lookup:i|linebreaksbr}}</div>
+                    <div style="text-align:center; align-items: center;">({{alphas|lookup:i}})</div><div style="font-size:40px; align-items: center;">{{questions|lookup:i|linebreaksbr}}</div>
                 {% else %}
                     <!--<div style="text-align:center;">({{alphas|lookup:i}})</div><div style="font-size:30px;">{{questions|lookup:i|linebreaksbr}}</div>-->
-                    <div style="text-align:center;">({{alphas|lookup:i}})</div><div style={{questions|lookup:i|get_font_size:0}}>{{questions|lookup:i|linebreaksbr}}</div>
+                    <div style="text-align:center; align-items: center;">({{alphas|lookup:i}})</div><div style="{{questions|lookup:i|get_font_size:0}}; align-items: center;">{{questions|lookup:i|linebreaksbr}}</div>
                 {% endif %}
 
             {% else %}
-                <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img src="/media/{{questions|lookup:i}}" style="height:auto;"></div>
+                    {% if strand == "Starters" %}
+                        <div style="text-align:center;">({{alphas|lookup:i}})</div>
+
+                        <div style="font-size:20px;">
+                            {{text|lookup:i|linebreaksbr}}
+                            <img width="30%" src="/media/{{questions|lookup:i}}">
+                        </div>
+
+                    {% else %}
+                        <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img width="100%" src="/media/{{questions|lookup:i}}"></div>
+                    {% endif %}
 
             {% endif %}
 
         {% endfor %}
 
+      </div>
       </div>
 
 
@@ -415,9 +494,6 @@ function clear_canvas_width() {
 
         </div>
       </div>
-        {% if strand == "Starters" %}
-            <div></div>
-        {% else %}
 
         <!-- Example Overlay -->
         <div id="example_overlay" class="overlay" style="color:rgba(0,0,0,1); background-color:white;">
@@ -428,36 +504,71 @@ function clear_canvas_width() {
 
 <div class="mySlides fade">
 
-<canvas	class="canvases" width="4000px" height="4000px" style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas{{i}}"></canvas>
+<canvas	class="canvases" width="2000px" height="2000px" style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas{{i}}"></canvas>
 
-            <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 50% 50%; height:20vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
-                <div style="height:15vh; text-align:center; border-right: 0px solid black;">
-                    <h2>My Go</h2>
-                </div>
-                <div style="height:15vh; text-align:center; border-bottom: 0px solid black; border-left: 0px solid black;">
-                    <h2>Your Go</h2>
-                </div>
-                <div style="padding: 5px 5px 5px 5px; height:15vh; font-size:35px; border-right: 3px solid black;">
-                    {% if imgs|lookup:i == 0 %}
-                        {{examples|lookup:i}}
+            <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 60% 30%; height:90vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
+                <div style="height:100%; text-align:center; border-right: 3px solid black;">
+                    {% if strand == "Starters" %}
+                        <p>Starter Question</p>
                     {% else %}
-                        <img src="/media/{{examples|lookup:i}}" style="width=40vw;">
+                    <p>My Go</p>
                     {% endif %}
                 </div>
-                <div style="padding: 5px 5px 5px 5px; border-left: 0px solid black; height:15vh; font-size:35px; ">
-                    {% if imgs|lookup:i == 0 %}
-                        {{yourgos|lookup:i}}
+                <div style="height:100%; text-align:center; border-bottom: 0px solid black; border-left: 0px solid black;">
+                    {% if strand == "Starters" %}
+                    <p>Second Chance</p>
                     {% else %}
-                        <img src="/media/{{yourgos|lookup:i}}" style="width=40vw;">
+                    <p>Your Go</p>
                     {% endif %}
                 </div>
-                <div style="height:70vh;border-right: 3px solid black;"> </div><div style="height:100px;"> </div>
+
+                    {% if imgs|lookup:i == 0 %}
+                        {% if examples|lookup:i|first_char:0 == "$" %}
+                            <div style="padding: 5px 5px 5px 5px; height:100%; font-size:5vh; border-right: 3px solid black;">
+                        {% else %}
+                            <div style="padding: 5px 5px 5px 5px; height:100%; font-size:3vh; border-right: 3px solid black;">
+                        {% endif %}
+
+                        {% if strand == "Starters" %}
+                            {{questions|lookup:i|linebreaksbr}}
+                        {% else %}
+                            {{examples|lookup:i|linebreaksbr}}
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div style="padding: 5px 5px 5px 5px; height:100%; font-size:8vh; border-right: 3px solid black;">
+                        {% if strand == "Starters" %}
+                            <img height="100%" src="/media/{{questions|lookup:i}}">
+                        {% else %}
+                            <img height="100%" src="/media/{{examples|lookup:i}}">
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    {% if imgs|lookup:i == 0 %}
+                        {% if yourgos|lookup:i|first_char:0 == "$" %}
+                            <div style="padding: 5px 5px 5px 5px; height:100%; font-size:5vh; border-right: 3px solid black;">
+                        {% else %}
+                            <div style="padding: 5px 5px 5px 5px; height:100%; font-size:3vh; border-right: 3px solid black;">
+                        {% endif %}
+                        {{yourgos|lookup:i|linebreaksbr}}
+                    </div>
+                    {% else %}
+                    <div style="padding: 5px 5px 5px 5px; border-left: 0px solid black; height:100%; font-size:50px; ">
+                        <img  height="100%" src="/media/{{yourgos|lookup:i}}">
+                                        </div>
+                    {% endif %}
+
+                <div style="height:100%; border-right: 3px solid black;"> </div><div style="height:100%;"> </div>
 
             </div>
  </div>
  {% endfor %}
-  <a class="prev" onclick="plusSlides(-1)" style="z-index:2;">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)" style="z-index:2;">&#10095;</a>
+  <a class="prev" onclick="plusSlides(-1)" style="z-index:2; top:50vh;">&#10094;</a>
+  <a class="prev" onclick="plusSlides(-1)" style="z-index:2; top:50vh; right:0;">&#10094;</a>
+
+  <a class="next" onclick="plusSlides(1)" style="z-index:2; top:40vh;">&#10095;</a>
+    <a class="next" onclick="plusSlides(1)" style="z-index:2; top:40vh; left:0;">&#10095;</a>
 </div>
 
             <div class="controls" style="position:absolute; z-index:2; align-items: center; width:100%; top:90vh;">
@@ -478,21 +589,26 @@ function clear_canvas_width() {
       </div>
 
 
-        {% endif %}
-
         <!-- Footer Grid -->
-      <div id="grid" style = "grid-template-columns:20% 60% 20%; height:5vh; margin: 0 2% 0 2%">
+      <div id="grid" style = "position:absolute; grid-template-columns:20% 60% 20%; height:5vh; margin: 0 2% 0 2%; top:92vh;">
           <div style="text-align:left;">
-              <img src="/media/mathgen.png" style="height:5vh;">
+              <img src="/media/mathgen.png" style="height:4vh;">
           </div>
 
           <div style="text-align: center;">
 
-            <a href=# onclick="openAns()" class="button1" style="font-size:2.5vh;">Answers</a>
-              {% if strand != "Starters" %}
-                <a href=# onclick="openExp()" class="button1" style="font-size:2.5vh;">Example</a>
-              {% endif %}
-              <a href=# onclick="window.location.reload();" class="button1" style="font-size:2.5vh;">New Qs</a>
+            <a href="/qs/?year={{prev}}&task={{task_code_full}}" class="button1" style="font-size:2vh;">Prev</a>
+
+            <a href=# onclick="openAns()" class="button1" style="font-size:2vh;">Answers</a>
+
+            <a href=# onclick="openExp()" class="button1" style="font-size:2vh;">Example</a>
+
+            <a href=# onclick="window.location.reload();" class="button1" style="font-size:2vh;">New Qs</a>
+
+            <a href=# class="button1" onclick="getSnap();" style="font-size:2vh;">PDF</a>
+
+            <a href="/qs/?year={{next}}&task={{task_code_full}}" class="button1" style="font-size:2vh;">Next</a>
+
 
 
           </div>
@@ -500,6 +616,40 @@ function clear_canvas_width() {
           <div></div>
       </div>
 
+
+        <div id="content" style="display: none; width: 1315px; font-variant: normal;">
+        <!-- Question grid -->
+        {% if imgs|lookup:0 == 0 %}
+
+                <div id="grid" style="grid-template-columns: 5% 45% 5% 45%; padding:0; width: 100%; height:82vh; font-size:4vh; margin:0; align-items: center;">
+
+        {% else %}
+            <div id="grid" style="grid-template-columns: 5% 20% 5% 20% 5% 20% 5% 20%; padding:0; height:87vh; width: 100%; font-size:4vh; margin:0; align-items: center;">
+        {% endif %}
+
+        {% for i in count %}
+
+            {% if imgs|lookup:i == 0 %}
+
+                {% if questions|lookup:i|first_char:0 == "$" %}
+                    <div style="text-align:center; align-items: center;">({{alphas|lookup:i}})</div><div style="font-size:40px; align-items: left;">{{questions|lookup:i|linebreaksbr}}</div>
+                {% else %}
+                    <div style="text-align:center; align-items: center;">({{alphas|lookup:i}})</div><div style="font-size:32px; align-items: left;">{{questions|lookup:i|linebreaksbr}}</div>
+                {% endif %}
+
+            {% else %}
+                    {% if strand == "Starters" %}
+                        <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img height="75%" src="/media/{{questions|lookup:i}}"></div>
+                    {% else %}
+                        <div style="text-align:center;">({{alphas|lookup:i}})</div><div><img width="100%" src="/media/{{questions|lookup:i}}"></div>
+                    {% endif %}
+
+            {% endif %}
+
+        {% endfor %}
+
+      </div>
+      </div>
 
 
   </body>

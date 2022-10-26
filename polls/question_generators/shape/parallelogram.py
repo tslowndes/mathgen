@@ -30,12 +30,13 @@ def area_of_parallelogram(scalene, lbls, rot, para_trap=0):
 
     height = random.randint(5,12)
     base = random.randint(3,12)
-    
+
     if para_trap == 0:
         height = random.randint(5,12)
         base = random.randint(3,12)
         offset = random.randint(1,int(round(base*0.75,0)))
         points = [[0,0], [base,0], [base+offset,height], [offset, height], [0,0]]
+        offset2 = 0
     else:
         height = random.randint(5,12)
         base = random.randint(6,12)
@@ -51,10 +52,10 @@ def area_of_parallelogram(scalene, lbls, rot, para_trap=0):
 
     units = random.choice(['mm', 'cm', 'm'])
     if para_trap == 0:
-        lengths = [base, round(math.sqrt(offset**2 + height**2),1), base, round(math.sqrt(offset**2 + height**2),1)]
+        lengths = [base, math.ceil(math.sqrt(offset**2 + height**2)), base, round(math.sqrt(offset**2 + height**2),1)]
     else:
-        lengths = [base, round(math.sqrt((offset+offset2)**2 + height**2),2), base-(offset*2)-offset2, round(math.sqrt(offset**2 + height**2),1)]
-        
+        lengths = [base, math.ceil(math.sqrt((offset+offset2)**2 + height**2)), base-(offset*2)-offset2, round(math.sqrt(offset**2 + height**2),1)]
+
     label_points = labels_for_shape(ar(points))
 
     angs = []
@@ -80,24 +81,30 @@ def area_of_parallelogram(scalene, lbls, rot, para_trap=0):
             labels = [str(lengths[0]) + units, '', str(lengths[2])+units, '']
         else:
             labels = random.choice([[str(lengths[0]) + units, str(lengths[1]) + units, str(lengths[2])+units, ''], [str(lengths[0]) + units, '', str(lengths[2])+units, str(lengths[1]) + units]])
-        
+
     if random.randint(0,1)==1:
         height_arrow = [points[3], [offset,0]]
         height_txt = str(height) + units
         height_lbl = [offset+math.sqrt(height/10), height/2]
         height_ang=-90
     else:
-        height_arrow = [points[2], [base-offset-offset2,0]]
-        height_txt = str(height) + units
-        height_lbl = [base-offset-offset2-math.sqrt(height/10), height/2]
-        height_ang = 90
-        
+        if para_trap == 1:
+            height_arrow = [points[2], [base-offset-offset2,0]]
+            height_txt = str(height) + units
+            height_lbl = [base-offset-offset2-math.sqrt(height/10), height/2]
+            height_ang = 90
+        else:
+            height_arrow = [points[2], [points[2][0],0]]
+            height_txt = str(height) + units
+            height_lbl = [points[2][0]+math.sqrt(height/10), height/2]
+            height_ang = 90
+
     if rot == 1:
         height_ang = -90+ang
         height_arrow = rotate(ar(height_arrow), ang).tolist()
 
     fig = plot_shape(ar(points), label_points, labels, 3, 0, angs, height_arrow, height_lbl, height_ang, height_txt)
-    plt.text(-2,height + 0.25*height,"A=?")
+    #plt.text(-2,height + 0.25*height,"A=?")
     r = random.randint(0, 999999999999999)
     fn = 'temp_img/temp' + str(r) + '.png'
 
@@ -106,5 +113,5 @@ def area_of_parallelogram(scalene, lbls, rot, para_trap=0):
         ans = base * height
     else:
         ans = 0.5 * (base + lengths[2]) * height
-        
-    return fn, '$$' + str(ans) + units + '^2' + '$$'
+
+    return fn, '$' + str(ans) + units + '^2' + '$'

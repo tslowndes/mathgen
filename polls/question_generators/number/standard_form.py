@@ -4,17 +4,25 @@ from decimal import Decimal
 from polls.question_generators.tools import *
 
 def powers_of_ten(neg):
-    if neg == 0:
-        power_of_ten = random.randint(1,9)
-    else:
-        power_of_ten = random.randint(-9,-1)
+    #if neg == 0:
+    power_of_ten = random.randint(1,9)
+    #else:
+    #    power_of_ten = random.randint(-9,-1)
     ordinary = 10**power_of_ten
 
     if random.randint(0,1)==1:
-        q = '$10^' + str(power_of_ten) + ' = $'
+        q = '$10^{' + str(power_of_ten) + '} = $'
         ans = ordinary
     else:
-        q = '$' + str(ordinary) + r' = 10^{\left [ \;\; \right]}$'
+        if neg == 1:
+            q = '0.'
+            for i in range(abs(power_of_ten)-1):
+                q = q + '0'
+            q = '$' + q + '1' +  r'= 10^{\left [ \;\; \right]}$'
+        else:
+            q = '$' + strip_0(ordinary) + r'= 10^{\left [ \;\; \right]}$'
+        #q = '$' + str(ordinary) + r' = 10^{\left [ \;\; \right]}$'
+        #q = '$' + strip_0('0' + '{:.10f}'.format(ordinary)) + r' = 10^{\left [ \;\; \right]}$'
         ans = power_of_ten
 
     return q,ans
@@ -28,6 +36,63 @@ def gen_power_of_ten(n,neg,b,c,d,e):
         q,a = powers_of_ten(neg)
         while q in questions:
             q,a = powers_of_ten(neg)
+
+        questions.append(q)
+        answers.append(a)
+
+    return {'questions':questions, 'answers':answers, 'count':count}
+
+def multiplying_standard_form(adj, dec,neg_power):
+    if neg_power == 0:
+        min_power = 2
+        max_power = 20
+    else:
+        min_power = -10
+        max_power = 10
+    if adj == 0:
+        a1 = random.randint(1,3)
+        a2 = rand_no0_no1(min_power,max_power)
+        b1 = random.randint(1,3)
+        b2 = rand_no0_no1(min_power, max_power)
+        if random.randint(0,1) == 0:
+            q = r'$ \left(' + str(a1) + r'\times 10^{' + str(a2) + r'} \right) \times \left ( ' + str(b1) + r'\times 10^{' + str(b2) + r'} \right) $'
+        else:
+            q = r'$ ' + str(a1) + r'\times 10^{' + str(a2) + r'}  \times  ' + str(b1) + r'\times 10^{' + str(b2) + r'}  $'
+
+        ans = r'$' + str(a1*b1) + r'\times 10^{' + str(a2+b2) + r'} $'
+        return q,ans
+    else:
+        a1 = random.randint(3,9)
+        a2 = rand_no0_no1(min_power,max_power)
+        b1 = random.randint(4,9)
+        b2 = rand_no0_no1(min_power, max_power)
+        if random.randint(0,1) == 0:
+            q = r'$ \left(' + str(a1) + r'\times 10^{' + str(a2) + r'} \right) \times \left ( ' + str(b1) + r'\times 10^{' + str(b2) + r'} \right) $'
+        else:
+            q = r'$ ' + str(a1) + r'\times 10^{' + str(a2) + r'}  \times  ' + str(b1) + r'\times 10^{' + str(b2) + r'}  $'
+        ans = a1*b1
+        power = a2+b2
+        if a1 * b1 >= 10:
+            ans = ans / 10
+            power = power + 1
+        ans = r'$' + str(ans) + r'\times 10^{' + str(power) + r'} $'
+        return q,ans
+        pass
+
+def gen_multiplying_standard_form(multi_div,adj,c,d,e,f):
+    questions = []
+    answers = []
+    count = [i for i in range(10)]
+
+    dec = 0
+    for i in range(10):
+        if i < 4:
+            neg_power = 0
+        else:
+            neg_power = 1
+        q,a = multiplying_standard_form(adj,dec,neg_power)
+        while q in questions:
+            q,a = multiplying_standard_form(adj,dec,neg_power)
 
         questions.append(q)
         answers.append(a)
@@ -67,16 +132,6 @@ def gen_standard_form(n,large_small_mix,max_power,std_to_ord,adj,e):
 
     return {'questions':questions, 'answers':answers, 'count':count}
 
-def readable_digits(n):
-    n=str(n)
-    i = floor(len(n)/3)
-    for j in range(i):
-        if j == 0:
-            n = n[:-3*(j+1)] + " " + n[-3*(j+1):]
-        else:
-            n = n[:-3*(j+1)-j] + " " + n[-3*(j+1)-j:]
-    return n
-
 def strip_zeros(a):
     if "." in a:
         a = a.strip("0")
@@ -109,8 +164,9 @@ def standard_form_large(max_power, decimal, std_to_ord, adj=0):
             if max_power > 0:
                 q = readable_digits(strip_zeros(str(q)))
             else:
-                p = readable_digits(q[1:][::-1])
-                q = "0." + p[::-1]
+                #p = readable_digits(q[1:][::-1])
+                #q = "0." + p[::-1]
+                q="0" + str(q)
         else:
             adjustment = rand_no0(-3,3)
             q = '$' + strip_zeros(str(round(a*10**adjustment,abs(adjustment)))) + r'\times 10^{' + str(power-adjustment) + '}$'

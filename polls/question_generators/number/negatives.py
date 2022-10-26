@@ -1,13 +1,15 @@
 import random
 
 def negative_addition(type, additive_inverse=0):
-    # type 1 1 - 2
+    # type 0 1 - 2 always cross 0
+    # type 1 -2 + 3 always cross 0
     # type 2 -1 + 2
     # type 3 2 + -1
     # type 4 2 - - 1
     # type 5 -1 - 2
-    if type > 5:
-        type = random.randint(1,4)
+    # type 6 -1 + -5
+    #if type > 5:
+    #    type = random.randint(1,4)
 
     neg = random.randint(-10,-1)
     non_neg = random.randint(1,10)
@@ -39,7 +41,12 @@ def negative_addition(type, additive_inverse=0):
     elif type == 5:
         q = '$' + str(neg) + ' - ' + str(non_neg) + '$'
         ans = neg - non_neg
+    elif type == 6:
+        q = '$' + str(neg) + ' + ' + str(random.randint(-10,-1)) + '$'
+        ans = neg - non_neg
+
     ans = '$' + str(ans) + '$'
+
     return q,ans
 
 def negative_mutliplication(multi_or_div, type):
@@ -94,13 +101,21 @@ def gen_crossing_zero(n,a,b,c,d,e):
 
     return {'questions':questions, 'answers':answers, 'count':count}
 
-def gen_adding_negatives(n,a,b,c,d,e):
+def gen_adding_negatives(n,add_sub_both,b,c,d,e):
     questions = []
     answers = []
     count = [i for i in range(10)]
 
+    if add_sub_both == 0:
+        types = [2,3,6]
+    elif add_sub_both == 1:
+        types = [4,5]
+    else:
+        types = [2,3,4,5,6]
+
+
     for i in range(10):
-        q,a = negative_addition(i+1)
+        q,a = negative_addition(random.choice(types))
         questions.append(q)
         answers.append(a)
 

@@ -1,8 +1,12 @@
 import random
 from polls.question_generators.tools import *
 import numpy as np
-def multiplying_terms(n_alphas):
-    n_terms = random.randint(2,6)
+
+def multiplying_terms(n_alphas,nums=0):
+    n_terms = random.randint(1,4)
+    n=0
+    n1 = random.randint(2,5)
+    n2 = random.randint(2,5)
 
     alpha1 = get_alpha()
     if n_alphas == 1:
@@ -13,8 +17,15 @@ def multiplying_terms(n_alphas):
             alpha2 = get_alpha()
 
     alphas = [alpha1, alpha2]
-    q = '$' + alpha1 + r' \times ' + alpha2
-    for i in range(n_terms-2):
+    if nums == 0:
+        q = '$' + alpha1 + r' \times ' + alpha2
+    else:
+        q = '$' +str(n1) + r' \times ' + alpha1 + r' \times ' + alpha2
+        n = random.randint(0, n_terms-1)
+
+    for i in range(n_terms):
+        if i == n and nums == 1:
+            q = q + r' \times ' + str(n2)
         a = random.choice([alpha1, alpha2])
         alphas.append(a)
         q = q + r' \times ' + a
@@ -25,30 +36,41 @@ def multiplying_terms(n_alphas):
     unique.sort()
 
     if len(unique) == 1:
-        ans = '$' + alpha1 + '^' + str(len(alphas)) + '$'
+        if nums == 0:
+            ans = '$' + alpha1 + '^' + str(len(alphas)) + '$'
+        else:
+            ans = '$' +str(n1*n2) + alpha1 + '^' + str(len(alphas)) + '$'
     else:
-        ans = '$' + tidy_algebra(unique[0] + '^' + str(alphas.count(unique[0])) +'\;' + unique[1] + '^' + str(alphas.count(unique[1]))) + '$'
+        if nums == 0:
+            ans = '$' + tidy_algebra(unique[0] + '^' + str(alphas.count(unique[0])) +'\;' + unique[1] + '^' + str(alphas.count(unique[1]))) + '$'
+        else:
+            ans = '$' + tidy_algebra(str(n1*n2) +unique[0] + '^' + str(alphas.count(unique[0])) +'\;' + unique[1] + '^' + str(alphas.count(unique[1]))) + '$'
     return q,ans
 
 
-def laws_of_indices_multiplying(n_terms, min_i, coefficient):
+def laws_of_indices_multiplying(n_terms, min_i, coefficient, max_i=10):
     alpha1 = get_alpha()
     i = []
     cs = []
-    q = '$'
+    q = ''
     for j in range(n_terms):
-        i.append(rand_no0_no1(min_i,10))
+        i.append(rand_no0(min_i,max_i))
         if coefficient == 0:
             cs.append('')
         else:
             cs.append(random.randint(2,5))
-
-        if j == 0:
-            q = q + str(cs[-1]) + alpha1 + '^{' + str(i[-1]) + '}'
+        if i[-1] != 1:
+            if j == 0:
+                q = q + str(cs[-1]) + alpha1 + '^{' + str(i[-1]) + '}'
+            else:
+                q = q + r' \times ' + str(cs[-1]) + alpha1 + '^{' + str(i[-1]) + '}'
         else:
-            q = q + r' \times ' + str(cs[-1]) + alpha1 + '^{' + str(i[-1]) + '}'
+            if j == 0:
+                q = q + str(cs[-1]) + alpha1
+            else:
+                q = q + r' \times ' + str(cs[-1]) + alpha1
 
-    q = q + '$'
+    q ='$' + tidy_algebra(q) + '$'
     if coefficient == 0:
         ans = '$' + alpha1 + '^{' + str(np.sum(i)) + '}$'
     else:
@@ -159,13 +181,15 @@ def gen_law_of_indices(multi_or_div,a,b,c,d,e):
     count = [i for i in range(10)]
 
     for i in range(10):
-        if multi_or_div == 0:
-            if i < 5:
-                q, a = laws_of_indices_multiplying(2,2,0)
+        if multi_or_div == 0: #(n_terms, min_i, coefficient, max_i=10)
+            if i < 2:
+                q, a = laws_of_indices_multiplying(2,2,0,6)
+            elif i < 6:
+                q, a = laws_of_indices_multiplying(2,1, 1,10)
             elif i < 8:
-                q, a = laws_of_indices_multiplying(2,-3, 1)
+                q, a = laws_of_indices_multiplying(2,-5, 1,2)
             else:
-                q, a = laws_of_indices_multiplying(random.randint(2,3),-10, 1)
+                q, a = laws_of_indices_multiplying(3,-10, 1,10)
         elif multi_or_div == 1:
             if i < 5:
                 q, a = laws_of_indices_dividing(2,2,0)
@@ -182,6 +206,13 @@ def gen_law_of_indices(multi_or_div,a,b,c,d,e):
                 q, a = laws_of_indices_brackets(1, 0, 1)
             else:
                 q, a = laws_of_indices_brackets(2, 0, 1)
+        elif multi_or_div == 3:
+            if i < 5:
+                q, a = laws_of_indices_multiplying(2,1,0,2)
+            elif i < 8:
+                q, a = laws_of_indices_multiplying(2,1, 1,2)
+            else:
+                q, a = laws_of_indices_multiplying(3,1, 1,2)
 
 
         questions.append(q)
@@ -197,10 +228,12 @@ def gen_multiplying_terms(a,b,c,d,e,f):
     count = [i for i in range(10)]
 
     for i in range(10):
-        if i < 5:
+        if i < 2:
             q, a = multiplying_terms(1)
-        else:
+        elif i < 4:
             q,a = multiplying_terms(2)
+        else:
+            q,a = multiplying_terms(2,1)
 
         questions.append(q)
         answers.append(a)

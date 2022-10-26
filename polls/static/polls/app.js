@@ -31,7 +31,9 @@ canvas.addEventListener("mousemove", function (e) {
         context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
         context.lineTo(e.offsetX, e.offsetY);
         context.strokeStyle = colour;
-        if (colour == "white"){
+        window.alert(colour);
+        if (colour == "rgb(255, 255, 255)"){
+
             context.linewidth = 10
         } else {
             context.lineWidth = 5;

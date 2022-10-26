@@ -11,6 +11,10 @@ from polls.question_generators.algebra.expanding_and_factorising import *
 from polls.question_generators.algebra.inequalities import *
 from polls.question_generators.algebra.substitution import *
 from polls.question_generators.algebra.indices import *
+from polls.question_generators.algebra.quadratic_sequences import *
+from polls.question_generators.algebra.linear_graphs import *
+from polls.question_generators.algebra.function_machines import *
+from polls.question_generators.algebra.simultaneous_equations import *
 ####### NUMBER #######
 from polls.question_generators.number.fdp_conversions import *
 from polls.question_generators.number.place_value import *
@@ -24,6 +28,8 @@ from polls.question_generators.number.numerical_indices import *
 from polls.question_generators.number.arithmetic import *
 from polls.question_generators.number.money import *
 from polls.question_generators.number.ratio import *
+from polls.question_generators.number.converting_units import *
+from polls.question_generators.number.surds import *
 ####### SHAPE #######
 from polls.question_generators.shape.pythagoras import *
 from polls.question_generators.shape.cuboid import *
@@ -33,6 +39,7 @@ from polls.question_generators.shape.triangles import *
 from polls.question_generators.shape.parallelogram import *
 from polls.question_generators.shape.angles import *
 from polls.question_generators.shape.trigonometry import *
+from polls.question_generators.shape.circles import *
 
 ####### STARTERS #######
 from polls.question_generators.starters.wrm_year7 import *
@@ -65,6 +72,7 @@ def index(request):
         args = [df_year['arg1'].to_list()[0],df_year['arg2'].to_list()[0],df_year['arg3'].to_list()[0],df_year['arg4'].to_list()[0],df_year['arg5'].to_list()[0],df_year['arg6'].to_list()[0]]
         img = df_year['images'].to_list()[0]
         title = df_year['Task_Title'].to_list()[0]
+
         #Setting up method
         possibles = globals().copy()
         possibles.update(locals())
@@ -97,12 +105,22 @@ def index(request):
             else:
                 imgs.append(0)
         print(imgs)
+        context['task_code_full'] = task_code
 
         task_code = task_code[0]
         context['alphas'] = alphas
         context['imgs'] = imgs
         context['title'] = title
         context['task_code'] = task_code
+
+        if year != 11:
+            context['next'] = year + 1
+        else:
+            context['next'] = 7
+        if year != 7:
+            context['prev'] = year -1
+        else:
+            context['prev'] = 11
         if task_code == 'A':
             strand = 'Algebra'
         elif task_code == 'N':

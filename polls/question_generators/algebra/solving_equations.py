@@ -18,7 +18,10 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
     for i in range(0, n):
 
         if i > 7:
-            minx = -10
+            if brackets == 1:
+                minx = -5
+            else:
+                minx = -10
         else:
             minx = 1
 
@@ -35,10 +38,17 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
                 a = rand_no0_no1(minx, 9)
                 b = 0
         else:
-            a = rand_no0_no1(minx, 9)
-            b = rand_no0_no1(min, 9)
+            if brackets == 1:
+                a = rand_no0_no1(minx, 5)
+                b = rand_no0_no1(min, 5)
+            else:
+                a = rand_no0_no1(minx, 9)
+                b = rand_no0_no1(min, 9)
 
-        x = rand_no0_no1(minx, 9)
+        if brackets == 1:
+            x = rand_no0_no1(minx, 5)
+        else:
+            x = rand_no0_no1(minx, 9)
 
         if a == 1 or brackets == 1 or bothsides == 1:
             multidiv = 0
@@ -60,11 +70,11 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
             c = c * d
 
         if bothsides == 1:
-            e = rand_no0(-10, 10)
+            e = rand_no0(minx, 5)
             f = a + e
 
             while f == 0:
-                e = rand_no0(-10, 10)
+                e = rand_no0(minx, 5)
                 f = a + e
 
             a = f
@@ -75,7 +85,7 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         alpha = random.choice('abcdefghjklmnpqrstuvwxyz')
 
         if bothsides == 1:
-            if random.randint(0,1) == 0:
+            if random.randint(0,2) == 0:
                 ans_side = ans_side + " + " + str(e) + alpha
             else:
                 ans_side = str(e) + alpha + " + " + ans_side
@@ -120,3 +130,46 @@ def gen_solving_equations(n, negs, negxs, steps, bothsides, brackets):
         }
     else:
         return qs[0], ans[0]
+
+def solving_equations_decimal(n,eq_inq,brackets,a4,a5,a6):
+
+    count = []
+    qs = []
+    ans = []
+    for i in range(0, n):
+        if eq_inq == 0:
+            sign = " = "
+        else:
+            sign = random.choice(['<','>','\leq','\geq'])
+        a = random.choice([2,4,5,8,10])
+        b = rand_no0(-10,10)
+        c = random.randint(11,20)
+        x = (c - b) / a
+        if x.is_integer():
+            c += 1
+            x = (c-b)/a
+
+        alpha = get_alpha()
+        if brackets == 0:
+            q = "$" + tidy_algebra(str(a) + alpha + " + " + str(b)) + sign + str(c) + "$"
+            a = strip_0(x)
+        else:
+            d = random.randint(2,9)
+            q = "$" + str(d) + '\left(' + tidy_algebra(str(a) + alpha + " + " + str(b)) + r'\right)' + sign + str(c*d) + "$"
+            a = strip_0(x)
+
+
+        if a[0] == ".":
+            a = "0" + a
+        count.append(i)
+        qs.append(q)
+        ans.append("$" + alpha +sign + a + "$")
+
+
+    return {
+        'count': count,
+        'questions': qs,
+        'answers': ans
+    }
+
+

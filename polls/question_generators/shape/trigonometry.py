@@ -40,7 +40,7 @@ def right_angled(sin_cos_tan, multi_div,find_angle=0):
     angle_1 = round(degrees(acos(float(lens[0])/float(lens[2]))),0)
     angle_2 = round(degrees(asin(float(lens[0])/float(lens[2]))),0)
 
-    
+
     #tri = rotate(tri, ang)
     #right_angle_marker = rotate_shape(right_angle_marker, c, ang*pi/180)
     angs = []
@@ -57,7 +57,7 @@ def right_angled(sin_cos_tan, multi_div,find_angle=0):
     lbl_points = labels_for_shape(tri)
     tri = ar(list(tri) + list(right_angle_marker))
     lens = [float(i) for i in lens]
-    
+
     if sin_cos_tan == 0:
         if multi_div ==0:
             if random.randint(0,1) == 1:
@@ -136,44 +136,44 @@ def right_angled(sin_cos_tan, multi_div,find_angle=0):
             ans = angle_2
 
     fig = plot_shape(tri, lbl_points, lbls, 3, 0, angs)
-    r=float(lens[0])/3
-  
+    r=float(lens[0])*0.4
+
     if plot_angle_1 == 1:
         a = str(angle_1)
         a = a.strip("0")
         if a[-1]==".":
             a = a[:-1]
         if find_angle == 0:
-            plt.text(r*cos(radians((angle_1*0.9)/2)),r*sin(radians((angle_1*0.9)/2)), a, fontsize='xx-small', horizontalalignment='center', verticalalignment='center')
+            plt.text(r*cos(radians((angle_1*0.9)/2)),r*sin(radians((angle_1*0.9)/2)), a, fontsize='small', horizontalalignment='center', verticalalignment='center')
         else:
-            plt.text(r*cos(radians((angle_1*0.9)/2)),r*sin(radians((angle_1*0.9)/2)), "x", fontsize='xx-small', horizontalalignment='center', verticalalignment='center')
+            plt.text(r*cos(radians((angle_1*0.9)/2)),r*sin(radians((angle_1*0.9)/2)), "x", fontsize='small', horizontalalignment='center', verticalalignment='center')
 
-        circle_r = float(lens[0])*0.5
+        circle_r = float(lens[0])*0.6
         circle_x_min = lens[0]*(circle_r/lens[2])
         circle_x = np.arange(circle_x_min,circle_r,.0001)
         circle_y = np.sqrt(circle_r**2-np.square(circle_x))
 
-        plt.plot(circle_x, circle_y, color = '#1f77b4', linewidth = 1 , solid_capstyle='round')
+        plt.plot(circle_x, circle_y, color = '#1f77b4', linewidth = 2 , solid_capstyle='round')
 
     if plot_angle_2 == 1:
         a = str(angle_2)
         a = a.strip("0")
         if a[-1]==".":
             a = a[:-1]
-        r=float(lens[1])/3
+        r=float(lens[1])*0.4
         if find_angle == 0:
-            plt.text(tri[2][0]-(r*sin(radians((angle_2*0.9)/2))),tri[2][1]-(r*cos(radians((angle_2*0.9)/2))), a, fontsize='xx-small', horizontalalignment='center', verticalalignment='center')
+            plt.text(tri[2][0]-(r*sin(radians((angle_2*0.9)/2))),tri[2][1]-(r*cos(radians((angle_2*0.9)/2))), a, fontsize='small', horizontalalignment='center', verticalalignment='center')
         else:
-            plt.text(tri[2][0]-(r*sin(radians((angle_2*0.9)/2))),tri[2][1]-(r*cos(radians((angle_2*0.9)/2))), "x", fontsize='xx-small', horizontalalignment='center', verticalalignment='center')
+            plt.text(tri[2][0]-(r*sin(radians((angle_2*0.9)/2))),tri[2][1]-(r*cos(radians((angle_2*0.9)/2))), "x", fontsize='small', horizontalalignment='center', verticalalignment='center')
 
         circle_r = float(lens[1])*0.5
         circle_x_min = tri[2][0]-(lens[0]*(circle_r/lens[2]))
         circle_x = np.arange(circle_x_min,tri[2][0],.0001)
         circle_y = tri[2][1]-np.sqrt(circle_r**2-np.square(circle_x-tri[2][0]))
 
-        plt.plot(circle_x, circle_y, color = '#1f77b4', linewidth = 1 , solid_capstyle='round')
+        plt.plot(circle_x, circle_y, color = '#1f77b4', linewidth = 2 , solid_capstyle='round')
 
-        
+
 
     r = random.randint(0,999999999999999)
     fn = 'temp_img/temp'+ str(r) + '.png'
@@ -198,14 +198,14 @@ def gen_trigonometry(trigf,multiordiv,find_angle,a4,a5,a6):
         md = [0,0,0,0,1,1,1,1]
         random.shuffle(md)
     else:
-        md = [multiordiv for i in count] 
+        md = [multiordiv for i in count]
 
     for i in count:
         if find_angle == 2:
             q,a = right_angled(sct[i],md[i], random.randint(0,1))
-        else:   
+        else:
             q,a = right_angled(sct[i],md[i], find_angle)
-        
+
         questions.append(q)
         answers.append(a)
 

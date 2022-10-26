@@ -16,7 +16,10 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
         min = 1
 
     if negxs ==1:
-        minx = -10
+        if brackets == 0:
+            minx = -10
+        else:
+            minx = -5
     else:
         minx = 1
 
@@ -28,7 +31,7 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
         a=0
         b=0
         x=0
-
+        maxx = 10
         if steps == 1:
             if i == 0:
                 a = 1
@@ -49,18 +52,22 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
                     a = rand_no0_no1(minx, 9)
                     b = 0
         else:
+            if brackets == 1:
+                maxx = 5
+                minx = 1
+
             if i == 0:
-                a = rand_no0_no1(minx, 9)
-                b = random.randint(1,9)
+                a = rand_no0_no1(minx, maxx)
+                b = random.randint(1,maxx)
             elif i == 1:
-                a = rand_no0_no1(minx, 9)
-                b = random.randint(-9,-1)
+                a = rand_no0_no1(minx, maxx)
+                b = random.randint(-1*maxx,-1)
                 subtract = 1
             else:
-                a = rand_no0_no1(minx, 9)
-                b = rand_no0_no1(min, 9)
+                a = rand_no0_no1(minx, maxx)
+                b = rand_no0_no1(-1*maxx, maxx)
 
-        x = rand_no0_no1(minx, 9)
+        x = rand_no0_no1(minx, maxx)
 
         if a == 1 or brackets == 1 or bothsides == 1:
             multidiv = 0
@@ -81,11 +88,11 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
             c = c * d
 
         if bothsides == 1:
-            e = rand_no0(-10, 10)
+            e = rand_no0(minx, maxx)
             f = a + e
 
             while f == 0:
-                e = rand_no0(-10, 10)
+                e = rand_no0(minx, maxx)
                 f = a + e
 
             a = f
@@ -96,7 +103,7 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
         alpha = random.choice('abcdefghjklmnpqrstuvwxyz')
 
         if bothsides == 1:
-            if random.randint(0,1) == 0:
+            if i > 6:
                 ans_side = ans_side + " + " + str(e) + alpha
             else:
                 ans_side = str(e) + alpha + " + " + ans_side
@@ -125,7 +132,7 @@ def solving_inequalities(n, negs, negxs, steps, bothsides, brackets):
         if brackets == 1:
             x_side = str(d) + "(" + x_side + ")"
 
-        sign = random.choice(['<', '>', '\leq', '\geq'])
+        sign = random.choice([' < ', ' > ', ' \leq ', ' \geq '])
 
         if random.randint(0,1)>0 or i < 4:
             q = x_side + sign + ans_side

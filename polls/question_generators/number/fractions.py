@@ -193,8 +193,8 @@ def gen_adding_fractions(n=10,same_denom=0,unit=0,whole=0,e=0,f=0):
     return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': ans}
 
 def multiplying_fractions():
-    d1 = random.randint(2,8)
-    d2 = random.randint(2,8)
+    d1 = random.randint(2,12)
+    d2 = random.randint(2,12)
     n1 = random.randint(1,d1-1)
     n2 = random.randint(1,d2-1)
 
@@ -252,8 +252,8 @@ def multiplying_fraction_by_integer():
     return question, answer
 
 def dividing_fractions():
-    d1 = random.randint(2,6)
-    d2 = random.randint(2,6)
+    d1 = random.randint(2,12)
+    d2 = random.randint(2,12)
     n1 = random.randint(1,d1-1)
     n2 = random.randint(1,d2-1)
 

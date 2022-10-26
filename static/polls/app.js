@@ -8,12 +8,12 @@ var mouseDown = false;
 
 // When clicking on colours items
 $(".controls").on("click", "li", function () {
-    window.alert("sometext");
+
     if ($(this).css("background-color") !== "rgba(0, 0, 0, 0)"){
             $(this).siblings().removeClass("selected");
             $(this).addClass("selected");
             colour = $(this).css("background-color");
-            window.alert(colour);
+
     }
 });
 
@@ -31,7 +31,9 @@ canvas.addEventListener("mousemove", function (e) {
         context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
         context.lineTo(e.offsetX, e.offsetY);
         context.strokeStyle = colour;
-        if (colour == "white"){
+        window.alert(colour);
+        if (colour == "rgb(255, 255, 255)"){
+
             context.linewidth = 10
         } else {
             context.lineWidth = 5;
