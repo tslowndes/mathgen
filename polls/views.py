@@ -159,6 +159,7 @@ def subcontents(request):
     template = loader.get_template('polls/subcontents.html')
     df = pd.read_csv('polls/dir.csv')
     df = df.loc[df["Task_Code"].str.startswith(task)].copy()
+    print(df.head())
     strand = find_strand(task)
     task_code_list = list(set(df['Task_Code'].to_list()))
     task_code_list.sort()
@@ -173,29 +174,40 @@ def subcontents(request):
         years = df[df.Task_Code == task_code]['Yr'].to_list()
         topics = df[df.Task_Code == task_code]['Task_Title'].to_list()
 
-        count = 0
-        i = 0
-
-        while count < 5:
+        fin_years += years
+        fin_topics += topics
+        for year in years:
             fin_index.append(j)
-            if i<len(years):
-                if years[i] == count + 7:
-                    fin_years.append(years[i])
-                    fin_topics.append(topics[i])
-                    fin_task_codes.append(task_code)
-                    i += 1
-                    count += 1
-                else:
-                    fin_years.append(count + 7)
-                    fin_topics.append("")
-                    fin_task_codes.append("")
-                    count += 1
-            else:
-                fin_years.append(count + 7)
-                fin_topics.append("")
-                fin_task_codes.append("")
-                count += 1
+            fin_task_codes.append(task_code)
             j += 1
+#        count = 0
+#        i = 0
+
+#        while count < 5:
+#            fin_index.append(j)
+#            if i<len(years):
+#                if years[i] == 1:
+#                    fin_years.append(years[i])
+#                    fin_topics.append(topics[i])
+#                    fin_task_codes.append(task_code)
+#                    i += 1
+#                elif years[i] == count + 7:
+#                    fin_years.append(years[i])
+#                    fin_topics.append(topics[i])
+#                    fin_task_codes.append(task_code)
+#                    i += 1
+#                    count += 1
+#                else:
+ #                   fin_years.append(count + 7)
+ #                   fin_topics.append("")
+ #                   fin_task_codes.append("")
+#                    count += 1
+#            else:
+#                fin_years.append(count + 7)
+#                fin_topics.append("")
+#                fin_task_codes.append("")
+            #    count += 1
+            #j += 1
 
     context = {'strand': strand, 'count': fin_index, 'topics':fin_topics, 'year':fin_years, 'task_code':fin_task_codes}
 
@@ -205,4 +217,4 @@ def subcontents(request):
 
 
 
-
+##

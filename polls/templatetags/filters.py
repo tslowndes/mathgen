@@ -20,6 +20,15 @@ def first_char(d,key):
     return d[0]
 
 @register.filter
+def multiple(d,key):
+    d = int(d[1:])
+    print(int(key))
+    if (d%int(key))==0:
+        return 1
+    else:
+        return 0
+
+@register.filter
 def get_font_size(d,key):
     d = str(d)
     max_len = 100
