@@ -114,9 +114,9 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 113,N004,9,Adding Fractions: Simple Denominator,gen_adding_fractions,10,2,0,0,0,0,0
 114,N004,10,Adding Fractions,gen_adding_fractions,10,0,0,0,0,0,0
 115,N004,11,Adding Fractions and Integers,gen_adding_fractions,10,1,0,1,0,0,0
-116,N005,12,Multiplying Fractions,gen_multiply_dividing_fractions,0,0,0,0,0,0,0
-117,N005,13,Dividing Fractions,gen_multiply_dividing_fractions,1,0,0,0,0,0,0
-118,N005,14,Multiplying Fractions by an Integer,gen_multiply_dividing_fractions,0,1,0,0,0,0,0
+116,N004,12,Multiplying Fractions,gen_multiply_dividing_fractions,0,0,0,0,0,0,0
+117,N004,13,Dividing Fractions,gen_multiply_dividing_fractions,1,0,0,0,0,0,0
+118,N004,14,Multiplying Fractions by an Integer,gen_multiply_dividing_fractions,0,1,0,0,0,0,0
 119,N006,1,"Factors, Multiples and Primes",0,0,0,0,0,0,0,0
 120,N006,7,Listing Multiples,gen_list_multiples,10,0,0,0,0,0,0
 121,N006,8,Listing Factors,gen_list_factors,10,0,0,0,0,0,0
