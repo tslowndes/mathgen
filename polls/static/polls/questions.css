@@ -33,9 +33,9 @@ mjx-container {
 
 a.button1{
     display:inline-block;
-    padding:0.35em 1.2em;
+    padding:0.2em 0.6em;
     border:0.1em solid black;
-    margin:0 0.3em 0.3em 0;
+    margin:0 0.2em 0.2em 0;
     border-radius:0.12em;
     box-sizing: border-box;
     text-decoration:none;
@@ -138,9 +138,9 @@ ul {
 
 ul li, #newColor {
 	display:block;
-	height: 54px;
-	width: 54px;
-	border-radius: 60px;
+	height: 40px;
+	width: 40px;
+	border-radius: 10px;
 	cursor: pointer;
 	border: 0;
 	box-shadow: 0 3px 0 0 #E0E0E0;
@@ -174,8 +174,8 @@ ul li {
 }
 
 .selected {
-	width: 54px;
-	height: 54px;
+	height: 40px;
+	width: 40px;
 	-webkit-box-shadow: inset 1px 1px 10px #333;
     -moz-box-shadow:    inset 1px 1px 10px #333;
     box-shadow:         inset 1px 1px 10px #333;

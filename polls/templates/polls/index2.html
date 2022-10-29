@@ -146,7 +146,9 @@
         }
 
     function reloadP() {
-        sessionStorage.setItem("reloading", "true");
+        if (document.getElementById("example_overlay").style.width == "100%"){
+          sessionStorage.setItem("reloading", "true");
+        }
         document.location.reload();
     }
 
@@ -373,7 +375,14 @@ span {
       </style>
       <script>
             function openAns() {
-              document.getElementById("answer_overlay").style.width = "100%";
+              btn = document.getElementById("ans_button")
+              if (btn.innerHTML != "✗"){
+                document.getElementById("answer_overlay").style.width = "100%";
+                document.getElementById("ans_button").innerHTML = "✗";
+              } else {
+                document.getElementById("answer_overlay").style.width = "0%";
+                document.getElementById("ans_button").innerHTML = "✓";
+              }
             }
 
             function closeAns() {
@@ -381,7 +390,15 @@ span {
             }
 
             function openExp() {
-              document.getElementById("example_overlay").style.width = "100%";
+              ol = document.getElementById("example_overlay")
+              if (ol.style.width == "100%"){
+                ol.style.width = "0%";
+                document.getElementById("exp_button").innerHTML = "✎";
+              } else{
+                ol.style.width = "100%";
+                document.getElementById("exp_button").innerHTML = "✗";
+
+              }
             }
 
             function closeExp() {
@@ -426,7 +443,7 @@ span {
         <!-- Header Block -->
           <div id="grid" style="margin:0 0 0 0; grid-template-columns:70% 30%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:4vh; font-weight:600;">
               <div style="padding:1.5vh 0 0 2vw;">{{title}}</div>
-              <div style="padding:1.5vh 0 0 2vw; text-align:right;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2vh;">{{strand}}</a><a href="/"  class="button1" style="font-size:2vh;">Home</a></div>
+              <div style="padding:1.5vh 0 0 2vw; text-align:right;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2vh;">{{strand}}</a><a href="/"  class="button1" style="font-size:2vh;">⌂</a></div>
           </div>
         <div id="content1">
 
@@ -481,8 +498,7 @@ span {
 
 
         <!-- Answers Overlay -->
-      <div id="answer_overlay" class="overlay" style="background-color:#bcdff5;">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeAns()">&times;</a>
+      <div id="answer_overlay" class="overlay" style="background-color:#bcdff5; height:90vh;">
 
         <p class="overlay-content">
 
@@ -496,7 +512,7 @@ span {
       </div>
 
         <!-- Example Overlay -->
-        <div id="example_overlay" class="overlay" style="color:rgba(0,0,0,1); background-color:white;">
+        <div id="example_overlay" class="overlay" style="color:rgba(0,0,0,1); background-color:white; height:90vh;">
 
 <div class="slideshow-container">
 
@@ -506,7 +522,7 @@ span {
 
 <canvas	class="canvases" width="2000px" height="2000px" style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas{{i}}"></canvas>
 
-            <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 60% 30%; height:90vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
+            <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 60% 30%; height:82vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
                 <div style="height:100%; text-align:center; border-right: 3px solid black;">
                     {% if strand == "Starters" %}
                         <p>Starter Question</p>
@@ -571,19 +587,17 @@ span {
     <a class="next" onclick="plusSlides(1)" style="z-index:2; top:40vh; left:0;">&#10095;</a>
 </div>
 
-            <div class="controls" style="position:absolute; z-index:2; align-items: center; width:100%; top:90vh;">
+            <div class="controls" style="position:absolute; z-index:2; align-items: center; width:100%; top:82vh;">
                 <ul>
                     <li class="red selected"></li>
                     <li class="blue"></li>
-                    <li class="yellow"></li>
                     <li class="green"></li>
                     <li class="white"></li>
                     <li class="eraser" style="background: url('/media/eraserB.png') no-repeat center center; background-size:40px;" onclick='clear_canvas_width ()'></li>
-                    <li class="refresh" style="background: url('/media/refreshB.png') no-repeat center center; background-size:40px;" onclick="reloadP();"></li>
                 </ul>
             </div>
             <h2 id="slidenumber" style="position:absolute; bottom:0px; right:0;"> slides </h2>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeExp()" style="z-index:5;">&times;</a>
+            
 
             <!--<script src="{% static 'polls/app.js' %}" type="text/javascript" charset="utf-8"></script>-->
       </div>
@@ -597,17 +611,15 @@ span {
 
           <div style="text-align: center;">
 
-            <a href="/qs/?year={{prev}}&task={{task_code_full}}" class="button1" style="font-size:2vh;">Prev</a>
 
-            <a href=# onclick="openAns()" class="button1" style="font-size:2vh;">Answers</a>
+            <a href=# id="ans_button" onclick="openAns()" class="button1" style="font-size:3vh;">✓</a>
 
-            <a href=# onclick="openExp()" class="button1" style="font-size:2vh;">Example</a>
+            <a href=# id="exp_button" onclick="openExp()" class="button1" style=" font-size:3vh;">✎</a>
 
-            <a href=# onclick="window.location.reload();" class="button1" style="font-size:2vh;">New Qs</a>
+            <a href=# onclick="reloadP();" class="button1" style="font-size:3vh;">↺</a>
 
-            <a href=# class="button1" onclick="getSnap();" style="font-size:2vh;">PDF</a>
+            <a href=# class="button1" onclick="getSnap();" style="font-size:3vh;">⎘</a>
 
-            <a href="/qs/?year={{next}}&task={{task_code_full}}" class="button1" style="font-size:2vh;">Next</a>
 
 
 
