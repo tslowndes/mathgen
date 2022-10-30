@@ -140,8 +140,13 @@
             e.preventDefault();
           }
         }, false);
+        
+        
 
         showSlides(slideIndex);
+        
+        colorPicker.addEventListener("input", updateFirst, false);
+        colorPicker.addEventListener("change", watchColorPicker, false);
 
         }
         
@@ -638,7 +643,7 @@ span {
 
             <a href=# class="button1" onclick="getSnap();" style="font-size:3vh;">⎘</a>
             
-            <input type="color" id="head" name="head"
+            <input type="color" id="colorPicker" name="head"
            value="#e66465">
 
 
