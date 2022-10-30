@@ -148,11 +148,13 @@
         colorPicker.addEventListener("input", watchColorPicker, false);
         colorPicker.addEventListener("change", watchColorPicker, false);
 
-        }
-        
-        function watchColorPicker(event) {
+function watchColorPicker(event) {
           colour = event.target.value;
           };
+
+        }
+        
+        
 
     function reloadP() {
         if (document.getElementById("example_overlay").style.width == "100%"){
