@@ -114,11 +114,7 @@
             }, false);
 
         //end of loop
-        })
-        
-        function watchColorPicker(event) {
-          colour = event.target.value;
-          };
+        });
 
         // Get the position of a touch relative to the canvas
         function getTouchPos(canvasDom, touchEvent) {
@@ -151,6 +147,10 @@
         showSlides(slideIndex);
 
         }
+        
+        function watchColorPicker(event) {
+          colour = event.target.value;
+          };
 
     function reloadP() {
         if (document.getElementById("example_overlay").style.width == "100%"){
