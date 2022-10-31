@@ -434,7 +434,7 @@ span {
             function closeExp() {
               document.getElementById("example_overlay").style.width = "0%";
               document.getElementById("exp_button").innerHTML = "✎";
-              //document.getElementById("penColourControls").style.display = "none";
+              document.getElementById("penColourControls").style.display = "none";
             }
             function gen_pdf() {
                 var doc = new jsPDF('l','pt','a4');
@@ -483,7 +483,7 @@ span {
 
 
 
-<canvas class="canvases" width=2000px height=800 style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas"></canvas>
+<!--<canvas class="canvases" width=2000px height=800 style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas"></canvas>-->
         <!-- Question grid -->
         {% if imgs|lookup:0 == 0 %}
 
