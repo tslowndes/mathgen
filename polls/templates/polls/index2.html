@@ -434,7 +434,7 @@ span {
             function closeExp() {
               document.getElementById("example_overlay").style.width = "0%";
               document.getElementById("exp_button").innerHTML = "✎";
-              document.getElementById("penColourControls").style.display = "none";
+              //document.getElementById("penColourControls").style.display = "none";
             }
             function gen_pdf() {
                 var doc = new jsPDF('l','pt','a4');
@@ -483,7 +483,7 @@ span {
 
 
 
-
+<canvas class="canvases" width=2000px height=800 style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas"></canvas>
         <!-- Question grid -->
         {% if imgs|lookup:0 == 0 %}
 
@@ -552,9 +552,9 @@ span {
 
 <div class="mySlides fade">
 
-<canvas	class="canvases" style="width:2000px; height:2000px; background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas{{i}}"></canvas>
+<canvas	class="canvases" width=2000px height=1200px style="background:transparent; position: absolute; top: -50;z-index:1;" id="mainCanvas{{i}}"></canvas>
 
-            <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 60% 30%; height:82vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
+            <div id="grid" style="position: absolute; z-index: 0; color: black; grid-template-columns:50% 50%; grid-template-rows: 10% 60% 30%; height:90vh; align-items: center ; width:100vw; margin: 0vh 0 0 0">
                 <div style="height:100%; text-align:center; border-right: 3px solid black;">
                     {% if strand == "Starters" %}
                         <p>Starter Question</p>
@@ -628,12 +628,9 @@ span {
 
 
         <!-- Footer Grid -->
-      <div id="grid" style = "position:absolute; grid-template-columns:10% 80% 10%; height:5vh; margin: 0 2% 0 2%; top:92vh;">
-          <div style="text-align:left;">
-              <!--<img src="/media/mathgen.png" style="height:4vh;">-->
-          </div>
+      <div id="grid" style = "position:absolute; grid-template-columns:60% 5% 35%; height:5vh; margin: 0 2% 0 2%; top:92vh;">
 
-          <div style="text-align: center;">
+          <div style="text-align: right;">
 
 
             <a href=# id="ans_button" onclick="openAns()" class="button1" style="font-size:3vh;">✓</a>
@@ -644,8 +641,16 @@ span {
 
             <a href=# class="button1" onclick="getSnap();" style="font-size:3vh;">⎘</a>
             
-            <div id="penColourControls" class="controls" style="display:none; align-items: center; width:100%;">
-                <ul>
+            
+            
+            <!--<input type="color" id="colorPicker" name="head"
+           value="#e66465" style="height:2vh;">-->
+          </div>
+
+          <div> </div>
+
+              <div id="penColourControls" class="controls" style="display:block; align-items: left;">
+                <ul style="text-align:left;">
                     <li class="red selected"></li>
                     <li class="blue"></li>
                     <li class="green"></li>
@@ -654,16 +659,6 @@ span {
                     -->
                 </ul>
             </div>
-            
-            <!--<input type="color" id="colorPicker" name="head"
-           value="#e66465" style="height:2vh;">-->
-
-
-
-
-          </div>
-
-          <div></div>
       </div>
 
 
