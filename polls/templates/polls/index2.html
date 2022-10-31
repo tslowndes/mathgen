@@ -421,6 +421,8 @@ span {
               } else{
                 ol.style.width = "100%";
                 document.getElementById("exp_button").innerHTML = "✗";
+                document.getElementById("penColourControls").style.display = "block";
+                
 
               }
             }
@@ -428,6 +430,7 @@ span {
             function closeExp() {
               document.getElementById("example_overlay").style.width = "0%";
               document.getElementById("exp_button").innerHTML = "✎";
+              document.getElementById("penColourControls").style.display = "none";
             }
             function gen_pdf() {
                 var doc = new jsPDF('l','pt','a4');
@@ -637,7 +640,7 @@ span {
 
             <a href=# class="button1" onclick="getSnap();" style="font-size:3vh;">⎘</a>
             
-            <div class="controls" style="align-items: center; width:100%;">
+            <div id="penColourControls" class="controls" style="display:none; align-items: center; width:100%;">
                 <ul>
                     <li class="red selected"></li>
                     <li class="blue"></li>
