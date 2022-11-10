@@ -89,8 +89,8 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 88,G001,11,Do Now 3A,gen_white_rose_maths_starter,8,5,0,0,0,0,0
 89,G001,12,Do Now 3B,gen_white_rose_maths_starter,8,6,0,0,0,0,0
 90,G002,1,Do Now Set 3,0,0,0,0,0,0,0,0
-91,G002,9,Do Now 1A,gen_white_rose_maths_starter,9,1,0,0,0,0,0
-92,G002,9,Do Now 1B,gen_white_rose_maths_starter,9,2,0,0,0,0,0
+91,G002,7,Do Now 1A,gen_white_rose_maths_starter,9,1,0,0,0,0,0
+92,G002,8,Do Now 1B,gen_white_rose_maths_starter,9,2,0,0,0,0,0
 93,G002,9,Do Now 2A,gen_white_rose_maths_starter,9,3,0,0,0,0,0
 94,G002,10,Do Now 2B,gen_white_rose_maths_starter,9,4,0,0,0,0,0
 95,N000,1,Proportion,0,0,0,0,0,0,0,0
@@ -123,9 +123,10 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 122,N006,9,HCF,gen_HCF,10,0,0,0,0,0,0
 123,N006,10,LCM,gen_LCM,10,0,0,0,0,0,0
 124,N006,11,Product of Primes,gen_product_of_primes,10,0,0,0,0,0,0
-125,N006,12,Product of Primes: HCF,gen_product_of_primes_hcf,0,0,0,0,0,0,0
-126,N006,13,Product of Primes: LCM,gen_product_of_primes_hcf,1,0,0,0,0,0,0
-127,N006,14,Product of Primes: HCF & LCM,gen_product_of_primes_hcf,2,0,0,0,0,0,0
+125,N006,12,Product of Primes Index Form: HCF,gen_product_of_primes_hcf,0,1,0,0,0,0,0
+126,N006,13,Product of Primes Index Form: LCM,gen_product_of_primes_hcf,1,1,0,0,0,0,0
+127,N006,14,Product of Primes Index Form: HCF & LCM,gen_product_of_primes_hcf,2,1,0,0,0,0,0
+127,N006,15,Product of Primes: HCF,gen_product_of_primes_hcf,0,0,0,0,0,0,0
 128,N007,1,Percentages,0,0,0,0,0,0,0,0
 129,N007,7,Factors of 100,gen_percentages_non_calc,10,0,0,1,0,0,0
 130,N007,8,Non-Calc 1 Step,gen_percentages_non_calc,10,0,0,0,0,0,0
@@ -178,6 +179,8 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 177,N013,7,Mental Multiplication: Multiples of 10,gen_mental_multiplication,10,0,0,0,0,0,0
 178,N013,8,Related Calculations Multiplication,gen_times_tables,3,0,1,0,0,0,0
 179,N013,9,Related Calculations Division,gen_times_tables,3,1,1,0,0,0,0
+180,N013,10,Addition near 100,gen_mental_addition,10,0,0,0,0,0,0
+181,N013,11,Addition - Number Bonds to 10,gen_mental_addition_number_bonds_10,0,0,0,0,0,0,0
 180,N014,1,Money,0,0,0,0,0,0,0,0
 181,N014,7,Change,gen_basic_purchase,10,0,0,0,0,0,0
 182,N014,8,Saving,gen_basic_save,10,0,0,0,0,0,0
@@ -225,3 +228,5 @@ i,Task_Code,Yr,Task_Title,Function_Name,arg1,arg2,arg3,arg4,arg5,arg6,images
 224,S005,8,Circles: Circumference given d,gen_circle_measure,0,1,0,0,0,0,0
 225,S005,9,Circles: Circumference given r,gen_circle_measure,0,0,0,0,0,0,0
 226,S005,10,Circles: Circumference given Mix,gen_circle_measure,0,2,0,0,0,0,0
+227,N018,1,Decimals,0,0,0,0,0,0,0,0
+228,N018,7,Decimal Addition,gen_addition,10,1,0,0,0,0,0

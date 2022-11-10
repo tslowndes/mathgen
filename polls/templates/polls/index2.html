@@ -26,7 +26,7 @@
             sessionStorage.removeItem("reloading");
             openExp();
         };
-        
+
         var colour = $(".selected").css("background-color");
 
         // When clicking on colours items
@@ -36,6 +36,7 @@
                     $(this).addClass("selected");
                     colour = $(this).css("background-color");
             }
+            <!--document.getElementById("penColourControls").style.display = "none"-->
 
         });
 
@@ -44,8 +45,6 @@
             var context = canvas.getContext("2d");
             var lastEvent;
             var mouseDown = false;
-            
-
 
             // On mouse events on the canvas
             canvas.addEventListener("mousedown", function (e) {
@@ -142,11 +141,11 @@
             e.preventDefault();
           }
         }, false);
-        
-        
+
+
 
         showSlides(slideIndex);
-        
+
         colorPicker.addEventListener("input", watchColorPicker, false);
         colorPicker.addEventListener("change", watchColorPicker, false);
 
@@ -155,8 +154,8 @@ function watchColorPicker(event) {
           };
 
         }
-        
-        
+
+
 
     function reloadP() {
         if (document.getElementById("example_overlay").style.width == "100%"){
@@ -202,6 +201,7 @@ function watchColorPicker(event) {
 <html>
 
   <head>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
       <title>MATHGEN - {{title}}</title>
           <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico" />
@@ -387,53 +387,66 @@ span {
     font-size: 100% !important;
 }
 
+
       </style>
       <script>
+
+            function showPenColourControls() {
+                if (document.getElementById("penColourControls").style.display == "none"){
+                    document.getElementById("penColourControls").style.display = "block";
+                } else {
+                    document.getElementById("penColourControls").style.display = "none";
+                }
+            }
             function openAns() {
-            
-            
+
+              document.body.style.backgroundColor = "#bcf5bc";
+              document.getElementById("titleblock").innerHTML = "Answers";
               if (document.getElementById("example_overlay").style.width == "100%"){
                 closeExp();
               }
-            
+
               btn = document.getElementById("ans_button")
-              if (btn.innerHTML != "✗"){
+              if (btn.innerHTML != "<i class=\"material-icons\">close</i>"){
                 document.getElementById("answer_overlay").style.width = "100%";
-                document.getElementById("ans_button").innerHTML = "✗";
+                document.getElementById("ans_button").innerHTML = "<i class=\"material-icons\">close</i>";
               } else {
-                closeAns(); 
-                
+                closeAns();
+
               }
             }
 
             function closeAns() {
+              document.getElementById("titleblock").innerHTML = "{{title}}";
+
               document.getElementById("answer_overlay").style.width = "0%";
-              document.getElementById("ans_button").innerHTML = "✓";
+              document.getElementById("ans_button").innerHTML = "<i class=\"material-icons\">done</i>";
+              document.body.style.backgroundColor = "#bcdff5";
             }
 
             function openExp() {
               ol = document.getElementById("example_overlay")
-              
+
               if (document.getElementById("answer_overlay").style.width == "100%"){
                 closeAns();
               }
-              
-              
+
+
               if (ol.style.width == "100%"){
                 closeExp();
-                
+
               } else{
                 ol.style.width = "100%";
-                document.getElementById("exp_button").innerHTML = "✗";
-                document.getElementById("penColourControls").style.display = "block";
-                
+                document.getElementById("exp_button").innerHTML = "<i class=\"material-icons\">close</i>";
+                document.getElementById("penColourControls").style.display = "inline";
+
 
               }
             }
 
             function closeExp() {
               document.getElementById("example_overlay").style.width = "0%";
-              document.getElementById("exp_button").innerHTML = "✎";
+              document.getElementById("exp_button").innerHTML = "<i class=\"material-icons\">edit</i>"
               document.getElementById("penColourControls").style.display = "none";
             }
             function gen_pdf() {
@@ -474,8 +487,18 @@ span {
 
         <!-- Header Block -->
           <div id="grid" style="margin:0 0 0 0; grid-template-columns:70% 30%; width: 100vw; height:8vh; background-color:rgba(255,255,255,0.1); color:black; text-align:left; font-size:4vh; font-weight:600;">
-              <div style="padding:1.5vh 0 0 2vw;">{{title}}</div>
-              <div style="padding:1.5vh 0 0 2vw; text-align:right;"><a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2vh;"><</a><a href="/"  class="button1" style="font-size:2vh;">⌂</a></div>
+              <div id="titleblock" style="padding:1.5vh 0 0 2vw;">{{title}}</div>
+              <div style="padding:1.5vh 0 0 2vw; text-align:right;">
+
+                  <a href="/sub/?task={{task_code}}"  class="button1" style="font-size:2vh;">
+                      <i class="material-icons">arrow_back</i>
+                  </a>
+
+                  <a href="/"  class="button1" style="font-size:2vh;">
+                      <i class="material-icons">home</i>
+                  </a>
+
+              </div>
           </div>
         <div id="content1">
 
@@ -530,11 +553,11 @@ span {
 
 
         <!-- Answers Overlay -->
-      <div id="answer_overlay" class="overlay" style="background-color:#bcdff5; height:90vh;">
+      <div id="answer_overlay" class="overlay" style="background-color:#bcf5bc; height:82vh; top:8vh;">
 
         <p class="overlay-content">
 
-        <div id="grid" style="width:100vw; margin: 13vh 0 0 0; font-size:36px;">
+        <div id="grid" style="background-color:#bcf5bc; width:100vw; margin: 0 0 0 0; font-size:40px; align-items:center;">
 
             {% for i in count %}
                 <div>({{alphas|lookup:i}})</div><div>{{answers|lookup:i}}</div>
@@ -602,7 +625,7 @@ span {
                         {{yourgos|lookup:i|linebreaksbr}}
                     </div>
                     {% else %}
-                    <div style="padding: 5px 5px 5px 5px; border-left: 0px solid black; height:100%; font-size:50px; ">
+                    <div style="padding: 5px 5px 5px 5px; border-left: 0px solid black; height:100%; font-size:50px;">
                         <img  height="100%" src="/media/{{yourgos|lookup:i}}">
                                         </div>
                     {% endif %}
@@ -610,18 +633,34 @@ span {
                 <div style="height:100%; border-right: 3px solid black;"> </div><div style="height:100%;"> </div>
 
             </div>
+ <!-- end of slides -->
  </div>
  {% endfor %}
+
   <a class="prev" onclick="plusSlides(-1)" style="z-index:2; top:50vh;">&#10094;</a>
   <a class="prev" onclick="plusSlides(-1)" style="z-index:2; top:50vh; right:0;">&#10094;</a>
 
   <a class="next" onclick="plusSlides(1)" style="z-index:2; top:40vh;">&#10095;</a>
-    <a class="next" onclick="plusSlides(1)" style="z-index:2; top:40vh; left:0;">&#10095;</a>
+  <a class="next" onclick="plusSlides(1)" style="z-index:2; top:40vh; left:0;">&#10095;</a>
+  <a href=# id="palette_button" class="button1" onclick="showPenColourControls();" style="z-index:2; position:absolute; top:83vh; left:2vw; font-size:24px; display:block;"><i class="material-icons">palette</i></a>
+
+    <div id="penColourControls" class="controls" style="width:100vw; position:absolute; top:83vh; z-index:2; align-items: center;">
+        <ul >
+            <li class="red selected"></li>
+            <li class="blue"></li>
+            <li class="green"></li>
+            <!--<li class="white"></li>
+            <li class="eraser" style="background: url('/media/eraserB.png') no-repeat center center; background-size:40px;" onclick='clear_canvas_width ()'></li>
+            -->
+        </ul>
+    </div>
+
+
 </div>
 
-            
+
             <h2 id="slidenumber" style="position:absolute; bottom:0px; right:0;"> slides </h2>
-            
+
 
             <!--<script src="{% static 'polls/app.js' %}" type="text/javascript" charset="utf-8"></script>-->
       </div>
@@ -633,32 +672,23 @@ span {
           <div style="text-align: right;">
 
 
-            <a href=# id="ans_button" onclick="openAns()" class="button1" style="font-size:3vh;">✓</a>
+            <a href=# id="ans_button" onclick="openAns()" class="button1" style="font-size:24px;"><i class="material-icons">done</i></a>
 
-            <a href=# id="exp_button" onclick="openExp()" class="button1" style=" font-size:3vh;">✎</a>
+            <a href=# id="exp_button" onclick="openExp()" class="button1" style=" font-size:24px;"><i class="material-icons">edit</i></a>
 
-            <a href=# onclick="reloadP();" class="button1" style="font-size:3vh;">↺</a>
+            <a href=# onclick="reloadP();" class="button1" style="font-size:24px;"><i class="material-icons">refresh</i></a>
 
-            <a href=# class="button1" onclick="getSnap();" style="font-size:3vh;">⎘</a>
-            
-            
-            
+            <a href=# class="button1" onclick="getSnap();" style="font-size:24px;"><i class="material-icons">print</i></a>
+
+            <a href=# id="palette_button" class="button1" onclick="showPenColourControls();" style="font-size:24px; display:none;"><i class="material-icons">palette</i></a>
+
             <!--<input type="color" id="colorPicker" name="head"
            value="#e66465" style="height:2vh;">-->
           </div>
 
           <div> </div>
 
-              <div id="penColourControls" class="controls" style="display:none; align-items: left;">
-                <ul style="text-align:left; height:5vh; line-height: 5vh;">
-                    <li class="red selected"></li>
-                    <li class="blue"></li>
-                    <li class="green"></li>
-                    <!--<li class="white"></li>
-                    <li class="eraser" style="background: url('/media/eraserB.png') no-repeat center center; background-size:40px;" onclick='clear_canvas_width ()'></li>
-                    -->
-                </ul>
-            </div>
+
       </div>
 
 

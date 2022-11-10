@@ -6,6 +6,7 @@ from polls.question_generators.algebra import linear_sequences
 from polls.question_generators.algebra.collecting_like_terms import *
 from polls.question_generators.algebra.solving_equations import *
 from polls.question_generators.number.place_value import *
+from polls.question_generators.number.factors_multiples_primes import *
 from polls.question_generators.data.averages import *
 from polls.question_generators.number.ratio import *
 from polls.question_generators.number.direct_proportion import *
@@ -68,20 +69,29 @@ def wrm_7_starter(ht):
         j += 1
 
     if ht == 2 or ht == 3:
-        questions[j], answers[j] = linear_sequences.find_the_next_term(0, 0, 0, 0, 0, 0)
-        questions[j] = 'Find the next term: ' + questions[j]
-        j += 1
-        questions[j], answers[j] = linear_sequences.find_the_next_term(1, 0, 0, 0, 0, 0)
-        questions[j] = 'Find the next term: ' + questions[j]
-        j += 1
-        questions[j], answers[j] = adding_algebra_terms(0, 0, 0, 0, 0, 0)
-        questions[j] = 'Simplify: ' + questions[j]
-        j += 1
-        questions[j], answers[j] = gen_solving_equations(1, 0, 0, 1, 0, 0)
-        questions[j] = 'Solve the equation: ' + questions[j]
-        j += 1
+        questions[j], answers[j] = comparing_numbers(0,0)
+        j+=1
+        questions[j], answers[j] = multiplying_by_10(random.randint(0,1),random.randint(0,1),1)
+        j+=1
+        questions[j], answers[j] = list_factors()
+        j+=1
+        questions[j], answers[j] = HCF(3, 3)
+        j+=1
+
+        #questions[j], answers[j] = linear_sequences.find_the_next_term(0, 0, 0, 0, 0, 0)
+        #questions[j] = 'Find the next term: ' + questions[j]
+        #j += 1
+        #questions[j], answers[j] = linear_sequences.find_the_next_term(1, 0, 0, 0, 0, 0)
+        #questions[j] = 'Find the next term: ' + questions[j]
+        #j += 1
+        #questions[j], answers[j] = adding_algebra_terms(0, 0, 0, 0, 0, 0)
+        #questions[j] = 'Simplify: ' + questions[j]
+        #j += 1
+        #questions[j], answers[j] = gen_solving_equations(1, 0, 0, 1, 0, 0)
+        #questions[j] = 'Solve the equation: ' + questions[j]
+        #j += 1
     if ht == 3 or ht == 4:
-        questions[j], answers[j] = frac_to_percentage()
+        questions[j], answers[j] = frac_to_percentage(1)
         questions[j] = r'Convert the fraction to a percentage: ' + questions[j]
         j += 1
         questions[j], answers[j] = frac_to_decimal()
@@ -223,9 +233,6 @@ def wrm_8_starter(ht):
         questions[j], answers[j] = parallelogram.area_of_parallelogram(0, 1, 0, 1)
         j+=1
 
-
-
-
     return {'count': count,
             'questions': questions,
             'answers': answers,
@@ -239,7 +246,7 @@ def wrm_9_starter(ht):
     text = [0 for i in range(8)]
     j = 0
     if ht == 1 or ht == 2:
-        starter = wrm_8_starter(random.randint(2,6))
+        starter = wrm_8_starter(random.randint(2,5))
         q = starter['questions']
         a = starter['answers']
 

@@ -77,14 +77,18 @@ def comparing_numbers(dec,neg):
         q = '$' + str(n1) + ' \; [ \;\;\;  ] \; ' + str(n2) + '$'
         if n1n > int(n2n):
             ans =  '$' + str(n1) + r' \;\; > \;\;' + str(n2) + '$'
-        else:
+        elif n1n<int(n2n):
             ans =  '$' + str(n1) + r' \;\; < \;\;' + str(n2) + '$'
+        else:
+            ans =  '$' + str(n1) + r' \;\; = \;\;' + str(n2) + '$'
     else:
         q = '$' + str(n2) + ' \; [ \;\;\;  ] \; ' + str(n1) + '$'
         if n1n > int(n2n):
             ans =  '$' + str(n2) + r' \;\; < \;\;' + str(n1) + '$'
-        else:
+        elif n1n<int(n2n):
             ans =  '$' + str(n2) + r' \;\; > \;\;' + str(n1) + '$'
+        else:
+            ans =  '$' + str(n2) + r' \;\; = \;\;' + str(n1) + '$'
 
 
     return q,ans

@@ -162,14 +162,14 @@ def gen_HCF(n,b,c,d,e,f):
         anss.append(a)
     return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': anss}
 
-def gen_product_of_primes_hcf(hcf_lcm,a2,a3,a4,a5,a6):
+def gen_product_of_primes_hcf(hcf_lcm,index,a3,a4,a5,a6):
     qs = []
     anss = []
     i=0
     n=8
     while i < n:
         if hcf_lcm != 2:
-            q,a = product_of_primes_hcf(hcf_lcm)
+            q,a = product_of_primes_hcf(hcf_lcm, index)
         else:
             q,a = product_of_primes_hcf(random.randint(0,1))
 
@@ -179,7 +179,7 @@ def gen_product_of_primes_hcf(hcf_lcm,a2,a3,a4,a5,a6):
 
     return {'count': [i for i in range(0, n)], 'questions': qs, 'answers': anss}
 
-def product_of_primes_hcf(hcf_lcm):
+def product_of_primes_hcf(hcf_lcm,index=1):
     primes = [2,3,5,7]
 
     three = [random.choice(primes) for i in range(3)]
@@ -193,8 +193,21 @@ def product_of_primes_hcf(hcf_lcm):
         b = three + [random.choice(primes)]
         b_prod = calc_product(b)
 
-    a_format = format_product_of_primes(a)
-    b_format = format_product_of_primes(b)
+    if index ==1:
+        a_format = format_product_of_primes(a)
+        b_format = format_product_of_primes(b)
+    else:
+        a.sort()
+        b.sort()
+        a_format = ''
+        b_format = ''
+        for i in range(len(a)):
+            if i == 0:
+                a_format += str(a[i])
+                b_format += str(b[i])
+            else:
+                a_format += r'\times'+ str(a[i])
+                b_format += r'\times'+ str(b[i])
 
     hcf = calc_product(three)
 

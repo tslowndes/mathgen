@@ -99,8 +99,34 @@ def order_of_operations(brackets=9):
 
     return q+"$", eval(s)
 
-def mental_addition():
-    a = random.choice([100 - random.randint(1,3), 100 + random.randint(1,3)])
+def mental_addition_number_bonds_10():
+    a = random.randint(1,3)
+    b = random.randint(2,8)
+    c = random.randint(1,5)
+    d = random.randint(10-b,9)
+    a = a*10+b
+    c = c*10+d
+    q = '$' + strip_0(a) + ' + ' + strip_0(c) + '$'
+    ans = strip_0(a+c)
+    return q,ans
+
+def gen_mental_addition_number_bonds_10(a,b,c,d,e,f):
+    questions = []
+    answers = []
+    count = [i for i in range(10)]
+    for i in count:
+        q,a = mental_addition_number_bonds_10()
+        questions.append(q)
+        answers.append(a)
+    return {'questions':questions, 'answers':answers, 'count':count}
+
+
+
+def mental_addition(just_over_100=1):
+    if just_over_100 == 0:
+        a=100 - random.randint(1,3)
+    else:
+        a=100 + random.randint(1,3)
     b = random.randint(150,250)
     if random.randint(0,1) == 0:
         q = '$' + str(b) + ' + ' + str(a) + '$'
@@ -161,13 +187,28 @@ def times_tables(min_n, div_fact,related_calc=0):
 
     return q, ans
 
+def addition(decimal=1, add_sub=0, dec_offset=0):
+    dps = random.randint(2,4)
+    a = random.randint(1,9) + round(random.random(),dps)
 
+    if dec_offset == 1:
+        if add_sub == 0:
+            dec_offset = -1
+        else:
+            dec_offset = 1
+    elif dec_offset == 2:
+        a = a + 10*random.randint(1,3)
+        if add_sub == 0:
+            dec_offset = -1
+        else:
+            dec_offset = 1
+    elif dec_offset == 3:
+        a = a + 100*random.randint(1,3)
+        dec_offset = random.randint(1,2)
+        if random.randint(0,1) == 0:
+            dec_offset = dec_offset*-1
 
-def addition(decimal=1, add_sub=0):
-    dps = random.randint(3,4)
-    a = round(random.random(),dps)
-    dps_adj =random.randint(-1,1)
-    b = round(random.random(),dps+dps_adj)
+    b = random.randint(1,9) + round(random.random(),dps+dec_offset)
 
     if decimal==0:
 
@@ -177,8 +218,16 @@ def addition(decimal=1, add_sub=0):
         a=strip_0(round(a,0))
         b=strip_0(round(b,0))
 
+    if len(str(a)) > 7:
+        a = round(a,5)
+    if len(str(b)) > 7:
+        b = round(b,5)
+
     if add_sub==0:
-        q = '$' + str(a) + ' + ' + str(b) + '$'
+        if random.randint(0,1) == 0:
+            q = '$' + str(a) + ' + ' + str(b) + '$'
+        else:
+            q = '$' + str(b) + ' + ' + str(a) + '$'
         ans = float(a) + float(b)
     else:
         if int(a) > int(b):
@@ -192,12 +241,12 @@ def addition(decimal=1, add_sub=0):
 
     return q, ans
 
-def gen_mental_addition(n,a,b,c,d,e):
+def gen_mental_addition(n,just_over_100,b,c,d,e):
     questions = []
     answers = []
     count = [i for i in range(10)]
     for i in count:
-        q,a = mental_addition()
+        q,a = mental_addition(just_over_100)
         questions.append(q)
         answers.append(a)
     return {'questions':questions, 'answers':answers, 'count':count}
@@ -218,12 +267,21 @@ def gen_mental_multiplication(n,b,c,d,e,f):
         answers.append(a)
     return {'questions':questions, 'answers':answers, 'count':count}
 
-def gen_addition(n,a,b,c,d,e):
+def gen_addition(n,decimal,add_sub,c,d,e):
     questions = []
     answers = []
     count = [i for i in range(10)]
     for i in count:
-        q,a = addition()
+        if i < 2:
+            dec_offset = 0
+        elif i < 4:
+            dec_offset = 1
+        elif i < 6:
+            dec_offset = 2
+        else:
+            dec_offset = 3
+
+        q,a = addition(decimal, add_sub, dec_offset)
         questions.append(q)
         answers.append(a)
     return {'questions':questions, 'answers':answers, 'count':count}
